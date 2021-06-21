@@ -1,13 +1,23 @@
 (require [hy.contrib.walk [let]])
+(import [hyccup.util [to-str]])
+
+
+(defn compile-exp [exp]
+  (cond
+    [(instance? list exp) (compile-list exp)]
+    [(instance? str exp) exp]))
+
 
 (defn compile-element [tag attrs children]
-  f"<{(. tag name)}{(format-attrs attrs)}>{children}</{(. tag name)}>")
+  (setv tag-name (to-str tag))
+  f"<{tag-name}{(format-attrs attrs)}>{(compile-exp children)}</{tag-name}>")
+
 
 (defn compile-list [element-list]
   (setv element-len (len element-list))
   (cond
     [(= element-len 1) (compile-element #* element-list {} "")]
-    [(= element-len 2) (if (isinstance (nth element-list 1) dict)
+    [(= element-len 2) (if (instance? dict (last element-list))
                          (compile-element #* element-list "")
                          (compile-element 
                            (first element-list)
