@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hyccup"
+version = "0.1.0"
+description = "A port of Clojure Hiccup for Hy"
+authors = ["Guillaume Fayard <guillaume.fayard@pycolore.fr>"]
+license = "MIT"
+keywords = ["template", "html", "hiccup", "hy"]
+include = ["hyccup/*.hy", "hyccup/__pycache__/*.pyc"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+hy = "1.0a1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
