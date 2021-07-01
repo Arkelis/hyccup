@@ -6,6 +6,7 @@
   (assert (= (compile-exp [:div {:test 1}]) "<div test=\"1\"></div>"))
   (assert (= (compile-exp [:div]) "<div></div>"))
   (assert (= (compile-exp ["div" {:test 1} "hello"]) "<div test=\"1\">hello</div>"))
-  (assert (= (compile-exp [:div [:div]]) "<div><div></div></div>")))
+  (assert (= (compile-exp [:div [:div]]) "<div><div></div></div>"))
+  (assert (= (compile-exp [:meta {:charset "UTF-8"}]) "<meta charset=\"UTF-8\">")))
 
 
