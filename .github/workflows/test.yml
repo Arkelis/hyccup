@@ -1,0 +1,23 @@
+name: Tests & coverage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.9"
+    - name: Install micropipenv
+      run: pip install micropipenv[toml]
+    - name: Install dependencies
+      run: micropipenv install --dev
+    - name: Test with pytest
+      run: pytest tests
