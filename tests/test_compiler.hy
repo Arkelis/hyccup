@@ -7,6 +7,7 @@
   (assert (= (html [:div]) "<div></div>"))
   (assert (= (html ["div" {:test 1} "hello"]) "<div test=\"1\">hello</div>"))
   (assert (= (html [:div [:div]]) "<div><div></div></div>"))
-  (assert (= (html [:meta {:charset "UTF-8"}]) "<meta charset=\"UTF-8\">")))
+  (assert (= (html [:meta {:charset "UTF-8"}]) "<meta charset=\"UTF-8\">"))
+  (assert (= (html [:div#an-id "text"]) "<div id=\"an-id\">text</div>")))
 
 
