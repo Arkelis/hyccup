@@ -1,5 +1,8 @@
-(import [hyccup.compiler [compile-exp]])
+(import [hyccup.compiler [compile-exp]]
+        [hy.models [Keyword]])
 
-(defn html [content]
-  (print (compile-exp content))
-  (compile-exp content))
+(defn html [#* content [mode "xhtml"]]
+  (if (coll? (first content))
+    (.join "" (map (fn [el] (compile-exp el mode))
+                   content))
+    (compile-exp content mode)))
