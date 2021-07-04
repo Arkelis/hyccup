@@ -76,8 +76,8 @@
       (if (empty? attrs-str) "" f" {attrs-str}"))
     ""))
 
-;; Elements compilation
 
+;; Elements compilation
 
 (defn render-element [tag attrs #* children mode]
   "Render an element list to HTML string recursively.

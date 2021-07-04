@@ -1,3 +1,5 @@
+"""Tests for hyccup.core module"""
+
 (import [hyccup.core [html]]
         pytest)
 
