@@ -1,6 +1,7 @@
 """Tests for hyccup.core module"""
 
-(import [hyccup.core [html]]
+(import [hyccup.core [html raw]]
+        [hyccup.util [RawStr]]
         pytest)
 
 ;; See https://github.com/weavejester/hiccup/blob/master/test/hiccup/core_test.clj
@@ -142,3 +143,10 @@
   ;; (defn test-laziness-and-binding-scope [self]
   ;;   (assert (= (html ["html" ["link"] #* [["link"]]] :mode "sgml")
   ;;              "<html><link><link></html>"))))
+
+(defn test-raw-string []
+  (assert (is (type (raw "a str")) RawStr))
+  (assert (= (raw "a str") "a str"))
+  (assert (= (raw None) ""))
+  (assert (= (raw ["first" "second"]) "firstsecond"))
+  (assert (= (raw [["first" "second"] "third"]) "firstsecondthird")))
