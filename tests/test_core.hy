@@ -4,8 +4,10 @@
         [hyccup.util [RawStr]]
         pytest)
 
+(require [hy.contrib.walk [let]])
+
 ;; See https://github.com/weavejester/hiccup/blob/master/test/hiccup/core_test.clj
-;; Taken from the test suite of Hiccup maintained by James Reeves
+;; Adapted from the test suite of Hiccup maintained by James Reeves
 
 (defn test-tag-name []
   (assert (= (html ["div"]) "<div></div>"))
@@ -139,10 +141,64 @@
     (assert (= (html ["input" {"type" "checkbox" "checked" True}] :mode "sgml")
                "<input checked type=\"checkbox\">"))))
 
-  ;; Purpose of this test to clarify
-  ;; (defn test-laziness-and-binding-scope [self]
-  ;;   (assert (= (html ["html" ["link"] #* [["link"]]] :mode "sgml")
-  ;;              "<html><link><link></html>"))))
+(defclass TestEscaping []
+  (defn test-literals [self]
+    (assert (= (html "<>") "&lt;&gt;"))
+    (assert (= (html '<>) "&lt;&gt;"))
+    (assert (= (html (str "<>")) "&lt;&gt;"))
+    (assert (= (html 1) "1"))
+    (assert (= (html (+ 1 1)) "2"))
+
+    ;; we keep Python string repr
+    (assert (= (html {"<a>" "<b>"}) "{&apos;&lt;a&gt;&apos;: &apos;&lt;b&gt;&apos;}"))
+    (assert (= (html #{"<>"}) "{&apos;&lt;&gt;&apos;}")))
+
+  (defn test-non-literals [self]
+    (assert (= (html ['p "<foo>"] ['p "<bar>"])
+               "<p>&lt;foo&gt;</p><p>&lt;bar&gt;</p>"))
+    (assert (= (do (setv x "<foo>") (html x)) "&lt;foo&gt;")))
+
+  (defn test-forms [self]
+    (assert (= (html (if True "<foo>" "<bar>")) "&lt;foo&gt;"))
+    (assert (= (html #* (gfor x ["<foo>"] x)) "&lt;foo&gt;")))
+
+  (defn test-elements [self]
+    (assert (= (html ['p "<>"]) "<p>&lt;&gt;</p>"))
+    (assert (= (html ['p '<>]) "<p>&lt;&gt;</p>"))
+    (assert (= (html ['p {} {"<foo>" "<bar>"}])
+               "<p>{&apos;&lt;foo&gt;&apos;: &apos;&lt;bar&gt;&apos;}</p>"))
+    (assert (= (html ['p {} #{"<foo>"}])
+               "<p>{&apos;&lt;foo&gt;&apos;}</p>"))
+    (assert (= (html ['p {'class "<\">"}])
+               "<p class=\"&lt;&quot;&gt;\"></p>"))
+    (assert (= (html ['p {'class ["<\">"]}])
+               "<p class=\"&lt;&quot;&gt;\"></p>"))
+    (assert (= (html ['ul ['li "<foo>"]])
+               "<ul><li>&lt;foo&gt;</li></ul>")))
+
+  (defn test-raw-strings-not-escaped [self]
+    (assert (= (html (raw "<foo>")) "<foo>"))
+    (assert (= (html ['p (raw "<foo>")]) "<p><foo></p>"))
+    (assert (= (html (html ['p "<>"])) "<p>&lt;&gt;</p>"))
+    (assert (= (html ['ul (html ['li "<>"])]) "<ul><li>&lt;&gt;</li></ul>")))
+
+  (defn test-escaping-mode [self]
+    (assert (= (html ['p "<>"] :escape-strings True) "<p>&lt;&gt;</p>"))
+    (assert (= (html ['p "<>"] :escape-strings False) "<p><></p>"))
+    (let [x ['p "<>"]]
+      (assert (= (html x :escape-strings True) "<p>&lt;&gt;</p>"))
+      (assert (= (html x :escape-strings False) "<p><></p>")))
+    (assert (= (html ['p (raw "<>")] :escape-strings True)
+           "<p><></p>"))
+    (assert (= (html ['p (raw "<>")] :escape-strings False)
+           "<p><></p>")))
+
+  (defn test-attributes-always-escaped [self]
+    (assert (= (html ['p {'class "<>"}] :escape-strings True)
+           "<p class=\"&lt;&gt;\"></p>"))
+    (assert (= (html ['p {'class "<>"}] :escape-strings False)
+           "<p class=\"&lt;&gt;\"></p>"))))
+
 
 (defn test-raw-string []
   (assert (is (type (raw "a str")) RawStr))

@@ -33,9 +33,9 @@
   (setv tag-abb-str (str tag)
         tag-abb-re r"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?"
         compiled-re (re.compile tag-abb-re)
-        [tag-name id attrs] (-> (.match compiled-re tag-abb-str)
+        [tag-name id classes] (-> (.match compiled-re tag-abb-str)
                                 (.group 1 2 3)))
-  [tag-name id (.replace (or attrs "") "." " ")])
+  [tag-name id (.replace (or classes "") "." " ")])
 
 
 ;; Attributes sorting
@@ -65,9 +65,9 @@
   
   (defn compile-html [self #* content]
     "Compile HTML content to string."
-    (if (coll? (first content))
+    (if (instance? list (first content))
       (.join "" (map self.compile-element-exp content))
-      (self.compile-element-exp content)))
+      (self.compile-element-exp #* content)))
 
   (defn compile-element-exp [self exp]
     "Compile any expression representing an element to a HTML string.
@@ -75,8 +75,8 @@
     Called by self.compile-html.
     "
     (cond
-      [(coll? exp) (self.compile-list exp)]
-      [(instance? RawStr exp) exp]
+      [(instance? list exp) (self.compile-list exp)]
+      [(is RawStr (type exp)) exp]
       [True (escape-html (str exp) self.mode self.escape-strings)]))
 
   (defn compile-list [self element-list]
@@ -105,13 +105,13 @@
     (setv [tag-name id classes] (expand-tag-abb tag))
     (if id
       (unless (in "id" attrs) (assoc attrs "id" id)))
-    (if classes
+    (setv dict-classes (.get attrs "class" ""))
+    (if (or classes dict-classes)
       (assoc attrs "class"
-        (.join " " (remove empty? [f"{classes}" 
-                                  (let [dict-classes (.get attrs "class" "")]
-                                    (if (coll? dict-classes)
-                                      (.join " " dict-classes)
-                                      dict-classes))]))))
+        (.join " " (remove empty? [classes
+                                   (if (coll? dict-classes)
+                                     (.join " " dict-classes)
+                                     dict-classes)]))))
     (if (empty? children)
       (+ f"<{tag-name}{(self.format-attrs-dict attrs)}"
          (if (container-tag? tag-name self.mode)
@@ -136,7 +136,7 @@
       [True
         (do
           (setv attr-value-str 
-            (escape-html (str value) self.mode self.escape-strings))
+            (escape-html (str value) self.mode :escape-strings True))
           f"{(str attr)}=\"{attr-value-str}\"")]))
 
 

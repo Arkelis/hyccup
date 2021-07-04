@@ -24,9 +24,27 @@ must be changed to
 ['div#an-id {'class "a-class"} "some text"] ;; with symbols
 ```
 
+### Options
+
+Instead of passing options in a dictionary as the first argument:
+
+```clj
+(html {:mode "xhtml" :espace-strings? true} [:p "example"])
+```
+
+Pass them as keyword arguments (or use unpacking):
+
+```hy
+(html ['p "example"] :mode "xhtml" :espace-strings True)
+(html ['p "example"] #** {'mode "xhtml" 'espace-strings True})
+(html ['p "example"] (unpack-mapping {'mode "xhtml" 'espace-strings True}))
+```
+
+Note that the escape flag argument has no `?` suffix in Hyccup.
+
 ### Lists
 
-The following call is valid in Hiccup:
+The following form is valid in Hiccup:
 
 ```clj
 (html (list [:p "some text"] [:p "another p"]))
@@ -36,9 +54,9 @@ In Hyccup, just chain the elements or use unpacking (as we already use lists to
 represent elements, where Hiccup use Clojure vectors).
 
 ```hy
-(html [:p "some text"] [:p "another p"]))
-(html #* [[:p "some text"] [:p "another p"]]))
-(html (unpack-iterable [[:p "some text"] [:p "another p"]])))
+(html ['p "some text"] ['p "another p"]))
+(html #* [['p "some text"] ['p "another p"]]))
+(html (unpack-iterable [['p "some text"] ['p "another p"]])))
 ```
 
 <!-- ## Use Hyccup with web frameworks
