@@ -1,10 +1,16 @@
-(import [hy.models [Keyword Symbol]])
+(import [fractions [Fraction]]
+        [urllib.parse [ParseResult]] 
+        [hy.models [Keyword Symbol]])
 
-;; (defn to-str [obj]
-;;   (cond
-;;     [(instance? Symbol obj) (str obj)]
-;;     [(instance? str obj) obj]
-;;     [True (raise (ValueError f"{obj} is not a valid element name."))]))
+(defn to-str [obj]
+  (cond
+    [(instance? Fraction obj) (-> obj (float) (str))]
+    [(instance? ParseResult obj) (.geturl obj)]
+    [(instance? Symbol obj) (str obj)]
+    [True (str obj)]))
+
+(defn as-str [#* obj]
+  (.join "" (map to-str obj)))
 
 (defn escape-html [string mode escape-strings]
   "Change special characters into HTML character entities."
