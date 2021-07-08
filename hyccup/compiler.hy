@@ -24,6 +24,8 @@
 
 ;; Tag abbreviation
 
+(setv tag-abb-re (re.compile r"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?"))
+
 (defn expand-tag-abb [tag]
   "Expand a tag abbreviation
   
@@ -33,10 +35,8 @@
   - its classes
   "
   (setv tag-abb-str (str tag)
-        tag-abb-re r"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?"
-        compiled-re (re.compile tag-abb-re)
-        [tag-name id classes] (-> (.match compiled-re tag-abb-str)
-                                (.group 1 2 3)))
+        [tag-name id classes] (-> (.match tag-abb-re tag-abb-str)
+                                  (.group 1 2 3)))
   [tag-name id (.replace (or classes "") "." " ")])
 
 
