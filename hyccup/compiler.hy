@@ -1,5 +1,5 @@
 (require [hy.contrib.walk [let]])
-(import [hyccup.util [escape-html RawStr]]
+(import [hyccup.util [escape-html RawStr empty?]]
         re)
 
 

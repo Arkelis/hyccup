@@ -32,3 +32,9 @@
         [(none? obj) (RawStr "")]
         [(coll? obj) (RawStr (+ #* (map (. RawStr from-obj-or-iterable) obj)))]
         [True (RawStr obj)]))))
+
+
+;; Internal util
+
+(defn empty? [coll]
+  (= (len coll) 0))
