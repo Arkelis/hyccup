@@ -1,11 +1,13 @@
 [tool.poetry]
 name = "hyccup"
-version = "1.0.0a1.dev2"
+version = "1.0.0a1.dev3"
 description = "A port of Clojure Hiccup for Hy"
 authors = ["Guillaume Fayard <guillaume.fayard@pycolore.fr>"]
 license = "MIT"
 keywords = ["template", "html", "hiccup", "hy"]
 include = ["hyccup/*.hy", "hyccup/__pycache__/*.pyc"]
+repository = "https://github.com/Arkelis/hyccup"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
