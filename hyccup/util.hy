@@ -13,8 +13,8 @@
 
 (defn to-str [obj]
   (cond
-    [(instance? Fraction obj) (-> obj (float) (str))]
-    [(instance? SplitResult obj) (make-url obj)]
+    [(isinstance obj Fraction) (-> obj (float) (str))]
+    [(isinstance obj SplitResult) (make-url obj)]
     [True (str obj)]))
 
 (defn as-str [#* obj]
@@ -38,7 +38,7 @@
   (with-decorator classmethod
     (defn from-obj-or-iterable [cls obj]
       (cond
-        [(none? obj) (RawStr "")]
+        [(is None obj) (RawStr "")]
         [(coll? obj) (RawStr (+ #* (map (. RawStr from-obj-or-iterable) obj)))]
         [True (RawStr obj)]))))
 
@@ -94,7 +94,7 @@
              (url-encode query-params))))
 
 
-;; Internal util
+;; Iterable utils
 
 (defn empty? [coll]
   (= (len coll) 0))

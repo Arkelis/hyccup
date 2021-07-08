@@ -1,6 +1,8 @@
 (require [hy.contrib.walk [let]])
-(import [hyccup.util [escape-html RawStr empty?]]
-        re)
+(import [itertools [filterfalse]]
+        re
+        [toolz [first second keymap]]
+        [hyccup.util [escape-html RawStr empty?]])
 
 
 ;; HTML mode handling
@@ -65,7 +67,7 @@
   
   (defn compile-html [self #* content]
     "Compile HTML content to string."
-    (if (instance? list (first content))
+    (if (isinstance (first content) list)
       (.join "" (map self.compile-element-exp content))
       (self.compile-element-exp #* content)))
 
@@ -75,7 +77,7 @@
     Called by self.compile-html.
     "
     (cond
-      [(instance? list exp) (self.compile-list exp)]
+      [(isinstance exp list) (self.compile-list exp)]
       [(is RawStr (type exp)) exp]
       [True (escape-html (str exp) self.mode self.escape-strings)]))
 
@@ -84,13 +86,13 @@
     
     Called by self.compile-element-exp.
     "
-    (unless (instance? str (first element-list))
+    (unless (isinstance (first element-list) str)
       (raise (TypeError f"{(first element-list)} must be a string or symbol.")))
     (if (= (len element-list) 1) 
       (self.render-element #* element-list {})
-      (if (instance? dict (second element-list))
+      (if (isinstance (second element-list) dict)
         (self.render-element #* element-list)
-        (self.render-element (first element-list) {} #* (cut element-list 1)))))
+        (self.render-element (first element-list) {} #* (rest element-list)))))
 
   (defn render-element [self tag attrs #* children]
     "Render an element list to HTML string recursively.
@@ -102,16 +104,17 @@
     Call compile-element-exp for rendering its children.
     Called by compile-list.
     "
-    (setv [tag-name id classes] (expand-tag-abb tag))
+    (setv attrs (keymap str attrs)
+          dict-classes (.get attrs "class" "")
+          [tag-name id classes] (expand-tag-abb tag))
     (if id
       (unless (in "id" attrs) (assoc attrs "id" id)))
-    (setv dict-classes (.get attrs "class" ""))
     (if (or classes dict-classes)
       (assoc attrs "class"
-        (.join " " (remove empty? [classes
-                                   (if (coll? dict-classes)
-                                     (.join " " dict-classes)
-                                     dict-classes)]))))
+        (.join " " (filterfalse empty? [classes
+                                        (if (coll? dict-classes)
+                                          (.join " " dict-classes)
+                                          dict-classes)]))))
     (if (empty? children)
       (+ f"<{tag-name}{(self.format-attrs-dict attrs)}"
          (if (container-tag? tag-name self.mode)
@@ -147,7 +150,7 @@
                         (gfor (, attr value)
                               (sorted (.items attrs-dict) :key attr-key)
                               (self.format-attr attr value))
-                        (remove empty?)
+                        (filterfalse empty?)
                         (.join " "))]
         (if (empty? attrs-str) "" f" {attrs-str}"))
       "")))
