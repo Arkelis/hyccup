@@ -6,7 +6,6 @@
   (cond
     [(instance? Fraction obj) (-> obj (float) (str))]
     [(instance? ParseResult obj) (.geturl obj)]
-    [(instance? Symbol obj) (str obj)]
     [True (str obj)]))
 
 (defn as-str [#* obj]
