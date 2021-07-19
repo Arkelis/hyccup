@@ -32,7 +32,7 @@ must be changed to
 ['div#an-id {'class "a-class"} "some text"] ;; with symbols
 ```
 
-### Options
+### HTML Options
 
 Instead of passing options in a dictionary as the first argument:
 
@@ -93,6 +93,37 @@ To
 "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
 ```
 
+
+### `defhtml` and `defelem`
+
+
+`defhtml` and `defelem` macros from Hiccup is available in two modules:
+
+- `hyccup.defmacros` for using `defhtml` and `defelem` as macros in Hy code:
+
+```hy
+=> (require [hyccup.defmacros [defhtml defelem]])
+=> (defelem link-to [link text]
+...  ['a {'href link} text])
+=> (link-to "https://www.pycolore.fr" "Pycolore" )
+['a {'href "https://www.pycolore.fr"} "Pycolore"]
+=> (defhtml linked-section-html [link text content]
+...  ['section 
+...    ['h1 (link-to link text)]
+...    ['p content]])
+=> (linked-section-html "https://www.pycolore.fr" "Pycolore" "Lorem Ipsum")
+'<section>
+   <h1>
+     <a href="https://www.pycolore.fr">Pycolore</a>
+   </h1>
+   <p>
+     Lorem Ipsum
+   </p>
+ </section>'
+```
+
+- `hyccup.defdecos` for using `defhtml` and `defelem`decorators in Python code. See *Python Interop* section.
+
 ## Python interop
 
 You can call Hyccup functions from Python code:
@@ -102,6 +133,30 @@ You can call Hyccup functions from Python code:
 >>> from hyccup.core import html
 >>> html(["div", {"class": "my-class", "id": "my-id"}, "Hello Hyccup"])
 '<div class="my-class" id="my-id">Hello Hyccup</div>'
+```
+
+`defelem` and `defhtml` macros are available as decorators in Python:
+
+```pycon
+>>> from hyccup.defdecos import defelem, defhtml
+>>> @defhtml # pass output of function to html()
+... @defelem # merge last arg dict with attributes
+... def link_to(link: str, text: str):
+...     return ["a", {"href": link}, text]
+...
+>>> link_to("https://www.pycolore.fr", "Pycolore", {"class": "some-class"})
+'<a class="some-class" href="https://www.pycolore.fr">Pycolore</a>'
+```
+
+It is possible to pass HTML options to `defhtml` decorator
+
+```pycon
+>>> @defhtml(mode="html")
+... def paragraph(content=""):
+...     return ["p", content]
+...
+>>> paragraph()
+'<p></p>'
 ```
 
 <!-- ## Use Hyccup with web frameworks

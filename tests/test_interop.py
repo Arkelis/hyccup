@@ -31,7 +31,12 @@ class TestDefHtmlDeco:
         def basic_fn(x):
             return ["span", x]
         
+        @defhtml
+        def basic_fn2(x):
+            return ["span", x]
+        
         assert basic_fn("foo") == "<span>foo</span>"
+        assert basic_fn2("foo") == "<span>foo</span>"
 
     def test_mode(self):
         @defhtml(mode="html")

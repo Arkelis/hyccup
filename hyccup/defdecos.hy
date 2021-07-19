@@ -6,13 +6,21 @@
 
 (require [hy.contrib.walk [let]])
 
-(defn defhtml [#** html-options]
-  (defn deco [function]
-    #@((functools.wraps function)
-    (defn wrapper[#* args #** kwargs]
-      (html (function #* args #** kwargs) #**html-options)))
-    wrapper)
-  deco)
+(defn defhtml [[func None] / #** html-options]
+  (if (callable func)
+    (do
+      #@((functools.wraps func)
+      (defn wrapper [#* args #** kwargs]
+        (html (func #* args #** kwargs))))
+      wrapper)
+    (do
+      (defn deco [function]
+        #@((functools.wraps function)
+        (defn wrapper [#* args #** kwargs]
+          (html (function #* args #** kwargs)
+                #** html-options)))
+        wrapper)
+      deco)))
 
 
 (defn eval-and-merge-attrs [attrs-map function #*args #**kwargs]
