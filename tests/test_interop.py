@@ -73,8 +73,6 @@ class TestDefElemDeco:
             return [a, sum(args) + sum(kwargs.values())]
         
         assert var_positional(1, {"foo": "bar"}, 4, 5, b=6, c=7) == [1, {"foo": "bar"}, 22]
-        
-
 
     def test_recursive(self):
         @defelem

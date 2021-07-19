@@ -17,10 +17,14 @@
 
 (defn stararg? [index-and-arg]
   (setv arg (get index-and-arg 1))
-  (cond 
+  (cond
     [(= arg '*) True]
+    [(and (coll? arg)
+          (= (first arg) 'annotate))
+     False]
     [(and (coll? arg) 
-          (in (get arg 0) ['unpack-mapping 'unpack-iterable])) True]
+          (in (first arg) ['unpack-mapping 'unpack-iterable])) 
+     True]
     [True False]))
 
 
@@ -30,8 +34,8 @@
                            (try (first it) (except [StopIteration] [None None]))
                            (get it 0))
         argslist (if (not (is None unpkmapindex))
-                   [#* (cut argslist unpkmapindex) ['attrs-map None] (cut argslist unpkmapindex None)]
-                   [#* argslist ['attrs-map None]])
+                   [#* (cut argslist unpkmapindex) ['attrs-map 'None] #* (cut argslist unpkmapindex None)]
+                   [#* argslist ['attrs-map 'None]])
         fbody (list (rest fbody)))
   (setv last-arg-docstring 
     (+ "\n\nLast optional positional parameter added by 'defelem' macro:\n"
@@ -43,8 +47,7 @@
   `(defn ~name ~argslist
     ~docstring
     (import [toolz [first second last merge keymap]])
-    (setv raw-result (do ~@fbody)
-          args ~argslist)
+    (setv raw-result (do ~@fbody))
     (if attrs-map
       (do
         (setv [tag #* body] raw-result)
