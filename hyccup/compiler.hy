@@ -67,9 +67,9 @@
   
   (defn compile-html [self #* content]
     "Compile HTML content to string."
-    (if (isinstance (first content) list)
-      (.join "" (map self.compile-element-exp content))
-      (self.compile-element-exp #* content)))
+    (if (= (len content) 1)
+      (self.compile-element-exp #* content))
+      (.join "" (map self.compile-element-exp content)))
 
   (defn compile-element-exp [self exp]
     "Compile any expression representing an element to a HTML string.
