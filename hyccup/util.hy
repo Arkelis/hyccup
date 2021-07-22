@@ -54,11 +54,11 @@
     (urlencode obj :encoding local-data.encoding)))
 
 (with-decorator contextmanager
- (defn encoding [enc]
-   (try
-     (yield (setv local-data.encoding enc))
-   (finally
-     (setv local-data.encoding None)))))
+  (defn encoding [enc]
+    (try
+      (yield (setv local-data.encoding enc))
+    (finally
+      (setv local-data.encoding None)))))
 
 (do
   (with-decorator singledispatch

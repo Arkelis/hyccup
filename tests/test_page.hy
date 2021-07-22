@@ -1,3 +1,8 @@
+;; Adapted from the test suite of Hiccup maintained by James Reeves
+;; https://github.com/weavejester/hiccup
+
+"""Tests for hyccup.page module."""
+
 (import [hyccup.page [html4 xhtml html5 include-css include-js]]
         [hyccup.util :as util])
 

@@ -1,6 +1,6 @@
 (import [hyccup.core [html raw]]
         [hyccup.util :as util]
-        [toolz [merge]])
+        [toolz [first merge]])
 
 (require [hyccup.defmacros [defelem]])
 
@@ -19,7 +19,7 @@
    (raw "<!DOCTYPE html>\n")})
 
 
-(defelem xhtml-tag [lang contents]
+(defelem xhtml-tag [lang #* contents]
   "Create an XHTML element for the specified language."
   ['html {'xmlns "http://www.w3.org/1999/xhtml"
           "xml:lang" lang
@@ -42,6 +42,11 @@
     :mode "sgml"))
 
 
+(defn split-attrs-and-content [contents]
+  (if (isinstance (first contents) dict)
+    (, (first contents) (rest contents))
+    (, {} contents)))
+
 (defn xhtml [#* contents [lang None] [encoding "UTF-8"]]
   "Create a XHTML 1.0 strict document with the supplied contents.
   
@@ -49,14 +54,14 @@
   * `lang` - The language of the document
   * `encoding` - The character encoding of the document (defaults to UTF-8).
   "
+  (setv [attrs contents] (split-attrs-and-content contents))
   (html
     (xml-declaration encoding)
     (:xhtml-strict doctype)
-    (xhtml-tag lang contents)
+    (xhtml-tag lang attrs #* contents)
     :mode "xhtml"))
 
-(defn html5 [attrs-or-first-content #* contents
-             [lang None] [xml False] [encoding "UTF-8"]]
+(defn html5 [#* contents [lang None] [xml False] [encoding "UTF-8"]]
   "Create a HTML5 document with the supplied contents.
   
   Keyword argument:
@@ -64,15 +69,12 @@
   - `encoding` - The character encoding of the document (defaults to UTF-8).
   - `lang` - The language of the document.
   "
-  (if (isinstance attrs-or-first-content dict)
-    (setv attrs attrs-or-first-content)
-    (setv attrs {}
-          contents (+ (, attrs-or-first-content) contents)))
+  (setv [attrs contents] (split-attrs-and-content contents))
   (if xml
     (html
       (xml-declaration encoding)
       (:html5 doctype)
-      (xhtml-tag lang contents attrs)
+      (xhtml-tag lang attrs #* contents)
       :mode "xml")
     (html
       (:html5 doctype)

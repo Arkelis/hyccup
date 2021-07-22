@@ -1,3 +1,8 @@
+;; Adapted from the test suite of Hiccup maintained by James Reeves
+;; https://github.com/weavejester/hiccup
+
+"""Tests for hyccup.util module."""
+
 (import [hyccup.util [as-str to-str to-uri base-url encoding url-encode]]
         [urllib.parse [urlsplit]])
 

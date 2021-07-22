@@ -1,3 +1,8 @@
+;; Adapted from the test suite of Hiccup maintained by James Reeves
+;; https://github.com/weavejester/hiccup
+
+"""Tests for hyccup.defmacros module."""
+
 (import inspect)
 
 (require [hyccup.defmacros [defhtml defelem]])

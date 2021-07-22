@@ -1,4 +1,7 @@
-"""Tests calling Hyccup from Python code"""
+"""Tests calling Hyccup from Python code
+
+Test especially hyccup.defdecos module.
+"""
 
 import inspect
 

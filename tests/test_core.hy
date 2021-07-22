@@ -1,3 +1,6 @@
+;; Adapted from the test suite of Hiccup maintained by James Reeves
+;; https://github.com/weavejester/hiccup
+
 """Tests for hyccup.core module"""
 
 (import [hyccup.core [html raw]]
@@ -6,12 +9,11 @@
 
 (require [hy.contrib.walk [let]])
 
-;; See https://github.com/weavejester/hiccup/blob/master/test/hiccup/core_test.clj
-;; Adapted from the test suite of Hiccup maintained by James Reeves
 
 (defn test-tag-name []
   (assert (= (html ["div"]) "<div></div>"))
   (assert (= (html ['div]) "<div></div>")))
+
 
 (defn test-tag-name-syntax []
   (assert (= (html ['div#foo]) "<div id=\"foo\"></div>"))
@@ -36,17 +38,21 @@
   (assert (= (html ['object]) "<object></object>"))
   (assert (= (html ['video]) "<video></video>")))
 
+
 (defn test-void-tags []
   (assert (= (html ['br]) "<br />"))
   (assert (= (html ['link]) "<link />"))
   (assert (= (html ['colgroup {'span 2}]) "<colgroup span=\"2\"></colgroup>"))
   (assert (= (html ['colgroup ['col]]) "<colgroup><col /></colgroup>")))
 
+
 (defn test-contents []
   (assert (= (html ['text "Lorem Ipsum"]) "<text>Lorem Ipsum</text>"))
   (assert (= (html ['body "foo" "bar"]) "<body>foobar</body>"))
   (assert (= (html ['body ['p] ['br]]) "<body><p></p><br /></body>"))
+  (assert (= (html ['body (iter [['p] ['br]])]) "<body><p></p><br /></body>"))
   (assert (= (html ['p "a"] ['p "b"]) "<p>a</p><p>b</p>"))
+  (assert (= (html (iter [['p "a"] ['p "b"]])) "<p>a</p><p>b</p>"))
   (assert (= (html ['div 'foo]) "<div>foo</div>"))
   (with [(pytest.raises TypeError)]
     (html [['p "a"] ['p "b"]]) "<p>a</p><p>b</p>")
@@ -104,10 +110,6 @@
     (assert (= (html ['div {"id" (+ "a" "b")} (str "foo")])
                "<div id=\"ab\">foo</div>")))
 
-;;   (testing "type hints"
-;;     (let [string "x"]
-;;       (is (= (html [:span ^String string]) "<span>x</span>"))))
-
   (defn test-optimized-forms [self]
     (assert (= (html ["ul" #* (gfor n (range 3) ["li" n])])
                "<ul><li>0</li><li>1</li><li>2</li></ul>"))
@@ -115,16 +117,6 @@
                               ["span" "foo"]
                               ["span" "bar"])])
                "<div><span>foo</span></div>"))))
-
-;;   (testing "values are evaluated only once"
-;;     (let [times-called (atom 0)
-;;           foo #(swap! times-called inc)]
-;;       (html [:div (foo)])
-;;       (is (= @times-called 1))))
-;;   (testing "defer evaluation of non-literal class names when combined with tag classes"
-;;     (let [x "attr-class"]
-;;       (is  (= (html [:div.tag-class {:class x}])
-;;               "<div class=\"tag-class attr-class\"></div>")))))
 
 
 (defclass TestRenderModes []

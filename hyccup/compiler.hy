@@ -1,5 +1,6 @@
 (require [hy.contrib.walk [let]])
-(import [itertools [filterfalse]]
+(import [collections.abc [Iterator]]
+        [itertools [filterfalse]]
         re
         [toolz [first second keymap]]
         [hyccup.util [escape-html RawStr empty?]])
@@ -68,8 +69,8 @@
   (defn compile-html [self #* content]
     "Compile HTML content to string."
     (if (= (len content) 1)
-      (self.compile-element-exp #* content))
-      (.join "" (map self.compile-element-exp content)))
+      (self.compile-element-exp (first content))
+      (.join "" (map self.compile-element-exp content))))
 
   (defn compile-element-exp [self exp]
     "Compile any expression representing an element to a HTML string.
@@ -77,6 +78,7 @@
     Called by self.compile-html.
     "
     (cond
+      [(isinstance exp Iterator) (self.compile-html #* exp)]
       [(isinstance exp list) (self.compile-list exp)]
       [(is RawStr (type exp)) exp]
       [True (escape-html (str exp) self.mode self.escape-strings)]))
@@ -122,12 +124,12 @@
            (if (xml-mode? self.mode) " />" ">" )))
       (if (void-tag? tag-name)
         (raise (ValueError f"'{tag-name}' cannot have children"))
-        (do 
+        (do
           (setv compiled-children 
             (.join "" (map (fn [el] (self.compile-element-exp el)) children)))
           (+ f"<{tag-name}{(self.format-attrs-dict attrs)}>"
-            f"{compiled-children}"
-            f"</{tag-name}>")))))
+             f"{compiled-children}"
+             f"</{tag-name}>")))))
 
   (defn format-attr [self attr value]
     (cond
