@@ -3,7 +3,7 @@
         [itertools [filterfalse]]
         re
         [toolz [first second keymap]]
-        [hyccup.util [escape-html RawStr empty?]])
+        [hyccup.util [escape-html RawStr empty? to-str]])
 
 
 ;; HTML mode handling
@@ -43,20 +43,20 @@
 
 ;; Attributes sorting
 
-(defn attr-key [t]
-  "Sorting key function.
+;; (defn attr-key [t]
+;;   "Sorting key function.
   
-  'class' attribute is always first.
-  'id' attribute follows 'class'.
-  'data-*' attributes follow 'id'.
-  "
-  (setv attr-name 
-    (-> (get t 0)
-        (str)))
-  (cond [(= attr-name "class") "0"]
-        [(= attr-name "id") "1"]
-        [(.startswith attr-name "data") f"2{attr-name}"]
-        [True f"3{attr-name}"]))
+;;   'class' attribute is always first.
+;;   'id' attribute follows 'class'.
+;;   'data-*' attributes follow 'id'.
+;;   "
+;;   (setv attr-name 
+;;     (-> (get t 0)
+;;         (str)))
+;;   (cond [(= attr-name "class") "0"]
+;;         [(= attr-name "id") "1"]
+;;         [(.startswith attr-name "data") f"2{attr-name}"]
+;;         [True f"3{attr-name}"]))
 
 
 ;; Compilation
@@ -141,7 +141,7 @@
       [True
         (do
           (setv attr-value-str 
-            (escape-html (str value) self.mode :escape-strings True))
+            (escape-html (to-str value) self.mode :escape-strings True))
           f"{(str attr)}=\"{attr-value-str}\"")]))
 
 
@@ -150,7 +150,7 @@
     (if attrs-dict
       (let [attrs-str (->>
                         (gfor (, attr value)
-                              (sorted (.items attrs-dict) :key attr-key)
+                              (sorted (.items attrs-dict))
                               (self.format-attr attr value))
                         (filterfalse empty?)
                         (.join " "))]
