@@ -30,28 +30,28 @@
 
 (defmacro defelem [name #* fbody]
   (setv argslist (first fbody)
-        unpkmapindex (as-> (filter stararg? (enumerate argslist)) it
-                           (try (first it) (except [StopIteration] [None None]))
-                           (get it 0))
-        argslist (if (not (is None unpkmapindex))
-                   [#* (cut argslist unpkmapindex) ['attrs-map 'None] #* (cut argslist unpkmapindex None)]
-                   [#* argslist ['attrs-map 'None]])
-        fbody (list (rest fbody)))
-  (setv last-arg-docstring 
-    (+ "\n\nLast optional positional parameter added by 'defelem' macro:\n"
-       "a dict of xml attributes to be added to the element."))
-  (if (isinstance (first fbody) str)
-    (setv docstring (+ (first fbody) last-arg-docstring)
-          fbody (cut fbody 1 None))
-    (setv docstring last-arg-docstring))
-  `(defn ~name ~argslist
-    ~docstring
-    (import [toolz [first second last merge keymap]])
-    (setv raw-result (do ~@fbody))
-    (if attrs-map
-      (do
-        (setv [tag #* body] raw-result)
-        (if (and body (isinstance (first body) dict))
-          [tag (merge (first body) attrs-map) #*(rest body)]
-          [tag attrs-map #*body]))
-      raw-result)))
+        has-docstring (isinstance (second fbody) str) 
+        first-attr-docstring "First optional attribute: a dict of HTML/XML attributes."
+        docstring 
+          (if has-docstring
+            (+ (second fbody) "\n\n" first-attr-docstring)
+            first-attr-docstring)
+        fbody (if has-docstring (cut fbody 2 None) (cut fbody 1 None)))
+  `(do
+    (import
+      [multimethod [multimethod]] 
+      [toolz [first merge]])
+    #@(multimethod
+    (defn ~name ~argslist
+      ~docstring
+      ~@fbody))
+    #@(multimethod
+    (defn ~name [^dict attrs-map #* args #** kwargs]
+      (setv raw-result (~name #* args #** kwargs))
+      (if attrs-map
+        (do
+          (setv [tag #* body] raw-result)
+          (if (and body (isinstance (first body) dict))
+            [tag (merge (first body) attrs-map) #*(rest body)]
+            [tag attrs-map #*body]))
+        raw-result)))))

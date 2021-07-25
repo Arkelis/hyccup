@@ -58,7 +58,7 @@
   (html
     (xml-declaration encoding)
     (:xhtml-strict doctype)
-    (xhtml-tag lang attrs #* contents)
+    (xhtml-tag attrs lang #* contents)
     :mode "xhtml"))
 
 (defn html5 [#* contents [lang None] [xml False] [encoding "UTF-8"]]
@@ -74,7 +74,7 @@
     (html
       (xml-declaration encoding)
       (:html5 doctype)
-      (xhtml-tag lang attrs #* contents)
+      (xhtml-tag attrs lang #* contents)
       :mode "xml")
     (html
       (:html5 doctype)

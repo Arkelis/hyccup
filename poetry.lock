@@ -66,6 +66,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "multimethod"
+version = "1.5"
+description = "Multiple argument dispatching."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "packaging"
 version = "21.0"
 description = "Core utilities for Python packages"
@@ -154,7 +162,7 @@ python-versions = ">=3.5"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "74e31ad94e68485623973fc0f9aacf9337efbf4ab2650cd9e20a536e23e2627a"
+content-hash = "1004b627182838fe7aef3eb48c4bd4e2849889a0240d4c1c8ad75e3bf2d9d98e"
 
 [metadata.files]
 appdirs = [
@@ -183,6 +191,10 @@ hy = [
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
+]
+multimethod = [
+    {file = "multimethod-1.5-py3-none-any.whl", hash = "sha256:889bcc8feb34181fbfa70f78e92f4c1927f0361e5decef0d2770b6ed7984c41c"},
+    {file = "multimethod-1.5.tar.gz", hash = "sha256:b9c6f85ecf187f14a3951fff319643e1fac3086d757dec64f2469e1fd136b65d"},
 ]
 packaging = [
     {file = "packaging-21.0-py3-none-any.whl", hash = "sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14"},

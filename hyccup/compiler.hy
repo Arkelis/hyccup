@@ -81,6 +81,7 @@
       [(isinstance exp Iterator) (self.compile-html #* exp)]
       [(isinstance exp list) (self.compile-list exp)]
       [(is RawStr (type exp)) exp]
+      [(is exp None) ""]
       [True (escape-html (str exp) self.mode self.escape-strings)]))
 
   (defn compile-list [self element-list]
