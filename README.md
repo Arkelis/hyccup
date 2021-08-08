@@ -1,5 +1,7 @@
 # Hyccup
 
+[![PyPi](https://img.shields.io/pypi/v/hyccup?label=PyPi)](https://pypi.org/project/hyccup/)
+[![Python Version](https://img.shields.io/pypi/pyversions/hyccup?label=Python)](https://pypi.org/project/hyccup/)
 [![Tests](https://github.com/Arkelis/hyccup/actions/workflows/test.yml/badge.svg)](https://github.com/Arkelis/hyccup/actions/workflows/test.yml)
 
 Hyccup is a port of [Hiccup](https://github.com/weavejester/hiccup)
