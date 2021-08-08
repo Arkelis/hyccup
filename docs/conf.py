@@ -22,7 +22,7 @@ copyright = '2021, Guillaume Fayard'
 author = 'Guillaume Fayard'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0a1'
+release = '1.0.0a2'
 
 
 # -- General configuration ---------------------------------------------------
