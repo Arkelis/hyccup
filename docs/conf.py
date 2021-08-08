@@ -33,7 +33,7 @@ release = '1.0.0a1'
 extensions = [
     "sphinx_inline_tabs",
     "sphinx.ext.autodoc",
-    "sphinx.ext.viewcode",
+    "sphinx.ext.githubpages",
     "sphinxcontrib.hydomain",
 ]
 
