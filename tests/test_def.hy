@@ -26,7 +26,17 @@
       (setv dummy "someval")
       #*(gfor i (range x y) ["p" i]))
     (assert (= (third 1 3)
-               "<p>1</p><p>2</p>"))))
+               "<p>1</p><p>2</p>")))
+  
+  (defn test-html-mode [self]
+    (defhtml {"mode" "html"} html-mode []
+      ['p])
+
+    (defhtml {"mode" "xml"} xml-mode []
+      ['p])
+    
+    (assert (= (html-mode) "<p></p>"))
+    (assert (= (xml-mode) "<p />"))))
 
 
 (defclass TestDefElemMacro []

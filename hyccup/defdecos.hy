@@ -1,11 +1,15 @@
 (import functools
-        [multimethod [multimethod]]
+        [hyccup.util [multimethod]]
         [toolz [first merge]]
         [hyccup.core [html]])
 
 (require [hy.contrib.walk [let]])
 
 (defn defhtml [[func None] / #** html-options]
+  "Decorate a function for passing its result to ``html``.
+  
+  Take HTML options as keyword arguments.
+  "
   (if (callable func)
     (do
       #@((functools.wraps func)
@@ -23,6 +27,14 @@
 
 
 (defn defelem [function]
+  "Decorate a function for defining elements using multimethod.
+  
+  The returned object is a callable with two signature:
+  
+  * The original signature of the function
+  * The original signature with as first parameter a dict of attributes. This
+    will be merged with attributes of the returned element.
+  "
   #@(multimethod
     (defn wrapper [#* args #** kwargs]
       (function #* args #** kwargs)))
