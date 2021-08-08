@@ -35,3 +35,10 @@ HTML into data structure and to dump it:
    quickstart.rst
    from-hiccup.rst
    reference.rst
+
+
+.. toctree::
+   :caption: Development
+
+   Source Code Repository <https://github.com/Arkelis/hyccup>
+   Hyccup on PyPI <https://pypi.org/project/hyccup/>
