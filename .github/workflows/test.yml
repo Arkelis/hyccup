@@ -29,13 +29,13 @@ jobs:
     - name: Test with pytest
       run: pytest tests
 
-    # Docs
-    - name: Build documentation
-      working-directory: ./docs
-      run: make html
+    # # Docs
+    # - name: Build documentation
+    #   working-directory: ./docs
+    #   run: make html
 
-    - name: Deploy docs to GH Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: docs/_build/html # The folder the action should deploy.
+    # - name: Deploy docs to GH Pages
+    #   uses: JamesIves/github-pages-deploy-action@4.1.4
+    #   with:
+    #     branch: gh-pages # The branch the action should deploy to.
+    #     folder: docs/_build/html # The folder the action should deploy.
