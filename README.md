@@ -23,4 +23,4 @@ Hyccup can also be used in Python:
 '<div class="my-class" id="my-id">Hello Hyccup</div>'
 ```
 
-More information in the [documentation](https://arkelis.github.io/hyccup).
+More information in the [documentation](https://hyccup.pycolore.fr).
