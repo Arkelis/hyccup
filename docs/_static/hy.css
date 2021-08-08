@@ -1,0 +1,27 @@
+dl.hy dd {
+    margin-left: 2rem; }
+    dl.hy dd > :first-child {
+      margin-top: 0.125rem; }
+    dl.hy dd > :last-child {
+      margin-bottom: 1.25rem; }
+  
+  dl.hy .field-list {
+    margin-bottom: 0.75rem; }
+    dl.hy .field-list dt {
+      text-transform: uppercase;
+      font-size: var(--font-size--small); }
+    dl.hy .field-list dd:empty {
+      margin-bottom: 0.5rem; }
+    dl.hy .field-list dd > ul {
+      margin-left: -1.2rem; }
+      dl.hy .field-list dd > ul > li > p:nth-child(2) {
+        margin-top: 0; }
+      dl.hy .field-list dd > ul > li > p + p:last-child:empty {
+        margin-top: 0;
+        margin-bottom: 0; }
+  
+  dl.hy > dt {
+    color: var(--color-api-overall); }
+    dl.hy > dt:target {
+      background-color: var(--color-api-highlight-on-target); }
+  
