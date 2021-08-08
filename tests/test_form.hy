@@ -221,6 +221,7 @@
     (assert (= (html (with [(group 'foo)] (with [(group 'bar)] (text-field 'baz))))
            "<input id=\"foo-bar-baz\" name=\"foo[bar][baz]\" type=\"text\" />")))
 
-  (defn wtest-multiple-elements [self]
-    (assert (= (html (with [(group 'foo)] (label 'bar "Bar") (text-field 'var)))
+  (defn test-multiple-elements [self]
+    (assert (= (html (with [(group 'foo)] 
+                       (iter [(label 'bar "Bar") (text-field 'var)])))
            "<label for=\"foo-bar\">Bar</label><input id=\"foo-var\" name=\"foo[var]\" type=\"text\" />"))))

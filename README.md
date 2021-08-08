@@ -144,7 +144,7 @@ You can call Hyccup functions from Python code:
 ... def link_to(link: str, text: str):
 ...     return ["a", {"href": link}, text]
 ...
->>> link_to("https://www.pycolore.fr", "Pycolore", {"class": "some-class"})
+>>> link_to({"class": "some-class"}, "https://www.pycolore.fr", "Pycolore")
 '<a class="some-class" href="https://www.pycolore.fr">Pycolore</a>'
 ```
 

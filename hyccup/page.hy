@@ -5,6 +5,10 @@
 (require [hyccup.defmacros [defelem]])
 
 
+(setv __all__
+  ["xhtml" "html4" "html5" "include_css" "include_js"])
+
+
 (setv doctype
   {"html4"
    (raw ["<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" "
@@ -35,7 +39,8 @@
 (defn html4 [#* contents]
   "Create a HTML 4 document with the supplied contents.
   
-  The first argument may be an optional attribute map."
+  The first argument may be an optional attribute map.
+  "
   (html 
     (:html4 doctype)
     ['html #* contents]
@@ -50,9 +55,8 @@
 (defn xhtml [#* contents [lang None] [encoding "UTF-8"]]
   "Create a XHTML 1.0 strict document with the supplied contents.
   
-  Keyword arguments:
-  * `lang` - The language of the document
-  * `encoding` - The character encoding of the document (defaults to UTF-8).
+  :param lang: The language of the document
+  :param encoding: The character encoding of the document (defaults to UTF-8).
   "
   (setv [attrs contents] (split-attrs-and-content contents))
   (html
@@ -64,10 +68,9 @@
 (defn html5 [#* contents [lang None] [xml False] [encoding "UTF-8"]]
   "Create a HTML5 document with the supplied contents.
   
-  Keyword argument:
-  - `xml` - If True, use html with xml mode.
-  - `encoding` - The character encoding of the document (defaults to UTF-8).
-  - `lang` - The language of the document.
+  :param xml: If True, use html with xml mode.
+  :param encoding: The character encoding of the document (defaults to UTF-8).
+  :param lang: The language of the document.
   "
   (setv [attrs contents] (split-attrs-and-content contents))
   (if xml
