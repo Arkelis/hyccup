@@ -13,7 +13,7 @@ From PyPI:
     pip install hyccup
 
     # with poetry
-    poetry add --pre hyccup
+    poetry add hyccup
 
 
 Overview
@@ -35,7 +35,7 @@ structure into an HTML string:
    .. code-block::
 
       >>> from hyccup.core import html
-      >>> html(["p", {"id": "an-id", "class": "a-class"}, "Python Ipsum"])
+      >>> html(['p', {'id': 'an-id', 'class': 'a-class'}, 'Python Ipsum'])
       '<p class="a-class" id="an-id">Python Ipsum</p>'
 
 The :hy:func:`html <hyccup.core.html>` function takes lists as positional
@@ -55,9 +55,9 @@ to render. It can be a string or a Hy symbol.
 
    .. code-block::
 
-      >>> html(["p"])
+      >>> html(['p'])
       '<p></p>'
-      >>> html(["br"])
+      >>> html(['br'])
       '<br />'
 
 The attributes of the element must be represented in a dictionary as the
@@ -76,9 +76,9 @@ second element of the list.
 
    .. code-block::
 
-      >>> html(["input", {"type": "password", "name": "password"}])
+      >>> html(['input', {'type': 'password', 'name': 'password'}])
       '<input name="password" type="password" />'
-      >>> html(["p", "Attributes dict can be omitted"])
+      >>> html(['p', 'Attributes dict can be omitted'])
       '<p>Attributes dict can be omitted</p>'
 
 
@@ -103,7 +103,7 @@ of the element. If an element is an iterator, it is expanded.
            (lfor x (range 5) ['li f"Item #{x}"]))
       => (html ['p "For other collections use unpacking or iter:"]
       ...      ['ul #* items-list (iter items-list)])
-      "<p>For other collections use unpacking:</p>
+      "<p>For other collections use unpacking or iter:</p>
       <ul>
         <li>Item #0</li>
         <li>Item #1</li>
@@ -121,8 +121,8 @@ of the element. If an element is an iterator, it is expanded.
 
    .. code-block::
 
-      >>> items_generator = (["li", f"Item #{x}"] for x in range(5))
-      >>> html(["ol", items_generator])
+      >>> items_generator = (['li', f'Item #{x}'] for x in range(5))
+      >>> html(['ol', items_generator])
       '<ol>
         <li>Item #0</li>
         <li>Item #1</li>
@@ -130,10 +130,10 @@ of the element. If an element is an iterator, it is expanded.
         <li>Item #3</li>
         <li>Item #4</li>
       </ol>'
-      >>> items_list = [["li", f"Item #{x}"] for x in range(5)]
-      >>> html(["p", "For other collections use unpacking or iter:"],
-      ...      ["ul", *items_list, iter(items_list)])
-      '<p>For other collections use unpacking:</p>
+      >>> items_list = [['li', f'Item #{x}'] for x in range(5)]
+      >>> html(['p', 'For other collections use unpacking or iter:'],
+      ...      ['ul', *items_list, iter(items_list)])
+      '<p>For other collections use unpacking or iter:</p>
       <ul>
         <li>Item #0</li>
         <li>Item #1</li>
@@ -161,5 +161,5 @@ CSS selectors syntax for classes and id can be used as a shortcut
 
    .. code-block::
 
-      >>> html(["div#guido.bdfl"])
+      >>> html(['div#guido.bdfl'])
       '<div class="bdfl" id="guido"></div>'
