@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+cd docs
+make html && cp -r _build/html/. ../../gh-pages
+cd ..
