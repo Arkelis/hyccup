@@ -2,12 +2,10 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="quickstart.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
-        <title>Hyccup 1.0.0a2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/><title>Hy Module Index - Hyccup 1.0.0a2 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
@@ -123,7 +121,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">Hyccup 1.0.0a2 documentation</div></a>
+      <a href="index.html"><div class="brand">Hyccup 1.0.0a2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -143,7 +141,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
   <span class="sidebar-brand-text">Hyccup 1.0.0a2 documentation</span>
@@ -195,74 +193,74 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="hyccup-generate-html-from-data-structure-in-hy-and-python">
-<h1>Hyccup - Generate HTML from data structure in Hy and Python<a class="headerlink" href="#hyccup-generate-html-from-data-structure-in-hy-and-python" title="Permalink to this headline">¶</a></h1>
-<p>Hyccup is a port of <a class="reference external" href="https://github.com/weavejester/hiccup">Hiccup</a> for
-<a class="reference external" href="https://github.com/hylang/hy">Hy</a> and Python. It allows you to represent
-HTML into data structure and to dump it:</p>
-<div class="tab-set docutils container">
-<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nb">import </span><span class="p">[</span><span class="nv">hyccup.core</span> <span class="p">[</span><span class="nv">html</span><span class="p">]])</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'div</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"greeting"</span><span class="p">}</span> <span class="s">"Hello Hyccup from Hy!"</span><span class="p">])</span>
-<span class="s">"&lt;div class=\"greeting\"&gt;Hello Hyccup from Hy!&lt;/div&gt;"</span>
-</pre></div>
-</div>
-</div>
-<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--2">Python</label><div class="tab-content docutils container">
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hyccup.core</span> <span class="kn">import</span> <span class="n">html</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="p">([</span><span class="s2">"div"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"class"</span><span class="p">:</span> <span class="s2">"greeting"</span><span class="p">},</span> <span class="s2">"Hello Hyccup from Python!"</span><span class="p">])</span>
-<span class="go">'&lt;div class="greeting"&gt;Hello Hyccup from Python!&lt;/div&gt;'</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="from-hiccup.html">Coming from Hiccup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="from-hiccup.html#keywords">Keywords</a></li>
-<li class="toctree-l2"><a class="reference internal" href="from-hiccup.html#html-options">HTML Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="from-hiccup.html#lists">Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="from-hiccup.html#with-macros"><code class="docutils literal notranslate"><span class="pre">with-*</span></code> macros</a></li>
-<li class="toctree-l2"><a class="reference internal" href="from-hiccup.html#defhtml-and-defelem"><code class="docutils literal notranslate"><span class="pre">defhtml</span></code> and <code class="docutils literal notranslate"><span class="pre">defelem</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions - Render HTML</a></li>
-<li class="toctree-l2"><a class="reference internal" href="page.html">Page - Create Documents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="elements.html">Elements - Generic Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="definitions.html">Definitions - Create Renderers and Elements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="util.html">Utilitarian Functions</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Development</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Arkelis/hyccup">Source Code Repository</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/hyccup/">Hyccup on PyPI</a></li>
-</ul>
-</div>
+        
+<section class="domainindex-section">
+  <h1>Hy Module Index</h1>
+  <div class="domainindex-jumpbox"><a href="#cap-h"><strong>h</strong></a></div>
 </section>
+<table class="domainindex-table">
+  <tr class="pcap">
+    <td></td><td>&#160;</td><td></td>
+  </tr>
+  <tr class="cap" id="cap-h">
+    <td></td><td><strong>h</strong></td><td></td>
+  </tr>
+  <tr>
+    <td><img src="_static/minus.png" class="toggler"
+              id="toggle-1" style="display: none" alt="-" /></td>
+    <td>
+        <code class="xref">hyccup</code></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="core.html#module-hyccup.core"><code class="xref">hyccup.core</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="definitions.html#module-hyccup.defdecos"><code class="xref">hyccup.defdecos</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="definitions.html#module-hyccup.defmacros"><code class="xref">hyccup.defmacros</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="elements.html#module-hyccup.element"><code class="xref">hyccup.element</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="elements.html#module-hyccup.form"><code class="xref">hyccup.form</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="page.html#module-hyccup.page"><code class="xref">hyccup.page</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="util.html#module-0"><code class="xref">hyccup.util</code></a></td><td>
+    <em></em></td>
+  </tr>
+</table>
 
       </article>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="quickstart.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Quickstart</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
+          
           
         </div>
 
@@ -273,11 +271,6 @@ HTML into data structure and to dump it:</p>
               and
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/index.rst.txt"
-               rel="nofollow">
-              Show Source
-            </a>
         </div>
         
       </footer>

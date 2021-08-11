@@ -6,11 +6,12 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Elements - Generic Elements" href="elements.html" /><link rel="prev" title="Core Functions - Render HTML" href="core.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
-        <title>Page - Create Documents - Hyccup 1.0.0a1 documentation</title>
+        <title>Page - Create Documents - Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
 
@@ -122,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Hyccup 1.0.0a1 documentation</div></a>
+      <a href="index.html"><div class="brand">Hyccup 1.0.0a2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -145,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Hyccup 1.0.0a1 documentation</span>
+  <span class="sidebar-brand-text">Hyccup 1.0.0a2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -248,6 +249,49 @@
 <section id="api">
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 <p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/page.hy">hyccup/util.hy</a></p>
+<span class="target" id="module-hyccup.page"></span><dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.page.xhtml">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.page.</span></span><span class="sig-name descname"><span class="pre">xhtml</span></span> <em><span class="pre">#*</span> <span class="pre">contents</span> <span class="pre">*</span> <span class="pre">lang</span>  <span class="pre">[encoding</span> <span class="pre">UTF-8]</span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.page.xhtml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a XHTML 1.0 strict document with the supplied contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lang</strong> – The language of the document</p></li>
+<li><p><strong>encoding</strong> – The character encoding of the document (defaults to UTF-8).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.page.html4">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.page.</span></span><span class="sig-name descname"><span class="pre">html4</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">contents</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.page.html4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a HTML 4 document with the supplied contents.</p>
+<p>The first argument may be an optional attribute map.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.page.html5">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.page.</span></span><span class="sig-name descname"><span class="pre">html5</span></span> <em><span class="pre">#*</span> <span class="pre">contents</span> <span class="pre">*</span> <span class="pre">lang</span>  <span class="pre">[xml</span> <span class="pre">False]</span>  <span class="pre">[encoding</span> <span class="pre">UTF-8]</span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.page.html5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a HTML5 document with the supplied contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xml</strong> – If True, use html with xml mode.</p></li>
+<li><p><strong>encoding</strong> – The character encoding of the document (defaults to UTF-8).</p></li>
+<li><p><strong>lang</strong> – The language of the document.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.page.include-css">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.page.</span></span><span class="sig-name descname"><span class="pre">include-css</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">styles</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.page.include-css" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include a list of external stylesheet files.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.page.include-js">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.page.</span></span><span class="sig-name descname"><span class="pre">include-js</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">scripts</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.page.include-js" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include a list of external javascript files.</p>
+</dd></dl>
 </section>
 </section>
 

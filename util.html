@@ -6,11 +6,12 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Definitions - Create Renderers and Elements" href="definitions.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
-        <title>Utilitarian Functions - Hyccup 1.0.0a1 documentation</title>
+        <title>Utilitarian Functions - Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
 
@@ -122,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Hyccup 1.0.0a1 documentation</div></a>
+      <a href="index.html"><div class="brand">Hyccup 1.0.0a2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -145,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Hyccup 1.0.0a1 documentation</span>
+  <span class="sidebar-brand-text">Hyccup 1.0.0a2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -197,11 +198,120 @@
         <section id="utilitarian-functions">
 <h1>Utilitarian Functions<a class="headerlink" href="#utilitarian-functions" title="Permalink to this headline">¶</a></h1>
 <p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/util.hy">hyccup/util.hy</a></p>
-<section id="strings-handling">
-<h2>Strings Handling<a class="headerlink" href="#strings-handling" title="Permalink to this headline">¶</a></h2>
+<section id="module-hyccup.util">
+<span id="strings-handling"></span><h2>Strings Handling<a class="headerlink" href="#module-hyccup.util" title="Permalink to this headline">¶</a></h2>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.escape-html">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">escape-html</span></span> <em><span class="n"><span class="pre">string</span></span></em> <em><span class="n"><span class="pre">mode</span></span></em> <em><span class="n"><span class="pre">escape-strings</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.escape-html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change special characters into HTML character entities.</p>
+</dd></dl>
+<dl class="hy class">
+<dt class="sig sig-object hy" id="hyccup.util.RawStr">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">RawStr</span></span><a class="headerlink" href="#hyccup.util.RawStr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw string class, subclass of <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p>Instances of this class are not escaped.</p>
+<dl class="hy method">
+<dt class="sig sig-object hy" id="hyccup.util.RawStr.from-obj-or-iterable">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-name descname"><span class="pre">from-obj-or-iterable</span></span> <em><span class="n"><span class="pre">cls</span></span></em> <em><span class="n"><span class="pre">obj</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.RawStr.from-obj-or-iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a raw string from an object or a collection.</p>
+</dd></dl>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.as-str">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">as-str</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">obj</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.as-str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all passed objects to string with <a class="reference internal" href="#hyccup.util.to-str" title="hyccup.util.to-str"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">to-str</span></code></a>.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.to-str">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">to-str</span></span> <em><span class="n"><span class="pre">obj</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.to-str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert any object to string.</p>
+<p>In particular:</p>
+<ul class="simple">
+<li><p>Convert fraction to string of its decimal result.</p></li>
+<li><p>Convert a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code> object to its URL with <a class="reference internal" href="#hyccup.util.str-of-url" title="hyccup.util.str-of-url"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">str-of-url</span></code></a>.</p></li>
+<li><p>For any other case, convert with <code class="docutils literal notranslate"><span class="pre">str</span></code> constructor.</p></li>
+</ul>
+</dd></dl>
 </section>
-<section id="urls-handling">
-<h2>URLs Handling<a class="headerlink" href="#urls-handling" title="Permalink to this headline">¶</a></h2>
+<section id="module-0">
+<span id="urls-handling"></span><h2>URLs Handling<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.url">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">url</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">parts</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">query-params</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert parts of an URL and query params to a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code>.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.to-uri">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">to-uri</span></span> <em><span class="n"><span class="pre">obj</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.to-uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an object to a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code>.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.base-url">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">base-url</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">args</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">kwds</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.base-url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager specifying base URL for URLs.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">base-url</span> <span class="s">"/foo"</span><span class="p">)]</span>
+<span class="nv">...</span>  <span class="p">(</span><span class="nf">setv</span> <span class="nv">my-url</span> <span class="p">(</span><span class="nf">to-str</span> <span class="p">(</span><span class="nf">to-uri</span> <span class="s">"/bar"</span><span class="p">))))</span>
+<span class="nv">=&gt;</span> <span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span>
+<span class="s">"/foo/bar"</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--2">Python</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">base_url</span><span class="p">(</span><span class="s1">'/foo'</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">my_url</span> <span class="o">=</span> <span class="n">to_str</span><span class="p">(</span><span class="n">to_uri</span><span class="p">(</span><span class="s1">'/bar'</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">my</span><span class="o">-</span><span class="n">url</span><span class="p">)</span>
+<span class="go">/foo/bar</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.str-of-url">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">str-of-url</span></span> <em><span class="n"><span class="pre">split-result</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.str-of-url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make URL from <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code> object.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.url-encode">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">url-encode</span></span> <em><span class="n"><span class="pre">obj</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.url-encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quote <cite>obj</cite> for URL encoding.</p>
+<ul class="simple">
+<li><p>If <cite>obj</cite> is a dict, use <code class="docutils literal notranslate"><span class="pre">url.parse.urlencode</span></code>.</p></li>
+<li><p>Else use <code class="docutils literal notranslate"><span class="pre">url.parse.quote_plus</span></code>.</p></li>
+</ul>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.encoding">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">encoding</span></span> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">args</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">kwds</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager specifying encoding.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">encoding</span> <span class="s">"UTF-8"</span><span class="p">)]</span>
+<span class="nv">...</span>  <span class="p">(</span><span class="nf">url-encode</span> <span class="p">{</span><span class="ss">'iroha</span> <span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span>
+<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">encoding</span> <span class="s">"ISO-2022-JP"</span><span class="p">)]</span>
+<span class="nv">...</span>  <span class="p">(</span><span class="nf">url-encode</span> <span class="p">{</span><span class="ss">'iroha</span> <span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%1B%24B%24%24%24m%24O%1B%28B"</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--2">Python</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">'UTF-8'</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">'iroha'</span><span class="p">:</span> <span class="s1">'いろは'</span><span class="p">}))</span>
+<span class="gp">...</span>
+<span class="go">iroha=%E3%81%84%E3%82%8D%E3%81%AF</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">'ISO-2022-JP'</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">'iroha'</span><span class="p">:</span> <span class="s1">'いろは'</span><span class="p">}))</span>
+<span class="gp">...</span>
+<span class="go">iroha=%1B%24B%24%24%24m%24O%1B%28B</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
 </section>
 </section>
 
@@ -252,8 +362,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Utilitarian Functions</a><ul>
-<li><a class="reference internal" href="#strings-handling">Strings Handling</a></li>
-<li><a class="reference internal" href="#urls-handling">URLs Handling</a></li>
+<li><a class="reference internal" href="#module-hyccup.util">Strings Handling</a></li>
+<li><a class="reference internal" href="#module-0">URLs Handling</a></li>
 </ul>
 </li>
 </ul>
