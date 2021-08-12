@@ -73,6 +73,8 @@ returned element's attributes:
 API
 ---
 
+**Source code:** `hyccup/defmacros.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/defmacros.hy>`_
+
 .. hy:automodule:: hyccup.defmacros
     :members:
 
@@ -145,6 +147,8 @@ returned element's attributes:
 
 API
 ---
+
+**Source code:** `hyccup/defdecos.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/defdecos.hy>`_
 
 .. hy:automodule:: hyccup.defdecos
     :members:
