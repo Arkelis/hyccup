@@ -138,7 +138,7 @@
           (is None split-result.path)
           (not (.startswith split-result.path "/")))
     (.geturl split-result)
-    (as-> local-data.base-url it
+    (as-> (getattr local-data "base_url" "") it
           (.removesuffix it "/")
           (+ it split-result.path)
           (._replace split-result :path it)
@@ -152,7 +152,7 @@
   * Else use ``url.parse.quote_plus``.
   "
   (if (isinstance obj dict)
-    (urlencode obj :encoding local-data.encoding)
+    (urlencode obj :encoding (getattr local-data "encoding" None))
     (quote-plus obj)))
 
 

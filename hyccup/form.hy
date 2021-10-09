@@ -18,6 +18,8 @@
   (defn group [group-name]
     "Group together a set of related form fields."
     (try
+      (if (not (hasattr local-data "group"))
+        (setv local-data.group []))
       (yield (.append local-data.group group-name))
     (finally
       (.pop local-data.group)))))
@@ -25,14 +27,14 @@
 
 (defn make-name [name]
   "Create a field name from the supplied argument the current field group."
-  (setv groups-and-name (+ local-data.group [name])
+  (setv groups-and-name (+ (getattr local-data "group" []) [name])
         remaining (gfor part (rest groups-and-name) f"[{part}]"))
   (.join "" [(first groups-and-name) #* remaining]))
 
 
 (defn make-id [name]
   "Create a field id from the supplied argument and current field group."
-  (setv groups-and-name (+ local-data.group [name])
+  (setv groups-and-name (+ (getattr local-data "group" []) [name])
         remaining (gfor part (rest groups-and-name) f"-{part}"))
   (.join "" [(first groups-and-name) #* remaining]))
 
