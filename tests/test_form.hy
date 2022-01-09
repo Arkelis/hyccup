@@ -3,8 +3,8 @@
 
 """Tests for hyccup.form module"""
 
-(import [hyccup.core [html]]
-        [hyccup.form [*]])
+(import hyccup.core [html]
+        hyccup.form *)
 
 
 (defn test-hidden-field []

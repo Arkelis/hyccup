@@ -1,8 +1,9 @@
 "Functions for creating generic HTML elements."
 
-(import [hyccup.util :as util])
+(import hyccup.util :as util)
 
-(require [hyccup.defmacros [defelem]])
+(require hyccup.defmacros [defelem]
+         hyrule.control [unless])
 
 
 (defn javascript-tag [script]

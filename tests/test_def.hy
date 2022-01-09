@@ -5,7 +5,7 @@
 
 (import inspect)
 
-(require [hyccup.defmacros [defhtml defelem]])
+(require hyccup.defmacros [defhtml defelem])
 
 
 (defclass TestDefHtmlMacro []

@@ -1,13 +1,13 @@
 "Functions for generating HTML forms and input fields."
 
-(import [contextlib [contextmanager]]
-        threading
-        [toolz [first]]
-        [hyccup.core [raw]]
-        [hyccup.util :as util])
+(require hyccup.defmacros [defelem])
 
-(require [hyccup.defmacros [defelem]]
-         [hy.contrib.walk [let]])
+(import contextlib [contextmanager]
+        hyrule.iterables [coll? rest]
+        threading
+        toolz [first]
+        hyccup.core [raw]
+        hyccup.util :as util)
 
 
 (setv local-data (.local threading)

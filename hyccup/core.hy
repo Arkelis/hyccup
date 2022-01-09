@@ -1,4 +1,6 @@
-(import [hyccup.compiler [Compiler RawStr]])
+(require hyrule.argmove [->])
+
+(import hyccup.compiler [Compiler RawStr]) 
 
 
 (defn html [#* content [mode "xhtml"] [escape-strings True]]
@@ -6,7 +8,7 @@
 
   RawStr is a subclass of str, so it can be manipulated just like a string.
 
-  :param \*content: One or more lists representing HTML to render.
+  :param \\*content: One or more lists representing HTML to render.
   :param mode: The HTML mode: ``\"html\"`` / ``\"xml\"`` / ``\"xhtml\"`` (default).
   :param escape-strings: Boolean indicating if strings must be escaped
                          (default: ``True``).

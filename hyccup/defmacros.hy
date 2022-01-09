@@ -1,7 +1,10 @@
+(require hyrule.control [unless])
+
 (import functools
-        [inspect [signature]]
-        [toolz [first second merge]]
-        [hyccup.core [html]])
+        inspect [signature]
+        hyrule.iterables [rest]
+        toolz [first second merge]
+        hyccup.core [html])
 
 
 (defmacro defhtml [options name #* fbody]
@@ -20,8 +23,8 @@
     (setv head (cut fbody 1)
           body (rest fbody)))
   `(defn ~name ~@head
-    (import [hyccup.core [html]]
-            [toolz [keymap]])
+    (import hyccup.core [html]
+            toolz [keymap])
     (html (do ~@body) #** (keymap str ~options))))
 
 
@@ -38,8 +41,9 @@
         fbody (if has-docstring (cut fbody 2 None) (cut fbody 1 None)))
   `(do
     (import
-      [hyccup.util [multimethod]] 
-      [toolz [first merge]])
+      hyccup.util [multimethod]
+      hyrule.iterables [rest]
+      toolz [first merge])
     #@(multimethod
     (defn ~name ~argslist
       ~docstring

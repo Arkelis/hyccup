@@ -3,8 +3,8 @@
 
 """Tests for hyccup.util module."""
 
-(import [hyccup.util [as-str to-str to-uri base-url encoding url-encode]]
-        [urllib.parse [urlsplit]])
+(import hyccup.util [as-str to-str to-uri base-url encoding url-encode]
+        urllib.parse [urlsplit])
 
 (defn test-as-str []
   (assert (= (as-str "foo") "foo"))

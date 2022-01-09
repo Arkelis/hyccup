@@ -1,9 +1,8 @@
 (import functools
-        [hyccup.util [multimethod]]
-        [toolz [first merge]]
-        [hyccup.core [html]])
-
-(require [hy.contrib.walk [let]])
+        hyrule.iterables [rest]
+        hyccup.util [multimethod]
+        toolz [first merge]
+        hyccup.core [html])
 
 (defn defhtml [[func None] / #** html-options]
   "Decorate a function for passing its result to ``html``.

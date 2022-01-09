@@ -3,8 +3,8 @@
 
 """Tests for hyccup.page module."""
 
-(import [hyccup.page [html4 xhtml html5 include-css include-js]]
-        [hyccup.util :as util])
+(import hyccup.page [html4 xhtml html5 include-css include-js]
+        hyccup.util :as util)
 
 (defn test-html4 []
   (assert (= (html4 ['body ['p "Hello" ['br] "World"]])

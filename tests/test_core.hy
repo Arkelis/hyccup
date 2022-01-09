@@ -3,11 +3,9 @@
 
 """Tests for hyccup.core module"""
 
-(import [hyccup.core [html raw]]
-        [hyccup.util [RawStr]]
+(import hyccup.core [html raw]
+        hyccup.util [RawStr]
         pytest)
-
-(require [hy.contrib.walk [let]])
 
 
 (defn test-tag-name []

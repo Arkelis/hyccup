@@ -4,8 +4,8 @@
 """Tests for hyccup.element module."""
 
 (import urllib.parse
-        [hyccup.core [html]]
-        [hyccup.element [*]])
+        hyccup.core [html]
+        hyccup.element *)
 
 
 (defn test-javascript-tag []

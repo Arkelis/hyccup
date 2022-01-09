@@ -1,8 +1,9 @@
-(import [hyccup.core [html raw]]
-        [hyccup.util :as util]
-        [toolz [first merge]])
+(import hyrule.iterables [rest]
+        hyccup.core [html raw]
+        hyccup.util :as util
+        toolz [first merge])
 
-(require [hyccup.defmacros [defelem]])
+(require hyccup.defmacros [defelem])
 
 
 (setv __all__

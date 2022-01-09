@@ -1,9 +1,12 @@
+(require hyrule.argmove [-> as->])
+
 (import threading
-        [contextlib [contextmanager]]
-        [functools [singledispatch]]
-        [fractions [Fraction]]
-        [urllib.parse [SplitResult urlsplit urlencode quote-plus]] 
-        [hy.models [Keyword Symbol]]
+        contextlib [contextmanager]
+        functools [singledispatch]
+        fractions [Fraction]
+        urllib.parse [SplitResult urlsplit urlencode quote-plus]
+        hy.models [Keyword Symbol]
+        hyrule.iterables [coll?]
         multimethod)
 
 

@@ -1,5 +1,7 @@
-import pytest
 import os
+
+import hy
+import pytest
 
 
 def pytest_collect_file(parent, path):
