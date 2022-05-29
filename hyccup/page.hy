@@ -1,9 +1,9 @@
-(import hyrule.iterables [rest]
+(import hyrule [rest]
         hyccup.core [html raw]
         hyccup.util :as util
         toolz [first merge])
 
-(require hyccup.defmacros [defelem])
+(require hyccup.definition [defelem])
 
 
 (setv __all__
@@ -50,8 +50,8 @@
 
 (defn split-attrs-and-content [contents]
   (if (isinstance (first contents) dict)
-    (, (first contents) (rest contents))
-    (, {} contents)))
+    #((first contents) (rest contents))
+    #({} contents)))
 
 (defn xhtml [#* contents [lang None] [encoding "UTF-8"]]
   "Create a XHTML 1.0 strict document with the supplied contents.

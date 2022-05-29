@@ -140,5 +140,5 @@ API
 **Source code:** `hyccup/core.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/core.hy>`_
 
 .. hy:automodule:: hyccup.core
-    :members: 
+    :members: html, raw
 

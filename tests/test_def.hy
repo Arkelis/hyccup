@@ -1,11 +1,11 @@
 ;; Adapted from the test suite of Hiccup maintained by James Reeves
 ;; https://github.com/weavejester/hiccup
 
-"""Tests for hyccup.defmacros module."""
+"""Tests for hyccup.definition module."""
 
 (import inspect)
 
-(require hyccup.defmacros [defhtml defelem])
+(require hyccup.definition [defhtml defelem])
 
 
 (defclass TestDefHtmlMacro []
@@ -81,7 +81,7 @@
     (assert (= (with-map {'a "b"} 1 2) [1 {'a "b" 'foo "bar"} 2])))
 
   (defn test-preserve-special-attrs [self]
-    (defelem some-func [^int [a 1] ^int [b 2]]
+    (defelem some-func [#^int [a 1] #^int [b 2]]
       "some func's docstring"
       [a b])
     

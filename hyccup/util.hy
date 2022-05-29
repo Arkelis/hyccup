@@ -1,4 +1,4 @@
-(require hyrule.argmove [-> as->])
+(require hyrule [-> as->])
 
 (import threading
         contextlib [contextmanager]
@@ -6,7 +6,7 @@
         fractions [Fraction]
         urllib.parse [SplitResult urlsplit urlencode quote-plus]
         hy.models [Keyword Symbol]
-        hyrule.iterables [coll?]
+        hyrule [coll?]
         multimethod)
 
 
@@ -24,9 +24,9 @@
   * Convert a ``url.parse.SplitResult`` object to its URL with :hy:func:`str-of-url`.
   * For any other case, convert with ``str`` constructor."
   (cond
-    [(isinstance obj Fraction) (-> obj (float) (str))]
-    [(isinstance obj SplitResult) (str-of-url obj)]
-    [True (str obj)]))
+    (isinstance obj Fraction) (-> obj (float) (str))
+    (isinstance obj SplitResult) (str-of-url obj)
+    True (str obj)))
 
 
 (defn as-str [#* obj]
@@ -52,15 +52,14 @@
   Instances of this class are not escaped.
   "
 
-  (setv __slots__ (,))
+  (setv __slots__ #())
 
-  (with-decorator classmethod
-    (defn from-obj-or-iterable [cls obj]
-      "Produce a raw string from an object or a collection."
-      (cond
-        [(is None obj) (RawStr "")]
-        [(coll? obj) (RawStr (+ #* (map (. RawStr from-obj-or-iterable) obj)))]
-        [True (RawStr obj)]))))
+  (defn [classmethod] from-obj-or-iterable [cls obj]
+    "Produce a raw string from an object or a collection."
+    (cond
+      (is None obj) (RawStr "")
+      (coll? obj) (RawStr (+ #* (map (. RawStr from-obj-or-iterable) obj)))
+      True (RawStr obj))))
 
 
 ;; URL
@@ -71,68 +70,66 @@
              (url-encode query-params))))
 
 
-(with-decorator contextmanager
- (defn base-url [url]
-   "Context manager specifying base URL for URLs.
-   
-   .. tab:: Hy
-   
-       .. code-block:: clj
-       
-           => (with [(base-url \"/foo\")]
-           ...  (setv my-url (to-str (to-uri \"/bar\"))))
-           => (print my-url)
-           \"/foo/bar\"
+(defn [contextmanager] base-url [url]
+  "Context manager specifying base URL for URLs.
+  
+  .. tab:: Hy
+  
+      .. code-block:: clj
+      
+          => (with [(base-url \"/foo\")]
+          ...  (setv my-url (to-str (to-uri \"/bar\"))))
+          => (print my-url)
+          \"/foo/bar\"
 
-   .. tab:: Python
-   
-       .. code-block::
-       
-           >>> with base_url('/foo'):
-           ...     my_url = to_str(to_uri('/bar'))
-           ...
-           >>> print(my-url)
-           /foo/bar
-   "
-   (try
-     (yield (setv local-data.base-url url))
-   (finally
-     (setv local-data.base-url "")))))
+  .. tab:: Python
+  
+      .. code-block::
+      
+          >>> with base_url('/foo'):
+          ...     my_url = to_str(to_uri('/bar'))
+          ...
+          >>> print(my-url)
+          /foo/bar
+  "
+  (try
+    (yield (setv local-data.base-url url))
+  (finally
+    (setv local-data.base-url ""))))
 
 
-(with-decorator contextmanager
-  (defn encoding [enc]
-    "Context manager specifying encoding.
-    
-    .. tab:: Hy
+(defn [contextmanager] encoding [enc]
+  "Context manager specifying encoding.
+  
+  .. tab:: Hy
 
-       .. code-block:: clj
-       
-           => (with [(encoding \"UTF-8\")]
-           ...  (url-encode {'iroha \"いろは\"}))
-           \"iroha=%E3%81%84%E3%82%8D%E3%81%AF\"
-           => (with [(encoding \"ISO-2022-JP\")]
-           ...  (url-encode {'iroha \"いろは\"}))
-           \"iroha=%1B%24B%24%24%24m%24O%1B%28B\"
+      .. code-block:: clj
+      
+          => (with [(encoding \"UTF-8\")]
+          ...  (url-encode {'iroha \"いろは\"}))
+          \"iroha=%E3%81%84%E3%82%8D%E3%81%AF\"
+          => (with [(encoding \"ISO-2022-JP\")]
+          ...  (url-encode {'iroha \"いろは\"}))
+          \"iroha=%1B%24B%24%24%24m%24O%1B%28B\"
 
-    .. tab:: Python
-   
-       .. code-block::
-       
-           >>> with encoding('UTF-8'):
-           ...     print(url_encode({'iroha': 'いろは'}))
-           ...
-           iroha=%E3%81%84%E3%82%8D%E3%81%AF
-           >>> with encoding('ISO-2022-JP'):
-           ...     print(url_encode({'iroha': 'いろは'}))
-           ...
-           iroha=%1B%24B%24%24%24m%24O%1B%28B
-           
-    "
-    (try
-      (yield (setv local-data.encoding enc))
-    (finally
-      (setv local-data.encoding None)))))
+  .. tab:: Python
+  
+      .. code-block::
+      
+          >>> with encoding('UTF-8'):
+          ...     print(url_encode({'iroha': 'いろは'}))
+          ...
+          iroha=%E3%81%84%E3%82%8D%E3%81%AF
+          >>> with encoding('ISO-2022-JP'):
+          ...     print(url_encode({'iroha': 'いろは'}))
+          ...
+          iroha=%1B%24B%24%24%24m%24O%1B%28B
+          
+  "
+  (try
+    (yield (setv local-data.encoding enc))
+  (finally
+    (setv local-data.encoding None))))
 
 
 (defn str-of-url [split-result]
@@ -162,9 +159,9 @@
 (defn to-uri [obj]
   "Convert an object to a ``url.parse.SplitResult``."
   (cond
-    [(isinstance obj str) (urlsplit obj)]
-    [(isinstance obj SplitResult) obj]
-    [True (urlsplit (str obj))]))
+    (isinstance obj str) (urlsplit obj)
+    (isinstance obj SplitResult) obj
+    True (urlsplit (str obj))))
 
 
 ;; Iterable utils
@@ -174,9 +171,8 @@
 
 
 (defclass multimethod [multimethod.multimethod]
-  #@(property
-    (defn docstring [self]
-      (for [func (.values self)]
-        (if func.__doc__
-          (return func.__doc__)))
-      "")))
+  (defn [property] docstring [self]
+    (for [func (.values self)]
+      (when func.__doc__
+        (return func.__doc__)))
+    ""))

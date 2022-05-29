@@ -1,10 +1,8 @@
-(require hyrule.control [unless]
-         hyrule.argmove [-> ->>]
-         hyrule.collections [assoc])
+(require hyrule [assoc unless -> ->>])
 
 (import collections.abc [Iterator]
         itertools [filterfalse]
-        hyrule.iterables [coll? rest]
+        hyrule [coll? rest]
         re
         toolz [first second keymap]
         hyccup.util [escape-html RawStr empty? to-str])
@@ -82,11 +80,11 @@
     Called by self.compile-html.
     "
     (cond
-      [(isinstance exp Iterator) (self.compile-html #* exp)]
-      [(isinstance exp list) (self.compile-list exp)]
-      [(is RawStr (type exp)) exp]
-      [(is exp None) ""]
-      [True (escape-html (str exp) self.mode self.escape-strings)]))
+      (isinstance exp Iterator) (self.compile-html #* exp)
+      (isinstance exp list) (self.compile-list exp)
+      (is RawStr (type exp)) exp
+      (is exp None) ""
+      True (escape-html (str exp) self.mode self.escape-strings)))
 
   (defn compile-list [self element-list]
     "Take an element list and call render-element to render it.
@@ -114,9 +112,9 @@
     (setv attrs (keymap str attrs)
           dict-classes (.get attrs "class" "")
           [tag-name id classes] (expand-tag-abb tag))
-    (if id
+    (when id
       (unless (in "id" attrs) (assoc attrs "id" id)))
-    (if (or classes dict-classes)
+    (when (or classes dict-classes)
       (assoc attrs "class"
         (.join " " (filterfalse empty? [classes
                                         (if (coll? dict-classes)
@@ -138,23 +136,23 @@
 
   (defn format-attr [self attr value]
     (cond
-      [(is value True) 
+      (is value True) 
         (if (xml-mode? self.mode)
           f"{(str attr)}=\"{(str attr)}\""
-          f"{(str attr)}")]
-      [(not value) ""]
-      [True
+          f"{(str attr)}")
+      (not value) ""
+      True
         (do
           (setv attr-value-str 
             (escape-html (to-str value) self.mode :escape-strings True))
-          f"{(str attr)}=\"{attr-value-str}\"")]))
+          f"{(str attr)}=\"{attr-value-str}\"")))
 
 
   (defn format-attrs-dict [self attrs-dict]
     "Convert attributes dictionary to string."
     (if attrs-dict
       (let [attrs-str (->>
-                        (gfor (, attr value)
+                        (gfor #(attr value)
                               (sorted (.items attrs-dict))
                               (self.format-attr attr value))
                         (filterfalse empty?)

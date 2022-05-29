@@ -2,8 +2,8 @@
 
 (import hyccup.util :as util)
 
-(require hyccup.defmacros [defelem]
-         hyrule.control [unless])
+(require hyccup.definition [defelem]
+         hyrule [unless])
 
 
 (defn javascript-tag [script]
@@ -16,7 +16,7 @@
   
   :param attrs-map: Optional dict of attributes as first positional parameter
   :param url: The hypertext link
-  :param \*content: Content do include as children
+  :param \\*content: Content do include as children
   "
   ['a {'href (util.to-uri url)} #* content])
 
@@ -28,7 +28,7 @@
   
   :param attrs-map: Optional dict of attributes as first positional parameter
   :param email: E-mail address
-  :param \*content: Content do include as children
+  :param \\*content: Content do include as children
   "
   (setv el ['a {'href f"mailto:{email}"}
              #* content])

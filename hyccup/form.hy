@@ -1,9 +1,9 @@
 "Functions for generating HTML forms and input fields."
 
-(require hyccup.defmacros [defelem])
+(require hyccup.definition [defelem])
 
 (import contextlib [contextmanager]
-        hyrule.iterables [coll? rest]
+        hyrule [coll? rest]
         threading
         toolz [first]
         hyccup.core [raw]
@@ -14,15 +14,14 @@
       local-data.group [])
 
 
-(with-decorator contextmanager
-  (defn group [group-name]
-    "Group together a set of related form fields."
-    (try
-      (if (not (hasattr local-data "group"))
-        (setv local-data.group []))
-      (yield (.append local-data.group group-name))
-    (finally
-      (.pop local-data.group)))))
+(defn [contextmanager] group [group-name]
+  "Group together a set of related form fields."
+  (try
+    (when (not (hasattr local-data "group"))
+      (setv local-data.group []))
+    (yield (.append local-data.group group-name))
+  (finally
+    (.pop local-data.group))))
 
 
 (defn make-name [name]
@@ -196,7 +195,7 @@
   
   :param attrs-map: Optional dict of attributes as first positional parameter
   :param method-and-action: collection containing method and action (e.g. ``['post \"/foo\"]``)
-  :param \*body: The body of the form
+  :param \\*body: The body of the form
   "
   (setv [method action] method-and-action
         method-str (.upper method)

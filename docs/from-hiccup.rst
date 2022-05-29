@@ -107,7 +107,7 @@ modules, macros for Hy and decorators for Python:
 
    .. code:: clj
 
-      => (require [hyccup.defmacros [defhtml defelem]])
+      => (require hyccup.definition [defhtml defelem])
       => (defelem link-to [link text]
       ...  ['a {'href link} text])
       => (link-to {'class "some-class"} "https://www.pycolore.fr" "Pycolore" )
@@ -137,7 +137,7 @@ modules, macros for Hy and decorators for Python:
 
    .. code::
 
-      >>> from hyccup.defdecos import defelem, defhtml
+      >>> from hyccup.definition import defelem, defhtml
       >>> @defhtml # pass output of function to html()
       ... @defelem # merge first arg dict with attributes
       ... def link_to(link: str, text: str):
