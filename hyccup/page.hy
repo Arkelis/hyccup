@@ -1,9 +1,9 @@
-(import hyrule.iterables [rest]
+(import hyrule [rest]
         hyccup.core [html raw]
         hyccup.util :as util
         toolz [first merge])
 
-(require hyccup.defmacros [defelem])
+(require hyccup.definition [defelem])
 
 
 (setv __all__

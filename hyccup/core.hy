@@ -1,4 +1,4 @@
-(require hyrule.argmove [->])
+(require hyrule [->])
 
 (import hyccup.compiler [Compiler RawStr]) 
 

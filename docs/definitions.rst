@@ -14,13 +14,13 @@ Definitions Macros
 Overview
 --------
 
-Use :hy:macro:`defhtml <hyccup.defmacros.defhtml>` for defining a callable
+Use :hy:macro:`defhtml <hyccup.definition.defhtml>` for defining a callable
 which wraps its output to :hy:func:`html <hyccup.core.html>` automatically:
 
 .. code-block:: clj
 
     ;; Use require to import macros
-    (require [hyccup.defmacros [defhtml]])
+    (require hyccup.definition [defhtml])
 
     (defhtml render-in-div [#* content]
       ['div {'class "container"} (iter content)])
@@ -50,13 +50,13 @@ You can pass HTML options:
     ;; "<div class=\"container\"><img src=\"https://foo.bar\"></div>"
 
 
-Use :hy:macro:`defelem <hyccup.defmacros.defelem>` for defining elements. A
+Use :hy:macro:`defelem <hyccup.definition.defelem>` for defining elements. A
 first optional parameter is added for specifying attributes to merge with 
 returned element's attributes:
 
 .. code-block:: clj
 
-    (require [hyccup.defmacros [defelem]])
+    (require [hyccup.definition [defelem]])
 
     (defelem link-to [link content]
       ['a {'href link} content])
@@ -73,10 +73,10 @@ returned element's attributes:
 API
 ---
 
-**Source code:** `hyccup/defmacros.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/defmacros.hy>`_
+**Source code:** `hyccup/definition.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.hy>`_
 
-.. hy:automodule:: hyccup.defmacros
-    :members:
+.. hy:automodule:: hyccup.definition
+    :members: defhtml, defelem
 
 Definitions Decorators
 ======================
@@ -84,12 +84,12 @@ Definitions Decorators
 Overview
 --------
 
-Use :hy:func:`defhtml <hyccup.defdecos.defhtml>` for defining a callable
+Use :hy:func:`defhtml <hyccup.definition.defhtml>` for defining a callable
 which wraps its output to :hy:func:`html <hyccup.core.html>` automatically:
 
 .. code-block::
 
-    from hyccup.defdecos import defhtml
+    from hyccup.definition import defhtml
 
     @defhtml
     def render_in_div(*content):
@@ -125,13 +125,13 @@ You can pass HTML options:
     # '<div class="container"><img src="https://foo.bar"></div>'
 
 
-Use :hy:macro:`defelem <hyccup.defdecos.defelem>` for defining elements. A
+Use :hy:macro:`defelem <hyccup.definition.defelem>` for defining elements. A
 first optional parameter is added for specifying attributes to merge with 
 returned element's attributes:
 
 .. code-block::
 
-    from hyccup.defdecos import defelem
+    from hyccup.definition import defelem
 
     @defelem
     def link_to(link, content):
@@ -148,7 +148,7 @@ returned element's attributes:
 API
 ---
 
-**Source code:** `hyccup/defdecos.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/defdecos.hy>`_
+**Source code:** `hyccup/definition.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.hy>`_
 
-.. hy:automodule:: hyccup.defdecos
-    :members:
+.. hy:automodule:: hyccup.definition
+    :members: _hy_anon_var_5, _hy_anon_var_6

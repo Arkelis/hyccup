@@ -16,6 +16,7 @@ hy = "1.0a4"
 toolz = "^0.11.1"
 multimethod = "^1.5"
 hyrule = "^0.1"
+astor = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"

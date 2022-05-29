@@ -1,10 +1,8 @@
-(require hyrule.control [unless]
-         hyrule.argmove [-> ->>]
-         hyrule.collections [assoc])
+(require hyrule [assoc unless -> ->>])
 
 (import collections.abc [Iterator]
         itertools [filterfalse]
-        hyrule.iterables [coll? rest]
+        hyrule [coll? rest]
         re
         toolz [first second keymap]
         hyccup.util [escape-html RawStr empty? to-str])

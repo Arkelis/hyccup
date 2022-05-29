@@ -8,7 +8,7 @@ import inspect
 import pytest
 
 from hyccup.core import html
-from hyccup.defdecos import defhtml, defelem
+from hyccup.definition import defhtml, defelem
 
 
 class TestCore:

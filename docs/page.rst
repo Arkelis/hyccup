@@ -11,7 +11,7 @@ Basic Example
 
     .. code-block:: clj
 
-        (import [hyccup.page [html5 include-css include-js]])    
+        (import hyccup.page [html5 include-css include-js])    
 
         (html5 ['p "hello world"])
         ;; "<!DOCTYPE html>\n<html><p>hello world</p></html>"

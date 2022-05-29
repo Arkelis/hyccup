@@ -1,4 +1,4 @@
-(require hyrule.argmove [-> as->])
+(require hyrule [-> as->])
 
 (import threading
         contextlib [contextmanager]
@@ -6,7 +6,7 @@
         fractions [Fraction]
         urllib.parse [SplitResult urlsplit urlencode quote-plus]
         hy.models [Keyword Symbol]
-        hyrule.iterables [coll?]
+        hyrule [coll?]
         multimethod)
 
 

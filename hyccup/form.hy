@@ -1,9 +1,9 @@
 "Functions for generating HTML forms and input fields."
 
-(require hyccup.defmacros [defelem])
+(require hyccup.definition [defelem])
 
 (import contextlib [contextmanager]
-        hyrule.iterables [coll? rest]
+        hyrule [coll? rest]
         threading
         toolz [first]
         hyccup.core [raw]

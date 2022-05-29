@@ -1,11 +1,11 @@
 ;; Adapted from the test suite of Hiccup maintained by James Reeves
 ;; https://github.com/weavejester/hiccup
 
-"""Tests for hyccup.defmacros module."""
+"""Tests for hyccup.definition module."""
 
 (import inspect)
 
-(require hyccup.defmacros [defhtml defelem])
+(require hyccup.definition [defhtml defelem])
 
 
 (defclass TestDefHtmlMacro []
