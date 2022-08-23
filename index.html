@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="quickstart.html" />
 
-    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
         <title>Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
@@ -34,9 +34,11 @@
   
     }
   }
-</style>
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css"></head>
+</style></head>
   <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
@@ -180,7 +182,7 @@
   </aside>
   <div class="main">
     <div class="content">
-      <article role="main">
+      <div class="article-container">
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -195,16 +197,17 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="hyccup-generate-html-from-data-structure-in-hy-and-python">
+        <article role="main">
+          <section id="hyccup-generate-html-from-data-structure-in-hy-and-python">
 <h1>Hyccup - Generate HTML from data structure in Hy and Python<a class="headerlink" href="#hyccup-generate-html-from-data-structure-in-hy-and-python" title="Permalink to this headline">¶</a></h1>
 <p>Hyccup is a port of <a class="reference external" href="https://github.com/weavejester/hiccup">Hiccup</a> for
 <a class="reference external" href="https://github.com/hylang/hy">Hy</a> and Python. It allows you to represent
 HTML into data structure and to dump it:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nb">import </span><span class="p">[</span><span class="nv">hyccup.core</span> <span class="p">[</span><span class="nv">html</span><span class="p">]])</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'div</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"greeting"</span><span class="p">}</span> <span class="s">"Hello Hyccup from Hy!"</span><span class="p">])</span>
-<span class="s">"&lt;div class=\"greeting\"&gt;Hello Hyccup from Hy!&lt;/div&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.core</span><span class="w"> </span><span class="p">[</span><span class="nv">html</span><span class="p">])</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'div</span><span class="w"> </span><span class="p">{</span><span class="ss">'class</span><span class="w"> </span><span class="s">"greeting"</span><span class="p">}</span><span class="w"> </span><span class="s">"Hello Hyccup from Hy!"</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;div class=\"greeting\"&gt;Hello Hyccup from Hy!&lt;/div&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -250,7 +253,8 @@ HTML into data structure and to dump it:</p>
 </div>
 </section>
 
-      </article>
+        </article>
+      </div>
       <footer>
         
         <div class="related-pages">
@@ -267,14 +271,10 @@ HTML into data structure and to dump it:</p>
         </div>
 
         <div class="related-information">
-              Copyright &#169; 2021, Guillaume Fayard
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/index.rst.txt"
+              Copyright &#169; 2021, Guillaume Fayard |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/index.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -292,7 +292,7 @@ HTML into data structure and to dump it:</p>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     <script src="_static/tabs.js"></script>
     </body>
 </html>

@@ -11,7 +11,7 @@ Basic Example
 
     .. code-block:: clj
 
-        (import [hyccup.page [html5 include-css include-js]])    
+        (import hyccup.page [html5 include-css include-js])    
 
         (html5 ['p "hello world"])
         ;; "<!DOCTYPE html>\n<html><p>hello world</p></html>"
@@ -59,6 +59,6 @@ API
 **Source code:** `hyccup/page.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/page.hy>`_
 
 .. hy:automodule:: hyccup.page
-    :members:
+    :members: xhtml, html4, html5, include_css, include_js
     :member-order: bysource
 

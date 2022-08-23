@@ -26,7 +26,7 @@ structure into an HTML string:
 
    .. code-block:: clj
 
-      => (import [hyccup.core [html]])
+      => (import hyccup.core [html])
       => (html ['p {'id "an-id" 'class "a-class"} "Lorem Hypsum"])
       "<p class=\"a-class\" id=\"an-id\">Lorem Hypsum</p>"
 

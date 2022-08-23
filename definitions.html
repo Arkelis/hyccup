@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Utilitarian Functions" href="util.html" /><link rel="prev" title="Elements - Generic Elements" href="elements.html" />
 
-    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
         <title>Definitions - Create Renderers and Elements - Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
@@ -34,9 +34,11 @@
   
     }
   }
-</style>
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css"></head>
+</style></head>
   <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
@@ -180,7 +182,7 @@
   </aside>
   <div class="main">
     <div class="content">
-      <article role="main">
+      <div class="article-container">
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -195,7 +197,8 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="definitions-create-renderers-and-elements">
+        <article role="main">
+          <section id="definitions-create-renderers-and-elements">
 <h1>Definitions - Create Renderers and Elements<a class="headerlink" href="#definitions-create-renderers-and-elements" title="Permalink to this headline">¶</a></h1>
 <p>This module contains helper for defining callables returning HTML elements
 structures or HTML raw strings directly. They are available in two forms:</p>
@@ -205,83 +208,60 @@ structures or HTML raw strings directly. They are available in two forms:</p>
 </ul>
 <section id="definitions-macros">
 <h2>Definitions Macros<a class="headerlink" href="#definitions-macros" title="Permalink to this headline">¶</a></h2>
-<section id="overview">
-<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference internal" href="#hyccup.defmacros.defhtml" title="hyccup.defmacros.defhtml"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
+<p>Use <a class="reference internal" href="#hyccup.definition.defhtml" title="hyccup.definition.defhtml"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
 which wraps its output to <a class="reference internal" href="core.html#hyccup.core.html" title="hyccup.core.html"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code></a> automatically:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Use require to import macros</span>
-<span class="p">(</span><span class="nf">require</span> <span class="p">[</span><span class="nv">hyccup.defmacros</span> <span class="p">[</span><span class="nv">defhtml</span><span class="p">]])</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Use require to import macros</span><span class="w"></span>
+<span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="p">])</span><span class="w"></span>
 
-<span class="p">(</span><span class="nf">defhtml</span> <span class="nv">render-in-div</span> <span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-  <span class="p">[</span><span class="ss">'div</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"container"</span><span class="p">}</span> <span class="p">(</span><span class="nf">iter</span> <span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span> <span class="p">[</span><span class="ss">'ol</span> <span class="p">(</span><span class="nf">gfor</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">4</span><span class="p">)</span> <span class="p">[</span><span class="ss">'li</span> <span class="nv">f</span><span class="s">"Item {x}"</span><span class="p">])])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;</span>
-<span class="c1">;;   &lt;ol&gt;</span>
-<span class="c1">;;     &lt;li&gt;Item 1&lt;/li&gt;</span>
-<span class="c1">;;     &lt;li&gt;Item 2&lt;/li&gt;</span>
-<span class="c1">;;     &lt;li&gt;Item 3&lt;/li&gt;</span>
-<span class="c1">;;   &lt;/ol&gt;</span>
-<span class="c1">;; &lt;/div&gt;"</span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="ss">'div</span><span class="w"> </span><span class="p">{</span><span class="ss">'class</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="ss">'ol</span><span class="w"> </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="ss">'li</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item {x}"</span><span class="p">])])</span><span class="w"></span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;</span><span class="w"></span>
+<span class="c1">;;   &lt;ol&gt;</span><span class="w"></span>
+<span class="c1">;;     &lt;li&gt;Item 1&lt;/li&gt;</span><span class="w"></span>
+<span class="c1">;;     &lt;li&gt;Item 2&lt;/li&gt;</span><span class="w"></span>
+<span class="c1">;;     &lt;li&gt;Item 3&lt;/li&gt;</span><span class="w"></span>
+<span class="c1">;;   &lt;/ol&gt;</span><span class="w"></span>
+<span class="c1">;; &lt;/div&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You can pass HTML options:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; XHTML mode (default)</span>
-<span class="p">(</span><span class="nf">defhtml</span> <span class="p">{</span><span class="s">"mode"</span> <span class="s">"xhtml"</span><span class="p">}</span> <span class="nv">render-in-div</span> <span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-  <span class="p">[</span><span class="ss">'div</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"container"</span><span class="p">}</span> <span class="p">(</span><span class="nf">iter</span> <span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span> <span class="p">[</span><span class="ss">'img</span> <span class="p">{</span><span class="ss">'src</span> <span class="s">"https://foo.bar"</span><span class="p">}])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\" /&gt;&lt;/div&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; XHTML mode (default)</span><span class="w"></span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xhtml"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="ss">'div</span><span class="w"> </span><span class="p">{</span><span class="ss">'class</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="ss">'img</span><span class="w"> </span><span class="p">{</span><span class="ss">'src</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span><span class="w"></span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\" /&gt;&lt;/div&gt;"</span><span class="w"></span>
 
-<span class="c1">;; HTML mode</span>
-<span class="p">(</span><span class="nf">defhtml</span> <span class="p">{</span><span class="s">"mode"</span> <span class="s">"html"</span><span class="p">}</span> <span class="nv">render-in-div</span> <span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-  <span class="p">[</span><span class="ss">'div</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"container"</span><span class="p">}</span> <span class="p">(</span><span class="nf">iter</span> <span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span> <span class="p">[</span><span class="ss">'img</span> <span class="p">{</span><span class="ss">'src</span> <span class="s">"https://foo.bar"</span><span class="p">}])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\"&gt;&lt;/div&gt;"</span>
+<span class="c1">;; HTML mode</span><span class="w"></span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"html"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="ss">'div</span><span class="w"> </span><span class="p">{</span><span class="ss">'class</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="ss">'img</span><span class="w"> </span><span class="p">{</span><span class="ss">'src</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span><span class="w"></span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\"&gt;&lt;/div&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Use <a class="reference internal" href="#hyccup.defmacros.defelem" title="hyccup.defmacros.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
+<p>Use <a class="reference internal" href="#hyccup.definition.defelem" title="hyccup.definition.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
 first optional parameter is added for specifying attributes to merge with
 returned element’s attributes:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="p">[</span><span class="nv">hyccup.defmacros</span> <span class="p">[</span><span class="nv">defelem</span><span class="p">]])</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="p">[</span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defelem</span><span class="p">]])</span><span class="w"></span>
 
-<span class="p">(</span><span class="nf">defelem</span> <span class="nv">link-to</span> <span class="p">[</span><span class="nv">link</span> <span class="nv">content</span><span class="p">]</span>
-  <span class="p">[</span><span class="ss">'a</span> <span class="p">{</span><span class="ss">'href</span> <span class="nv">link</span><span class="p">}</span> <span class="nv">content</span><span class="p">])</span>
+<span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="ss">'a</span><span class="w"> </span><span class="p">{</span><span class="ss">'href</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span><span class="w"></span>
 
-<span class="c1">;; Without attributes dict</span>
-<span class="p">(</span><span class="nf">link-to</span> <span class="s">"https://foo.bar"</span> <span class="s">"Awesome link"</span><span class="p">)</span>
-<span class="c1">;; ['a {'href "https://foo.bar"} "Awesome link"]</span>
+<span class="c1">;; Without attributes dict</span><span class="w"></span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span><span class="w"></span>
+<span class="c1">;; ['a {'href "https://foo.bar"} "Awesome link"]</span><span class="w"></span>
 
-<span class="c1">;; With attributes</span>
-<span class="p">(</span><span class="nf">link-to</span> <span class="p">{</span><span class="ss">'class</span> <span class="s">"some-class"</span><span class="p">}</span> <span class="s">"https://foo.bar"</span> <span class="s">"Awesome link"</span><span class="p">)</span>
-<span class="c1">;; ['a {'href "https://foo.bar" 'class "some-class"} "Awesome link"]</span>
+<span class="c1">;; With attributes</span><span class="w"></span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="ss">'class</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span><span class="w"></span>
+<span class="c1">;; ['a {'href "https://foo.bar" 'class "some-class"} "Awesome link"]</span><span class="w"></span>
 </pre></div>
 </div>
-</section>
-<section id="api">
-<h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/defmacros.hy">hyccup/defmacros.hy</a></p>
-<span class="target" id="module-hyccup.defmacros"></span><dl class="hy macro">
-<dt class="sig sig-object hy" id="hyccup.defmacros.defelem">
-<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.defmacros.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.defmacros.defelem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a HTML element.</p>
-<p>Add to the function signature a first optional dictionary argument.
-This dictionary will be merged with attributes of the returned element.</p>
-</dd></dl>
-<dl class="hy macro">
-<dt class="sig sig-object hy" id="hyccup.defmacros.defhtml">
-<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.defmacros.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">options</span></span></em> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.defmacros.defhtml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a function passing its output to <code class="docutils literal notranslate"><span class="pre">html</span></code> implicitely.</p>
-<p>HTML Options can be passed as a dict between function name and its arguments
-list.</p>
-</dd></dl>
-</section>
 </section>
 <section id="definitions-decorators">
 <h2>Definitions Decorators<a class="headerlink" href="#definitions-decorators" title="Permalink to this headline">¶</a></h2>
-<section id="id1">
-<h3>Overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference internal" href="#hyccup.defdecos.defhtml" title="hyccup.defdecos.defhtml"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
+<p>Use <a class="reference internal" href="#hyccup.definition.defhtml" title="hyccup.definition.defhtml"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
 which wraps its output to <a class="reference internal" href="core.html#hyccup.core.html" title="hyccup.core.html"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code></a> automatically:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.defdecos</span> <span class="kn">import</span> <span class="n">defhtml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.definition</span> <span class="kn">import</span> <span class="n">defhtml</span>
 
 <span class="nd">@defhtml</span>
 <span class="k">def</span> <span class="nf">render_in_div</span><span class="p">(</span><span class="o">*</span><span class="n">content</span><span class="p">):</span>
@@ -315,10 +295,10 @@ which wraps its output to <a class="reference internal" href="core.html#hyccup.c
 <span class="c1"># '&lt;div class="container"&gt;&lt;img src="https://foo.bar"&gt;&lt;/div&gt;'</span>
 </pre></div>
 </div>
-<p>Use <a class="reference internal" href="#hyccup.defdecos.defelem" title="hyccup.defdecos.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
+<p>Use <a class="reference internal" href="#hyccup.definition.defelem" title="hyccup.definition.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
 first optional parameter is added for specifying attributes to merge with
 returned element’s attributes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.defdecos</span> <span class="kn">import</span> <span class="n">defelem</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.definition</span> <span class="kn">import</span> <span class="n">defelem</span>
 
 <span class="nd">@defelem</span>
 <span class="k">def</span> <span class="nf">link_to</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
@@ -334,12 +314,18 @@ returned element’s attributes:</p>
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h3>API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/defdecos.hy">hyccup/defdecos.hy</a></p>
-<span class="target" id="module-hyccup.defdecos"></span><dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.defdecos.defelem">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.defdecos.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">function</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.defdecos.defelem" title="Permalink to this definition">¶</a></dt>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.hy">hyccup/definition.hy</a></p>
+<span class="target" id="module-hyccup.definition"></span><dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.definition.defhtml">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">func</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">html-options</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defhtml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function for passing its result to <code class="docutils literal notranslate"><span class="pre">html</span></code>.</p>
+<p>Take HTML options as keyword arguments.</p>
+</dd></dl>
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.definition.defelem">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">function</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defelem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a function for defining elements using multimethod.</p>
 <p>The returned object is a callable with two signature:</p>
 <ul class="simple">
@@ -348,17 +334,25 @@ returned element’s attributes:</p>
 will be merged with attributes of the returned element.</p></li>
 </ul>
 </dd></dl>
-<dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.defdecos.defhtml">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.defdecos.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">func</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">html-options</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.defdecos.defhtml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorate a function for passing its result to <code class="docutils literal notranslate"><span class="pre">html</span></code>.</p>
-<p>Take HTML options as keyword arguments.</p>
+<dl class="hy macro">
+<dt class="sig sig-object hy" id="hyccup.definition.defhtml">
+<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">options</span></span></em> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defhtml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a function passing its output to <code class="docutils literal notranslate"><span class="pre">html</span></code> implicitely.</p>
+<p>HTML Options can be passed as a dict between function name and its arguments
+list.</p>
+</dd></dl>
+<dl class="hy macro">
+<dt class="sig sig-object hy" id="hyccup.definition.defelem">
+<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defelem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a HTML element.</p>
+<p>Add to the function signature a first optional dictionary argument.
+This dictionary will be merged with attributes of the returned element.</p>
 </dd></dl>
 </section>
 </section>
-</section>
 
-      </article>
+        </article>
+      </div>
       <footer>
         
         <div class="related-pages">
@@ -385,14 +379,10 @@ will be merged with attributes of the returned element.</p></li>
         </div>
 
         <div class="related-information">
-              Copyright &#169; 2021, Guillaume Fayard
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/definitions.rst.txt"
+              Copyright &#169; 2021, Guillaume Fayard |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/definitions.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -413,16 +403,9 @@ will be merged with attributes of the returned element.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Definitions - Create Renderers and Elements</a><ul>
-<li><a class="reference internal" href="#definitions-macros">Definitions Macros</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#definitions-macros">Definitions Macros</a></li>
+<li><a class="reference internal" href="#definitions-decorators">Definitions Decorators</a></li>
 <li><a class="reference internal" href="#api">API</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#definitions-decorators">Definitions Decorators</a><ul>
-<li><a class="reference internal" href="#id1">Overview</a></li>
-<li><a class="reference internal" href="#id2">API</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -438,7 +421,7 @@ will be merged with attributes of the returned element.</p></li>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     <script src="_static/tabs.js"></script>
     </body>
 </html>

@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Coming from Hiccup" href="from-hiccup.html" /><link rel="prev" title="Hyccup - Generate HTML from data structure in Hy and Python" href="index.html" />
 
-    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
         <title>Quickstart - Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
@@ -34,9 +34,11 @@
   
     }
   }
-</style>
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css"></head>
+</style></head>
   <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
@@ -180,7 +182,7 @@
   </aside>
   <div class="main">
     <div class="content">
-      <article role="main">
+      <div class="article-container">
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -195,7 +197,8 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="quickstart">
+        <article role="main">
+          <section id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -214,9 +217,9 @@ poetry add hyccup
 structure into an HTML string:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nb">import </span><span class="p">[</span><span class="nv">hyccup.core</span> <span class="p">[</span><span class="nv">html</span><span class="p">]])</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'p</span> <span class="p">{</span><span class="ss">'id</span> <span class="s">"an-id"</span> <span class="ss">'class</span> <span class="s">"a-class"</span><span class="p">}</span> <span class="s">"Lorem Hypsum"</span><span class="p">])</span>
-<span class="s">"&lt;p class=\"a-class\" id=\"an-id\"&gt;Lorem Hypsum&lt;/p&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.core</span><span class="w"> </span><span class="p">[</span><span class="nv">html</span><span class="p">])</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="p">{</span><span class="ss">'id</span><span class="w"> </span><span class="s">"an-id"</span><span class="w"> </span><span class="ss">'class</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"Lorem Hypsum"</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;p class=\"a-class\" id=\"an-id\"&gt;Lorem Hypsum&lt;/p&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -233,10 +236,10 @@ arguments. The first elmement of each list must be the tag name of the element
 to render. It can be a string or a Hy symbol.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'p</span><span class="p">])</span>
-<span class="s">"&lt;p&gt;&lt;/p&gt;"</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'br</span><span class="p">])</span>
-<span class="s">"&lt;br /&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;p&gt;&lt;/p&gt;"</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'br</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;br /&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -253,10 +256,10 @@ to render. It can be a string or a Hy symbol.</p>
 second element of the list.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"/><label class="tab-label" for="tab-set--2-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'input</span> <span class="p">{</span><span class="ss">'type</span> <span class="s">"password"</span> <span class="ss">'name</span> <span class="s">"password"</span><span class="p">}])</span>
-<span class="s">"&lt;input name=\"password\" type=\"password\" /&gt;"</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'p</span> <span class="s">"Attributes dict can be omitted"</span><span class="p">])</span>
-<span class="s">"&lt;p&gt;Attributes dict can be omitted&lt;/p&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'input</span><span class="w"> </span><span class="p">{</span><span class="ss">'type</span><span class="w"> </span><span class="s">"password"</span><span class="w"> </span><span class="ss">'name</span><span class="w"> </span><span class="s">"password"</span><span class="p">}])</span><span class="w"></span>
+<span class="s">"&lt;input name=\"password\" type=\"password\" /&gt;"</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="s">"Attributes dict can be omitted"</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;p&gt;Attributes dict can be omitted&lt;/p&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -273,20 +276,20 @@ second element of the list.</p>
 of the element. If an element is an iterator, it is expanded.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"/><label class="tab-label" for="tab-set--3-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">setv</span> <span class="nv">items-generator</span>
-     <span class="p">(</span><span class="nf">gfor</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span> <span class="p">[</span><span class="ss">'li</span> <span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'ol</span> <span class="nv">items-generator</span><span class="p">])</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">items-generator</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="ss">'li</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'ol</span><span class="w"> </span><span class="nv">items-generator</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;ol&gt;</span>
 <span class="s">  &lt;li&gt;Item #0&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #1&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #2&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #3&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #4&lt;/li&gt;</span>
-<span class="s">&lt;/ol&gt;"</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">setv</span> <span class="nv">items-list</span>
-     <span class="p">(</span><span class="nf">lfor</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span> <span class="p">[</span><span class="ss">'li</span> <span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'p</span> <span class="s">"For other collections use unpacking or iter:"</span><span class="p">]</span>
-<span class="nv">...</span>      <span class="p">[</span><span class="ss">'ul</span> <span class="o">#</span><span class="nb">* </span><span class="nv">items-list</span> <span class="p">(</span><span class="nf">iter</span> <span class="nv">items-list</span><span class="p">)])</span>
+<span class="s">&lt;/ol&gt;"</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">items-list</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="nf">lfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="ss">'li</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="s">"For other collections use unpacking or iter:"</span><span class="p">]</span><span class="w"></span>
+<span class="nv">...</span><span class="w">      </span><span class="p">[</span><span class="ss">'ul</span><span class="w"> </span><span class="o">#</span><span class="nb">* </span><span class="nv">items-list</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">items-list</span><span class="p">)])</span><span class="w"></span>
 <span class="s">"&lt;p&gt;For other collections use unpacking or iter:&lt;/p&gt;</span>
 <span class="s">&lt;ul&gt;</span>
 <span class="s">  &lt;li&gt;Item #0&lt;/li&gt;</span>
@@ -299,7 +302,7 @@ of the element. If an element is an iterator, it is expanded.</p>
 <span class="s">  &lt;li&gt;Item #2&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #3&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #4&lt;/li&gt;</span>
-<span class="s">&lt;/ul&gt;"</span>
+<span class="s">&lt;/ul&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -337,8 +340,8 @@ of the element. If an element is an iterator, it is expanded.</p>
 (first the id, followed by the classes):</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"/><label class="tab-label" for="tab-set--4-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">html</span> <span class="p">[</span><span class="ss">'div#guido.bdfl</span><span class="p">])</span>
-<span class="s">"&lt;div class=\"bdfl\" id=\"guido\"&gt;&lt;/div&gt;"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'div#guido.bdfl</span><span class="p">])</span><span class="w"></span>
+<span class="s">"&lt;div class=\"bdfl\" id=\"guido\"&gt;&lt;/div&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -352,7 +355,8 @@ of the element. If an element is an iterator, it is expanded.</p>
 </section>
 </section>
 
-      </article>
+        </article>
+      </div>
       <footer>
         
         <div class="related-pages">
@@ -379,14 +383,10 @@ of the element. If an element is an iterator, it is expanded.</p>
         </div>
 
         <div class="related-information">
-              Copyright &#169; 2021, Guillaume Fayard
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/quickstart.rst.txt"
+              Copyright &#169; 2021, Guillaume Fayard |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/quickstart.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -424,7 +424,7 @@ of the element. If an element is an iterator, it is expanded.</p>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     <script src="_static/tabs.js"></script>
     </body>
 </html>

@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Definitions - Create Renderers and Elements" href="definitions.html" />
 
-    <meta name="generator" content="sphinx-4.1.2, furo 2021.07.31.beta41"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
         <title>Utilitarian Functions - Hyccup 1.0.0a2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=daa650a7760fac3eee23aa959745d2c866b74cb3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=93475b62d1c3bc01323a0eefdc14a62d77b12690" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
     <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
@@ -34,9 +34,11 @@
   
     }
   }
-</style>
-    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css"></head>
+</style></head>
   <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
@@ -180,7 +182,7 @@
   </aside>
   <div class="main">
     <div class="content">
-      <article role="main">
+      <div class="article-container">
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -195,7 +197,8 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="utilitarian-functions">
+        <article role="main">
+          <section id="utilitarian-functions">
 <h1>Utilitarian Functions<a class="headerlink" href="#utilitarian-functions" title="Permalink to this headline">¶</a></h1>
 <p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/util.hy">hyccup/util.hy</a></p>
 <section id="module-hyccup.util">
@@ -251,10 +254,10 @@
 <dd><p>Context manager specifying base URL for URLs.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">base-url</span> <span class="s">"/foo"</span><span class="p">)]</span>
-<span class="nv">...</span>  <span class="p">(</span><span class="nf">setv</span> <span class="nv">my-url</span> <span class="p">(</span><span class="nf">to-str</span> <span class="p">(</span><span class="nf">to-uri</span> <span class="s">"/bar"</span><span class="p">))))</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span>
-<span class="s">"/foo/bar"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">"/foo"</span><span class="p">)]</span><span class="w"></span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">my-url</span><span class="w"> </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">))))</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span><span class="w"></span>
+<span class="s">"/foo/bar"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -289,12 +292,12 @@
 <dd><p>Context manager specifying encoding.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">encoding</span> <span class="s">"UTF-8"</span><span class="p">)]</span>
-<span class="nv">...</span>  <span class="p">(</span><span class="nf">url-encode</span> <span class="p">{</span><span class="ss">'iroha</span> <span class="s">"いろは"</span><span class="p">}))</span>
-<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span>
-<span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">with</span> <span class="p">[(</span><span class="nf">encoding</span> <span class="s">"ISO-2022-JP"</span><span class="p">)]</span>
-<span class="nv">...</span>  <span class="p">(</span><span class="nf">url-encode</span> <span class="p">{</span><span class="ss">'iroha</span> <span class="s">"いろは"</span><span class="p">}))</span>
-<span class="s">"iroha=%1B%24B%24%24%24m%24O%1B%28B"</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">)]</span><span class="w"></span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="ss">'iroha</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
+<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"ISO-2022-JP"</span><span class="p">)]</span><span class="w"></span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="ss">'iroha</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
+<span class="s">"iroha=%1B%24B%24%24%24m%24O%1B%28B"</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -315,7 +318,8 @@
 </section>
 </section>
 
-      </article>
+        </article>
+      </div>
       <footer>
         
         <div class="related-pages">
@@ -334,14 +338,10 @@
         </div>
 
         <div class="related-information">
-              Copyright &#169; 2021, Guillaume Fayard
-            |
-            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
-              and
-              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            |
-            <a class="muted-link" href="_sources/util.rst.txt"
+              Copyright &#169; 2021, Guillaume Fayard |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="_sources/util.rst.txt"
                rel="nofollow">
               Show Source
             </a>
@@ -379,7 +379,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/main.js"></script>
+    <script src="_static/scripts/furo.js"></script>
     <script src="_static/tabs.js"></script>
     </body>
 </html>
