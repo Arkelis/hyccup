@@ -4,7 +4,6 @@
         inspect [signature]
         hyrule [rest]
         toolz [first second merge]
-        hyccup.util [multimethod]
         hyccup.core [html])
 
 
@@ -27,8 +26,15 @@
       deco)))
 
 
+(defn _split-args [args kwargs]
+  (match #(args kwargs)
+    [[(dict) :as attrs-map #* others] kwargs] #(attrs-map others kwargs)
+    [[] {"attrs_map" (dict) :as attrs-map  #** others}] #(attrs-map #() others)
+    _ #(None args kwargs)))
+
+
 (defn defelem [function]
-  "Decorate a function for defining elements using multimethod.
+  "Decorate a function for defining elements.
   
   The returned object is a callable with two signature:
   
@@ -36,17 +42,15 @@
   * The original signature with as first parameter a dict of attributes. This
     will be merged with attributes of the returned element.
   "
-  (defn [multimethod] wrapper [#* args #** kwargs]
-    (function #* args #** kwargs))
-  (defn [multimethod] wrapper [#^dict attrs-map #* args #** kwargs]
-    (setv raw-result (function #* args #** kwargs))
-    (if attrs-map
-      (do
-        (setv [tag #* body] raw-result)
-        (if (and body (isinstance (first body) dict))
-          [tag (merge (first body) attrs-map) #*(rest body)]
-          [tag attrs-map #*body]))
-      raw-result))
+  (defn [(functools.wraps function)] wrapper [#* args #** kwargs]
+    (let [#(attrs-map args kwargs) (_split-args args kwargs)
+          raw-result (function #* args #** kwargs)]
+      (if attrs-map
+        (let [#(tag #* body) raw-result]
+          (if (and body (isinstance (first body) dict))
+            [tag (merge (first body) attrs-map) #* (rest body)]
+            [tag attrs-map #*body]))
+      raw-result)))
   (functools.update-wrapper wrapper function))
 
 
@@ -84,19 +88,16 @@
         fbody (if has-docstring (cut fbody 2 None) (cut fbody 1 None)))
   `(do
     (import
-      hyccup.util [multimethod]
-      hyrule [rest]
-      toolz [first merge])
-    (defn [multimethod] ~name ~argslist
+      hyccup.definition [_split-args])
+    (defn ~name [#* args #** kwargs]
       ~docstring
-      ~@fbody)
-    (defn [multimethod] ~name [#^dict attrs-map #* args #** kwargs]
-      ~docstring
-      (setv raw-result (~name #* args #** kwargs))
-      (if attrs-map
-        (do
-          (setv [tag #* body] raw-result)
-          (if (and body (isinstance (first body) dict))
-            [tag (merge (first body) attrs-map) #*(rest body)]
-            [tag attrs-map #*body]))
-        raw-result))))
+      (defn get-raw-result ~argslist
+        ~@fbody)
+      (let [#(attrs-map args kwargs) (_split-args args kwargs)
+            raw-result (get-raw-result #* args #** kwargs)]
+        (if attrs-map
+          (let [[tag #* body] raw-result]
+            (if (and body (isinstance (get body 0) dict))
+              [tag (| (get body 0) attrs-map) #*(cut body 1 None)]
+              [tag attrs-map #*body]))
+          raw-result)))))

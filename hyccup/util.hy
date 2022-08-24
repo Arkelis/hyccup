@@ -6,8 +6,7 @@
         fractions [Fraction]
         urllib.parse [SplitResult urlsplit urlencode quote-plus]
         hy.models [Keyword Symbol]
-        hyrule [coll?]
-        multimethod)
+        hyrule [coll?])
 
 
 (setv local-data (.local threading)
@@ -168,11 +167,3 @@
 
 (defn empty? [coll]
   (= (len coll) 0))
-
-
-(defclass multimethod [multimethod.multimethod]
-  (defn [property] docstring [self]
-    (for [func (.values self)]
-      (when func.__doc__
-        (return func.__doc__)))
-    ""))
