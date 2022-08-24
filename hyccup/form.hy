@@ -17,11 +17,12 @@
 (defn [contextmanager] group [group-name]
   "Group together a set of related form fields."
   (try
-    (when (not (hasattr local-data "group"))
-      (setv local-data.group []))
-    (yield (.append local-data.group group-name))
+    (yield
+      (if (not (hasattr local-data "group"))
+        (setv local-data.group [])
+        (local-data.group.append group-name)))
   (finally
-    (.pop local-data.group))))
+    (local-data.group.pop))))
 
 
 (defn make-name [name]
