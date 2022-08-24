@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'Hyccup'
-copyright = '2021, Guillaume Fayard'
+copyright = '2022, Guillaume Fayard'
 author = 'Guillaume Fayard'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0a2'
+release = '1.0.0a5'
 
 
 # -- General configuration ---------------------------------------------------

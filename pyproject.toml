@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hyccup"
-version = "1.0.0a4"
+version = "1.0.0a5"
 description = "A port of Clojure Hiccup for Hy"
 authors = ["Guillaume Fayard <guillaume.fayard@pycolore.fr>"]
 license = "MIT"
