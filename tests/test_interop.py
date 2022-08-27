@@ -5,10 +5,12 @@ Test especially hyccup.defdecos module.
 
 import inspect
 
+from hy.models import Symbol as S
 import pytest
 
 from hyccup.core import html
 from hyccup.definition import defhtml, defelem
+from hyccup.form import group, text_field
 
 
 class TestCore:
@@ -113,3 +115,31 @@ class TestDefElemDeco:
         assert some_func.__doc__ == "some func's docstring"
         assert some_func.__annotations__ == {"a": int, "b": int}
 
+
+class TestGroup:
+    def test_simple_group(self):
+        def a_form(names):
+            with group("mygroup"):
+                return [text_field(name) for name in names]
+        
+        assert a_form(["one", "two"]) == [
+            [S('input'), {S('id'): 'mygroup-one', S('name'): 'mygroup[one]', S('type'): 'text', S('value'): None}],
+            [S('input'), {S('id'): 'mygroup-two', S('name'): 'mygroup[two]', S('type'): 'text', S('value'): None}]]
+    
+    def test_multiple_groups(self):
+        def inner_form():
+            with group("inner"):
+                return [text_field('three'), text_field('four')]
+    
+        def outer_form():
+            with group("outer"):
+                return [
+                    text_field('one'),
+                    text_field('two'),
+                    *inner_form()]
+        
+        assert outer_form() == [
+            [S('input'), {S('id'): 'outer-one', S('name'): 'outer[one]', S('type'): 'text', S('value'): None}],
+            [S('input'), {S('id'): 'outer-two', S('name'): 'outer[two]', S('type'): 'text', S('value'): None}],
+            [S('input'), {S('id'): 'outer-inner-three', S('name'): 'outer[inner][three]', S('type'): 'text', S('value'): None}],
+            [S('input'), {S('id'): 'outer-inner-four', S('name'): 'outer[inner][four]', S('type'): 'text', S('value'): None}]]
