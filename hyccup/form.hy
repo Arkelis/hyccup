@@ -18,8 +18,9 @@
   "Group together a set of related form fields."
   (try
     (yield
-      (if (not (hasattr local-data "group"))
-        (setv local-data.group [])
+      (do 
+        (when (not (hasattr local-data "group"))
+          (setv local-data.group []))
         (local-data.group.append group-name)))
   (finally
     (local-data.group.pop))))
