@@ -13,29 +13,29 @@ Syntax Reminder
 
     .. code:: clj
 
-      => (html ['p])
+      => (html ["p"])
       "<p><p/>"
-      => (html ['p "some text"])
+      => (html ["p" "some text"])
       "<p>some text</p>"
-      => (html ['p {'attr "an-attr"} "some text"])
+      => (html ["p" {"attr" "an-attr"} "some text"])
       "<p attr="an-attr">some text</p>"
-      => (html ['p {'attr "an-attr"}
-                  ['div "lorem"]
-                  ['div "ipsum"]])
-      "<p attr="an-attr">
-        <div>lorem</div>
-        <div>ipsum</div>
-      </p>"
-      => (html ['p {'attr "an-attr"}
-                  *[['div "lorem"]
-                    ['div "ipsum"]]])
+      => (html ["p" (dict :attr "an-attr")
+                  ["div" "lorem"]
+                  ["div" "ipsum"]])
       "<p attr=\"an-attr\">
         <div>lorem</div>
         <div>ipsum</div>
       </p>"
-      => (html ['p {'attr "an-attr"}
-                  (iter [['div "lorem"]
-                         ['div "ipsum"]])])
+      => (html ["p" {"attr" "an-attr"}
+                  *[["div" "lorem"]
+                    ["div" "ipsum"]]])
+      "<p attr=\"an-attr\">
+        <div>lorem</div>
+        <div>ipsum</div>
+      </p>"
+      => (html ["p" {"attr" "an-attr"}
+                  (iter [["div" "lorem"]
+                         ["div" "ipsum"]])])
       "<p attr=\"an-attr\">
         <div>lorem</div>
         <div>ipsum</div>
@@ -84,7 +84,7 @@ with `escape-strings` parameter:
 
     .. code-block:: clj
         
-        => (setv content ['p "line<br>other"])
+        => (setv content ["p" "line<br>other"])
         => (html content :escape-strings False)
         "<p>line<br>other</p>"
   
@@ -102,7 +102,7 @@ with `escape-strings` parameter:
 
     .. code-block:: clj
         
-        => (setv content ['p (raw "line<br>other")])
+        => (setv content ["p" (raw "line<br>other")])
         => (html content)
         "<p>line<br>other</p>"
   
@@ -121,8 +121,8 @@ Note that :hy:func:`html` returns a raw string:
 
     .. code-block:: clj
         
-        => (setv content (html ['p "some text"]))
-        => (html ['div content])
+        => (setv content (html ["p" "some text"]))
+        => (html ["div" content])
         "<div><p>some text</p></div>"
   
 .. tab:: Python

@@ -20,8 +20,8 @@ which wraps its output to :hy:func:`html <hyccup.core.html>` automatically:
     (require hyccup.definition [defhtml])
 
     (defhtml render-in-div [#* content]
-      ['div {'class "container"} (iter content)])
-    (render-in-div ['ol (gfor x (range 1 4) ['li f"Item {x}"])])
+      ["div" {"class" "container"} (iter content)])
+    (render-in-div ["ol" (gfor x (range 1 4) ["li" f"Item {x}"])])
     ;; "<div class=\"container\">
     ;;   <ol>
     ;;     <li>Item 1</li>
@@ -36,14 +36,14 @@ You can pass HTML options:
 
     ;; XHTML mode (default)
     (defhtml {"mode" "xhtml"} render-in-div [#* content]
-      ['div {'class "container"} (iter content)])
-    (render-in-div ['img {'src "https://foo.bar"}])
+      ["div" {"class" "container"} (iter content)])
+    (render-in-div ["img" {"src" "https://foo.bar"}])
     ;; "<div class=\"container\"><img src=\"https://foo.bar\" /></div>"
 
     ;; HTML mode
     (defhtml {"mode" "html"} render-in-div [#* content]
-      ['div {'class "container"} (iter content)])
-    (render-in-div ['img {'src "https://foo.bar"}])
+      ["div" {"class" "container"} (iter content)])
+    (render-in-div ["img" {"src" "https://foo.bar"}])
     ;; "<div class=\"container\"><img src=\"https://foo.bar\"></div>"
 
 
@@ -56,15 +56,15 @@ returned element's attributes:
     (require [hyccup.definition [defelem]])
 
     (defelem link-to [link content]
-      ['a {'href link} content])
+      ["a" {"href" link} content])
 
     ;; Without attributes dict
     (link-to "https://foo.bar" "Awesome link")
-    ;; ['a {'href "https://foo.bar"} "Awesome link"]
+    ;; ["a" {"href" "https://foo.bar"} "Awesome link"]
 
     ;; With attributes
-    (link-to {'class "some-class"} "https://foo.bar" "Awesome link")
-    ;; ['a {'href "https://foo.bar" 'class "some-class"} "Awesome link"]
+    (link-to {"class" "some-class"} "https://foo.bar" "Awesome link")
+    ;; ["a" {"href" "https://foo.bar" "class" "some-class"} "Awesome link"]
 
 
 Definitions Decorators
@@ -111,7 +111,7 @@ You can pass HTML options:
     # '<div class="container"><img src="https://foo.bar"></div>'
 
 
-Use :hy:macro:`defelem <hyccup.definition.defelem>` for defining elements. A
+Use :hy:func:`defelem <hyccup.definition.defelem>` for defining elements. A
 first optional parameter is added for specifying attributes to merge with 
 returned element's attributes:
 

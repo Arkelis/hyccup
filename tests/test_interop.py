@@ -8,7 +8,7 @@ import inspect
 from hy.models import Symbol as S
 import pytest
 
-from hyccup.core import html
+from hyccup import html
 from hyccup.definition import defhtml, defelem
 from hyccup.form import group, text_field
 
@@ -121,16 +121,16 @@ class TestGroup:
         def a_form(names):
             with group("mygroup"):
                 return [text_field(name) for name in names]
-        
+
         assert a_form(["one", "two"]) == [
-            [S('input'), {S('id'): 'mygroup-one', S('name'): 'mygroup[one]', S('type'): 'text', S('value'): None}],
-            [S('input'), {S('id'): 'mygroup-two', S('name'): 'mygroup[two]', S('type'): 'text', S('value'): None}]]
-    
+            ['input', {'id': 'mygroup-one', 'name': 'mygroup[one]', 'type': 'text', 'value': None}],
+            ['input', {'id': 'mygroup-two', 'name': 'mygroup[two]', 'type': 'text', 'value': None}]]
+
     def test_multiple_groups(self):
         def inner_form():
             with group("inner"):
                 return [text_field('three'), text_field('four')]
-    
+
         def outer_form():
             with group("outer"):
                 return [
@@ -139,7 +139,7 @@ class TestGroup:
                     *inner_form()]
         
         assert outer_form() == [
-            [S('input'), {S('id'): 'outer-one', S('name'): 'outer[one]', S('type'): 'text', S('value'): None}],
-            [S('input'), {S('id'): 'outer-two', S('name'): 'outer[two]', S('type'): 'text', S('value'): None}],
-            [S('input'), {S('id'): 'outer-inner-three', S('name'): 'outer[inner][three]', S('type'): 'text', S('value'): None}],
-            [S('input'), {S('id'): 'outer-inner-four', S('name'): 'outer[inner][four]', S('type'): 'text', S('value'): None}]]
+            ['input', {'id': 'outer-one', 'name': 'outer[one]', 'type': 'text', 'value': None}],
+            ['input', {'id': 'outer-two', 'name': 'outer[two]', 'type': 'text', 'value': None}],
+            ['input', {'id': 'outer-inner-three', 'name': 'outer[inner][three]', 'type': 'text', 'value': None}],
+            ['input', {'id': 'outer-inner-four', 'name': 'outer[inner][four]', 'type': 'text', 'value': None}]]

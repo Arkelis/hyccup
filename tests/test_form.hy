@@ -3,7 +3,7 @@
 
 """Tests for hyccup.form module"""
 
-(import hyccup.core [html]
+(import hyccup [html]
         hyccup.form *)
 
 
@@ -205,7 +205,6 @@
            (str "<select id=\"foo-bar\" name=\"foo[bar]\"></select>"))))
 
   (defn test-text-area [self]
-  (print (html (with [(group 'foo)] (text-area 'bar))))
     (assert (= (html (with [(group 'foo)] (text-area 'bar)))
            (str "<textarea id=\"foo-bar\" name=\"foo[bar]\"></textarea>"))))
 

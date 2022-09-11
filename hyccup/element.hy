@@ -8,7 +8,7 @@
 
 (defn javascript-tag [script]
   "Wrap the supplied javascript up in script tags and a CDATA section."
-  ['script {'type "text/javascript"} f"//<![CDATA[\n{script}\n//]]>"])
+  ["script" {"type" "text/javascript"} f"//<![CDATA[\n{script}\n//]]>"])
 
 
 (defelem link-to [url #* content]
@@ -18,7 +18,7 @@
   :param url: The hypertext link
   :param \\*content: Content do include as children
   "
-  ['a {'href (util.to-uri url)} #* content])
+  ["a" {"href" (util.to-uri url)} #* content])
 
 
 (defelem mail-to [email #* content]
@@ -30,10 +30,10 @@
   :param email: E-mail address
   :param \\*content: Content do include as children
   "
-  (setv el ['a {'href f"mailto:{email}"}
-             #* content])
-  (unless content (.append el email))
-  el)
+  (let [el ["a" {"href" f"mailto:{email}"}
+             #* content]]
+    (unless content (.append el email))
+    el))
 
 
 (defelem unordered-list [coll]
@@ -42,7 +42,7 @@
   :param attrs-map: Optional dict of attributes as first positional parameter
   :param coll: Collection of elements of the list.
   "
-  ['ul (gfor x coll ['li x])])
+  ["ul" (gfor x coll ["li" x])])
 
 
 (defelem ordered-list [coll]
@@ -51,7 +51,7 @@
   :param attrs-map: Optional dict of attributes as first positional parameter
   :param coll: Collection of elements of the list.
   "
-  ['ol (gfor x coll ['li x])])
+  ["ol" (gfor x coll ["li" x])])
 
 
 (defelem image [src [alt None]]
@@ -61,4 +61,4 @@
   :param src: The source of the image
   :param alt: Alternative text for the image
   "
-  ['img {'src (util.to-uri src) 'alt alt}])
+  ["img" {"src" (util.to-uri src) "alt" alt}])
