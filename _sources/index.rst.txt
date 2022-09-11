@@ -16,15 +16,15 @@ HTML into data structure and to dump it:
 
    .. code-block:: clj
 
-      => (import hyccup.core [html])
-      => (html ['div {'class "greeting"} "Hello Hyccup from Hy!"])
+      => (import hyccup [html])
+      => (html ["div" {"class" "greeting"} "Hello Hyccup from Hy!"])
       "<div class=\"greeting\">Hello Hyccup from Hy!</div>"
 
 .. tab:: Python
 
    .. code-block:: pycon
 
-      >>> from hyccup.core import html
+      >>> from hyccup import html
       >>> html(["div", {"class": "greeting"}, "Hello Hyccup from Python!"])
       '<div class="greeting">Hello Hyccup from Python!</div>'
 

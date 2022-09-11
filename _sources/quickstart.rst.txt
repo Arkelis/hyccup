@@ -26,8 +26,8 @@ structure into an HTML string:
 
    .. code-block:: clj
 
-      => (import hyccup.core [html])
-      => (html ['p {'id "an-id" 'class "a-class"} "Lorem Hypsum"])
+      => (import hyccup [html])
+      => (html ["p" {"id" "an-id" "class" "a-class"} "Lorem Hypsum"])
       "<p class=\"a-class\" id=\"an-id\">Lorem Hypsum</p>"
 
 .. tab:: Python
@@ -46,9 +46,9 @@ to render. It can be a string or a Hy symbol.
 
    .. code-block:: clj
 
-      => (html ['p])
+      => (html ["p"])
       "<p></p>"
-      => (html ['br])
+      => (html ["br"])
       "<br />"
 
 .. tab:: Python
@@ -67,9 +67,9 @@ second element of the list.
 
    .. code-block:: clj
 
-      => (html ['input {'type "password" 'name "password"}])
+      => (html ["input" {"type" "password" "name" "password"}])
       "<input name=\"password\" type=\"password\" />"
-      => (html ['p "Attributes dict can be omitted"])
+      => (html ["p" "Attributes dict can be omitted"])
       "<p>Attributes dict can be omitted</p>"
 
 .. tab:: Python
@@ -90,8 +90,8 @@ of the element. If an element is an iterator, it is expanded.
    .. code-block:: clj
 
       => (setv items-generator
-           (gfor x (range 5) ['li f"Item #{x}"]))
-      => (html ['ol items-generator])
+           (gfor x (range 5) ["li" f"Item #{x}"]))
+      => (html ["ol" items-generator])
       "<ol>
         <li>Item #0</li>
         <li>Item #1</li>
@@ -100,9 +100,9 @@ of the element. If an element is an iterator, it is expanded.
         <li>Item #4</li>
       </ol>"
       => (setv items-list
-           (lfor x (range 5) ['li f"Item #{x}"]))
-      => (html ['p "For other collections use unpacking or iter:"]
-      ...      ['ul #* items-list (iter items-list)])
+           (lfor x (range 5) ["li" f"Item #{x}"]))
+      => (html ["p" "For other collections use unpacking or iter:"]
+      ...      ["ul" #* items-list (iter items-list)])
       "<p>For other collections use unpacking or iter:</p>
       <ul>
         <li>Item #0</li>
@@ -154,7 +154,7 @@ CSS selectors syntax for classes and id can be used as a shortcut
 
    .. code-block:: clj
 
-      => (html ['div#guido.bdfl])
+      => (html ["div#guido.bdfl"])
       "<div class=\"bdfl\" id=\"guido\"></div>"
 
 .. tab:: Python

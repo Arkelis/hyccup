@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Elements - Generic Elements" href="elements.html" /><link rel="prev" title="Core Functions - Render HTML" href="core.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
-        <title>Page - Create Documents - Hyccup 1.0.0 documentation</title>
+        <title>Page - Create Documents - Hyccup 1.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Hyccup 1.0.0 documentation</div></a>
+      <a href="index.html"><div class="brand">Hyccup 1.0.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Hyccup 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Hyccup 1.0.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -207,14 +207,14 @@
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
 <div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.page</span><span class="w"> </span><span class="p">[</span><span class="nv">html5</span><span class="w"> </span><span class="nv">include-css</span><span class="w"> </span><span class="nv">include-js</span><span class="p">])</span><span class="w"></span>
 
-<span class="p">(</span><span class="nf">html5</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
+<span class="p">(</span><span class="nf">html5</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
 <span class="c1">;; "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;/html&gt;"</span><span class="w"></span>
 
 <span class="p">(</span><span class="nf">html5</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="ss">'head</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="s">"head"</span><span class="w"></span>
 <span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-css</span><span class="w"> </span><span class="s">"/my.css"</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-js</span><span class="w"> </span><span class="s">"/my.js"</span><span class="p">)]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="ss">'body</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="s">"body"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
 <span class="c1">;; "&lt;!DOCTYPE html&gt;</span><span class="w"></span>
 <span class="c1">;; &lt;html&gt;</span><span class="w"></span>
 <span class="c1">;; &lt;head&gt;</span><span class="w"></span>

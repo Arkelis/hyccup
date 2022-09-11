@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Coming from Hiccup" href="from-hiccup.html" /><link rel="prev" title="Hyccup - Generate HTML from data structure in Hy and Python" href="index.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
-        <title>Quickstart - Hyccup 1.0.0 documentation</title>
+        <title>Quickstart - Hyccup 1.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Hyccup 1.0.0 documentation</div></a>
+      <a href="index.html"><div class="brand">Hyccup 1.0.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Hyccup 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Hyccup 1.0.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -217,8 +217,8 @@ poetry add hyccup
 structure into an HTML string:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.core</span><span class="w"> </span><span class="p">[</span><span class="nv">html</span><span class="p">])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="p">{</span><span class="ss">'id</span><span class="w"> </span><span class="s">"an-id"</span><span class="w"> </span><span class="ss">'class</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"Lorem Hypsum"</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup</span><span class="w"> </span><span class="p">[</span><span class="nv">html</span><span class="p">])</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"id"</span><span class="w"> </span><span class="s">"an-id"</span><span class="w"> </span><span class="s">"class"</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"Lorem Hypsum"</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;p class=\"a-class\" id=\"an-id\"&gt;Lorem Hypsum&lt;/p&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
@@ -236,9 +236,9 @@ arguments. The first elmement of each list must be the tag name of the element
 to render. It can be a string or a Hy symbol.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;p&gt;&lt;/p&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'br</span><span class="p">])</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"br"</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;br /&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
@@ -256,9 +256,9 @@ to render. It can be a string or a Hy symbol.</p>
 second element of the list.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"/><label class="tab-label" for="tab-set--2-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'input</span><span class="w"> </span><span class="p">{</span><span class="ss">'type</span><span class="w"> </span><span class="s">"password"</span><span class="w"> </span><span class="ss">'name</span><span class="w"> </span><span class="s">"password"</span><span class="p">}])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"input"</span><span class="w"> </span><span class="p">{</span><span class="s">"type"</span><span class="w"> </span><span class="s">"password"</span><span class="w"> </span><span class="s">"name"</span><span class="w"> </span><span class="s">"password"</span><span class="p">}])</span><span class="w"></span>
 <span class="s">"&lt;input name=\"password\" type=\"password\" /&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="s">"Attributes dict can be omitted"</span><span class="p">])</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"Attributes dict can be omitted"</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;p&gt;Attributes dict can be omitted&lt;/p&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
@@ -277,8 +277,8 @@ of the element. If an element is an iterator, it is expanded.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"/><label class="tab-label" for="tab-set--3-input--1">Hy</label><div class="tab-content docutils container">
 <div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">items-generator</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="ss">'li</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'ol</span><span class="w"> </span><span class="nv">items-generator</span><span class="p">])</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">"li"</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"ol"</span><span class="w"> </span><span class="nv">items-generator</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;ol&gt;</span>
 <span class="s">  &lt;li&gt;Item #0&lt;/li&gt;</span>
 <span class="s">  &lt;li&gt;Item #1&lt;/li&gt;</span>
@@ -287,9 +287,9 @@ of the element. If an element is an iterator, it is expanded.</p>
 <span class="s">  &lt;li&gt;Item #4&lt;/li&gt;</span>
 <span class="s">&lt;/ol&gt;"</span><span class="w"></span>
 <span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">items-list</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">lfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="ss">'li</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'p</span><span class="w"> </span><span class="s">"For other collections use unpacking or iter:"</span><span class="p">]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">      </span><span class="p">[</span><span class="ss">'ul</span><span class="w"> </span><span class="o">#</span><span class="nb">* </span><span class="nv">items-list</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">items-list</span><span class="p">)])</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="nf">lfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">"li"</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item #{x}"</span><span class="p">]))</span><span class="w"></span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"For other collections use unpacking or iter:"</span><span class="p">]</span><span class="w"></span>
+<span class="nv">...</span><span class="w">      </span><span class="p">[</span><span class="s">"ul"</span><span class="w"> </span><span class="o">#</span><span class="nb">* </span><span class="nv">items-list</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">items-list</span><span class="p">)])</span><span class="w"></span>
 <span class="s">"&lt;p&gt;For other collections use unpacking or iter:&lt;/p&gt;</span>
 <span class="s">&lt;ul&gt;</span>
 <span class="s">  &lt;li&gt;Item #0&lt;/li&gt;</span>
@@ -340,7 +340,7 @@ of the element. If an element is an iterator, it is expanded.</p>
 (first the id, followed by the classes):</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"/><label class="tab-label" for="tab-set--4-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="ss">'div#guido.bdfl</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"div#guido.bdfl"</span><span class="p">])</span><span class="w"></span>
 <span class="s">"&lt;div class=\"bdfl\" id=\"guido\"&gt;&lt;/div&gt;"</span><span class="w"></span>
 </pre></div>
 </div>
