@@ -81,11 +81,11 @@
   Add to the function signature a first optional dictionary argument.
   This dictionary will be merged with attributes of the returned element.
   "
-  (setv argslist (first fbody)
+  (let [argslist (first fbody)
         has-docstring (isinstance (second fbody) str) 
         first-attr-docstring ":param attrs-map: an optional dict of HTML/XML attributes."
         docstring (if has-docstring (second fbody) "")
-        fbody (if has-docstring (cut fbody 2 None) (cut fbody 1 None)))
+        fbody (if has-docstring (cut fbody 2 None) (cut fbody 1 None))]
   `(do
     (import
       hyccup.definition [_split-args])
@@ -100,4 +100,4 @@
             (if (and body (isinstance (get body 0) dict))
               [tag (| (get body 0) attrs-map) #*(cut body 1 None)]
               [tag attrs-map #*body]))
-          raw-result)))))
+          raw-result))))))

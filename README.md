@@ -12,7 +12,7 @@ It allows you to represent HTML into data structure and to dump it.
 
 ```hy
 => (import hyccup.core [html])
-=> (html ['div {'class "my-class" 'id "my-id"} "Hello Hyccup"])
+=> (html ["div" {"class" "my-class" "id" "my-id"} "Hello Hyccup"])
 "<div class=\"my-class\" id=\"my-id\">Hello Hyccup</div>"
 ```
 

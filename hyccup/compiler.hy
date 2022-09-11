@@ -27,8 +27,6 @@
 
 ;; Tag abbreviation
 
-(setv tag-abb-re (re.compile r"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?"))
-
 (defn expand-tag-abb [tag]
   "Expand a tag abbreviation
   
@@ -37,28 +35,11 @@
   - its id
   - its classes
   "
-  (setv tag-abb-str (str tag)
-        [tag-name id classes] (-> (.match tag-abb-re tag-abb-str)
-                                  (.group 1 2 3)))
-  [tag-name id (.replace (or classes "") "." " ")])
-
-
-;; Attributes sorting
-
-;; (defn attr-key [t]
-;;   "Sorting key function.
-  
-;;   'class' attribute is always first.
-;;   'id' attribute follows 'class'.
-;;   'data-*' attributes follow 'id'.
-;;   "
-;;   (setv attr-name 
-;;     (-> (get t 0)
-;;         (str)))
-;;   (cond [(= attr-name "class") "0"]
-;;         [(= attr-name "id") "1"]
-;;         [(.startswith attr-name "data") f"2{attr-name}"]
-;;         [True f"3{attr-name}"]))
+  (let [tag-abb-str (str tag)
+        tag-abb-re (re.compile r"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?")
+        #(tag-name id classes) (-> (.match tag-abb-re tag-abb-str)
+                                   (.group 1 2 3))]
+    [tag-name id (.replace (or classes "") "." " ")]))
 
 
 ;; Compilation
@@ -109,30 +90,29 @@
     Call compile-element-exp for rendering its children.
     Called by compile-list.
     "
-    (setv attrs (keymap str attrs)
+    (let [attrs (keymap str attrs)
           dict-classes (.get attrs "class" "")
-          [tag-name id classes] (expand-tag-abb tag))
-    (when id
-      (unless (in "id" attrs) (assoc attrs "id" id)))
-    (when (or classes dict-classes)
-      (assoc attrs "class"
-        (.join " " (filterfalse empty? [classes
-                                        (if (coll? dict-classes)
-                                          (.join " " dict-classes)
-                                          dict-classes)]))))
-    (if (empty? children)
-      (+ f"<{tag-name}{(self.format-attrs-dict attrs)}"
-         (if (container-tag? tag-name self.mode)
-           f"></{tag-name}>"
-           (if (xml-mode? self.mode) " />" ">" )))
-      (if (void-tag? tag-name)
-        (raise (ValueError f"'{tag-name}' cannot have children"))
-        (do
-          (setv compiled-children 
-            (.join "" (map (fn [el] (self.compile-element-exp el)) children)))
-          (+ f"<{tag-name}{(self.format-attrs-dict attrs)}>"
-             f"{compiled-children}"
-             f"</{tag-name}>")))))
+          #(tag-name id classes) (expand-tag-abb tag)]
+      (when id
+        (unless (in "id" attrs) (assoc attrs "id" id)))
+      (when (or classes dict-classes)
+        (assoc attrs "class"
+          (.join " " (filterfalse empty? [classes
+                                          (if (coll? dict-classes)
+                                            (.join " " dict-classes)
+                                            dict-classes)]))))
+      (if (empty? children)
+        (+ f"<{tag-name}{(self.format-attrs-dict attrs)}"
+          (if (container-tag? tag-name self.mode)
+            f"></{tag-name}>"
+            (if (xml-mode? self.mode) " />" ">" )))
+        (if (void-tag? tag-name)
+          (raise (ValueError f"'{tag-name}' cannot have children"))
+          (let [compiled-children 
+                (.join "" (map (fn [el] (self.compile-element-exp el)) children))]
+            (+ f"<{tag-name}{(self.format-attrs-dict attrs)}>"
+              f"{compiled-children}"
+              f"</{tag-name}>"))))))
 
   (defn format-attr [self attr value]
     (cond
@@ -142,9 +122,8 @@
           f"{(str attr)}")
       (not value) ""
       True
-        (do
-          (setv attr-value-str 
-            (escape-html (to-str value) self.mode :escape-strings True))
+        (let [attr-value-str 
+              (escape-html (to-str value) self.mode :escape-strings True)]
           f"{(str attr)}=\"{attr-value-str}\"")))
 
 
