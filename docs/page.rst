@@ -13,14 +13,14 @@ Basic Example
 
         (import hyccup.page [html5 include-css include-js])    
 
-        (html5 ['p "hello world"])
+        (html5 ["p" "hello world"])
         ;; "<!DOCTYPE html>\n<html><p>hello world</p></html>"
 
         (html5 
-          ['head 
+          ["head" 
             #* (include-css "/my.css") 
             #* (include-js "/my.js")]
-          ['body "hello world"])
+          ["body" "hello world"])
         ;; "<!DOCTYPE html>
         ;; <html>
         ;; <head>

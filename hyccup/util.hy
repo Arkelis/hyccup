@@ -105,10 +105,10 @@
       .. code-block:: clj
       
           => (with [(encoding \"UTF-8\")]
-          ...  (url-encode {'iroha \"いろは\"}))
+          ...  (url-encode {\"iroha\" \"いろは\"}))
           \"iroha=%E3%81%84%E3%82%8D%E3%81%AF\"
           => (with [(encoding \"ISO-2022-JP\")]
-          ...  (url-encode {'iroha \"いろは\"}))
+          ...  (url-encode {\"iroha\" \"いろは\"}))
           \"iroha=%1B%24B%24%24%24m%24O%1B%28B\"
 
   .. tab:: Python

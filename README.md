@@ -11,7 +11,7 @@ for [Hy](https://github.com/hylang/hy), a Lisp embed in Python.
 It allows you to represent HTML into data structure and to dump it.
 
 ```hy
-=> (import hyccup.core [html])
+=> (import hyccup [html])
 => (html ["div" {"class" "my-class" "id" "my-id"} "Hello Hyccup"])
 "<div class=\"my-class\" id=\"my-id\">Hello Hyccup</div>"
 ```
@@ -19,7 +19,7 @@ It allows you to represent HTML into data structure and to dump it.
 Hyccup can also be used in Python:
 
 ```pycon
->>> from hyccup.core import html
+>>> from hyccup import html
 >>> html(['div', {'class': 'my-class', 'id': 'my-id'}, 'Hello Hyccup'])
 '<div class="my-class" id="my-id">Hello Hyccup</div>'
 ```

@@ -22,7 +22,7 @@ Syntax Reminder
       => (html ["p" (dict :attr "an-attr")
                   ["div" "lorem"]
                   ["div" "ipsum"]])
-      "<p attr="an-attr">
+      "<p attr=\"an-attr\">
         <div>lorem</div>
         <div>ipsum</div>
       </p>"
@@ -33,7 +33,7 @@ Syntax Reminder
         <div>lorem</div>
         <div>ipsum</div>
       </p>"
-      => (html ["p" {'attr "an-attr"}
+      => (html ["p" {"attr" "an-attr"}
                   (iter [["div" "lorem"]
                          ["div" "ipsum"]])])
       "<p attr=\"an-attr\">

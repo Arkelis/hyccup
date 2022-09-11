@@ -4,7 +4,7 @@
         inspect [signature]
         hyrule [rest]
         toolz [first second merge]
-        hyccup.core [html])
+        hyccup [html])
 
 
 (defn defhtml [[func None] / #** html-options]
@@ -70,7 +70,7 @@
     (setv head (cut fbody 1)
           body (rest fbody)))
   `(defn ~name ~@head
-    (import hyccup.core [html]
+    (import hyccup [html]
             toolz [keymap])
     (html (do ~@body) #** (keymap str ~options))))
 

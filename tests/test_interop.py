@@ -8,7 +8,7 @@ import inspect
 from hy.models import Symbol as S
 import pytest
 
-from hyccup.core import html
+from hyccup import html
 from hyccup.definition import defhtml, defelem
 from hyccup.form import group, text_field
 

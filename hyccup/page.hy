@@ -1,5 +1,5 @@
 (import hyrule [rest]
-        hyccup.core [html raw]
+        hyccup [html raw]
         hyccup.util :as util
         toolz [first merge])
 
@@ -26,9 +26,9 @@
 
 (defelem xhtml-tag [lang #* contents]
   "Create an XHTML element for the specified language."
-  ['html {'xmlns "http://www.w3.org/1999/xhtml"
-          "xml:lang" lang
-          'lang lang}
+  ["html" {"xmlns" "http://www.w3.org/1999/xhtml"
+           "xml:lang" lang
+           "lang" lang}
     #* contents])
 
 
@@ -44,7 +44,7 @@
   "
   (html 
     (:html4 doctype)
-    ['html #* contents]
+    ["html" #* contents]
     :mode "sgml"))
 
 
@@ -88,9 +88,12 @@
 (defn include-js [#* scripts]
   "Include a list of external javascript files."
   (lfor script scripts
-    ['script {'type "text/javascript" 'src (util.to-uri script)}]))
+    ["script" {"type" "text/javascript"
+               "src" (util.to-uri script)}]))
 
 (defn include-css [#* styles]
   "Include a list of external stylesheet files."
   (lfor style styles
-    ['link {'type "text/css" 'href (util.to-uri style) 'rel "stylesheet"}]))
+    ["link" {"type" "text/css"
+             "href" (util.to-uri style)
+             "rel" "stylesheet"}]))

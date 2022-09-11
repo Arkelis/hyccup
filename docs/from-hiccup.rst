@@ -23,7 +23,6 @@ must be changed to
 .. code:: clj
 
    ["div#an-id" {"class" "a-class"} "some text"] ;; with strings
-   ['div#an-id {'class "a-class"} "some text"] ;; with symbols
 
 HTML Options
 ------------
@@ -38,9 +37,9 @@ Pass them as keyword arguments (or use unpacking):
 
 .. code:: clj
 
-   (html ['p "example"] :mode "xhtml" :espace-strings True)
-   (html ['p "example"] #** {'mode "xhtml" 'espace-strings True})
-   (html ['p "example"] (unpack-mapping {'mode "xhtml" 'espace-strings True}))
+   (html ["p" "example"] :mode "xhtml" :espace-strings True)
+   (html ["p" "example"] #** {'mode "xhtml" 'espace-strings True})
+   (html ["p" "example"] (unpack-mapping {'mode "xhtml" 'espace-strings True}))
 
 Note that the escape flag argument has no ``?`` suffix in Hyccup.
 
@@ -58,15 +57,15 @@ lists to represent elements, where Hiccup use Clojure vectors).
 
 .. code:: clj
 
-   (html ['p "some text"] ['p "another p"]))
-   (html #* [['p "some text"] ['p "another p"]]))
-   (html (unpack-iterable [['p "some text"] ['p "another p"]])))
+   (html ["p" "some text"] ["p" "another p"]))
+   (html #* [["p" "some text"] ["p" "another p"]]))
+   (html (unpack-iterable [["p" "some text"] ["p" "another p"]])))
 
 You can also use iterators:
 
 .. code:: clj
 
-   (html (iter [['p "some text"] ['p "another p"]]))
+   (html (iter [["p" "some text"] ["p" "another p"]]))
 
 ``with-*`` macros
 -----------------
@@ -93,7 +92,7 @@ To
         (to-str (to-uri "/bar")))
    "/foo/bar"
    => (with [(encoding "UTF-8")] 
-        (url-encode {'iroha "いろは"}))
+        (url-encode {"iroha" "いろは"}))
    "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
 
 ``defhtml`` and ``defelem``
@@ -109,13 +108,13 @@ modules, macros for Hy and decorators for Python:
 
       => (require hyccup.definition [defhtml defelem])
       => (defelem link-to [link text]
-      ...  ['a {'href link} text])
-      => (link-to {'class "some-class"} "https://www.pycolore.fr" "Pycolore" )
-      ['a {'href "https://www.pycolore.fr" 'class "some-class"} "Pycolore"]
+      ...  ["a" {"href" link} text])
+      => (link-to {"class" "some-class"} "https://www.pycolore.fr" "Pycolore" )
+      ["a" {"href" "https://www.pycolore.fr" 'class "some-class"} "Pycolore"]
       => (defhtml linked-section-html [link text content]
-      ...  ['section 
-      ...    ['h1 (link-to link text)]
-      ...    ['p content]])
+      ...  ["section" 
+      ...    ["h1" (link-to link text)]
+      ...    ["p" content]])
       => (linked-section-html "https://www.pycolore.fr" "Pycolore" "Lorem Ipsum")
       "<section>
          <h1>
@@ -128,7 +127,7 @@ modules, macros for Hy and decorators for Python:
       => 
       => (defhtml {"mode" "xml"} ;; you can pass HTML options as first form to defhtml
            some-html []
-           ['p])
+           ["p"])
       => (some-html)
       "<p />" 
 

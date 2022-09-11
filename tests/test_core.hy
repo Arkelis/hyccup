@@ -3,7 +3,7 @@
 
 """Tests for hyccup.core module"""
 
-(import hyccup.core [html raw]
+(import hyccup [html raw]
         hyccup.util [RawStr]
         pytest)
 

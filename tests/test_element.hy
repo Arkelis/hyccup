@@ -4,7 +4,7 @@
 """Tests for hyccup.element module."""
 
 (import urllib.parse
-        hyccup.core [html]
+        hyccup [html]
         hyccup.element *)
 
 

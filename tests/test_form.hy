@@ -3,7 +3,7 @@
 
 """Tests for hyccup.form module"""
 
-(import hyccup.core [html]
+(import hyccup [html]
         hyccup.form *)
 
 

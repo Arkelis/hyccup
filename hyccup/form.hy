@@ -6,7 +6,7 @@
         hyrule [coll? rest]
         threading
         toolz [first]
-        hyccup.core [raw]
+        hyccup [raw]
         hyccup.util :as util)
 
 
