@@ -210,50 +210,50 @@ structures or HTML raw strings directly. They are available in two forms:</p>
 <h2>Definitions Macros<a class="headerlink" href="#definitions-macros" title="Permalink to this headline">¶</a></h2>
 <p>Use <a class="reference internal" href="#hyccup.definition.defhtml" title="hyccup.definition.defhtml"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
 which wraps its output to <a class="reference internal" href="core.html#hyccup.core.html" title="hyccup.core.html"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code></a> automatically:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Use require to import macros</span><span class="w"></span>
-<span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Use require to import macros</span>
+<span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="p">])</span>
 
-<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"ol"</span><span class="w"> </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">"li"</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item {x}"</span><span class="p">])])</span><span class="w"></span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;</span><span class="w"></span>
-<span class="c1">;;   &lt;ol&gt;</span><span class="w"></span>
-<span class="c1">;;     &lt;li&gt;Item 1&lt;/li&gt;</span><span class="w"></span>
-<span class="c1">;;     &lt;li&gt;Item 2&lt;/li&gt;</span><span class="w"></span>
-<span class="c1">;;     &lt;li&gt;Item 3&lt;/li&gt;</span><span class="w"></span>
-<span class="c1">;;   &lt;/ol&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;/div&gt;"</span><span class="w"></span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"ol"</span><span class="w"> </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">"li"</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item {x}"</span><span class="p">])])</span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;</span>
+<span class="c1">;;   &lt;ol&gt;</span>
+<span class="c1">;;     &lt;li&gt;Item 1&lt;/li&gt;</span>
+<span class="c1">;;     &lt;li&gt;Item 2&lt;/li&gt;</span>
+<span class="c1">;;     &lt;li&gt;Item 3&lt;/li&gt;</span>
+<span class="c1">;;   &lt;/ol&gt;</span>
+<span class="c1">;; &lt;/div&gt;"</span>
 </pre></div>
 </div>
 <p>You can pass HTML options:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; XHTML mode (default)</span><span class="w"></span>
-<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xhtml"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span><span class="w"></span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\" /&gt;&lt;/div&gt;"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; XHTML mode (default)</span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xhtml"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\" /&gt;&lt;/div&gt;"</span>
 
-<span class="c1">;; HTML mode</span><span class="w"></span>
-<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"html"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span><span class="w"></span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span><span class="w"></span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\"&gt;&lt;/div&gt;"</span><span class="w"></span>
+<span class="c1">;; HTML mode</span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"html"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span>
+<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\"&gt;&lt;/div&gt;"</span>
 </pre></div>
 </div>
 <p>Use <a class="reference internal" href="#hyccup.definition.defelem" title="hyccup.definition.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
 first optional parameter is added for specifying attributes to merge with
 returned element’s attributes:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="p">[</span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defelem</span><span class="p">]])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="p">[</span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defelem</span><span class="p">]])</span>
 
-<span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span><span class="w"></span>
+<span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span>
 
-<span class="c1">;; Without attributes dict</span><span class="w"></span>
-<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span><span class="w"></span>
-<span class="c1">;; ["a" {"href" "https://foo.bar"} "Awesome link"]</span><span class="w"></span>
+<span class="c1">;; Without attributes dict</span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span>
+<span class="c1">;; ["a" {"href" "https://foo.bar"} "Awesome link"]</span>
 
-<span class="c1">;; With attributes</span><span class="w"></span>
-<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span><span class="w"></span>
-<span class="c1">;; ["a" {"href" "https://foo.bar" "class" "some-class"} "Awesome link"]</span><span class="w"></span>
+<span class="c1">;; With attributes</span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span>
+<span class="c1">;; ["a" {"href" "https://foo.bar" "class" "some-class"} "Awesome link"]</span>
 </pre></div>
 </div>
 </section>

@@ -254,10 +254,10 @@
 <dd><p>Context manager specifying base URL for URLs.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">"/foo"</span><span class="p">)]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">my-url</span><span class="w"> </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">))))</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span><span class="w"></span>
-<span class="s">"/foo/bar"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">"/foo"</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">my-url</span><span class="w"> </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">))))</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span>
+<span class="s">"/foo/bar"</span>
 </pre></div>
 </div>
 </div>
@@ -292,12 +292,12 @@
 <dd><p>Context manager specifying encoding.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">)]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
-<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"ISO-2022-JP"</span><span class="p">)]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
-<span class="s">"iroha=%1B%24B%24%24%24m%24O%1B%28B"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"ISO-2022-JP"</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%1B%24B%24%24%24m%24O%1B%28B"</span>
 </pre></div>
 </div>
 </div>

@@ -209,24 +209,24 @@ the main difference between this library and Hiccup.</p>
 they cannot be used efficiently. Thus, we rely on strings or symbols
 instead.</p>
 <p>That is to say,</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="ss">:div#an-id</span><span class="w"> </span><span class="p">{</span><span class="ss">:class</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="ss">:div#an-id</span><span class="w"> </span><span class="p">{</span><span class="ss">:class</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>must be changed to</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s">"div#an-id"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="c1">;; with strings</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s">"div#an-id"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"a-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="c1">;; with strings</span>
 </pre></div>
 </div>
 </section>
 <section id="html-options">
 <h2>HTML Options<a class="headerlink" href="#html-options" title="Permalink to this headline">¶</a></h2>
 <p>Instead of passing options in a dictionary as the first argument:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">{</span><span class="ss">:mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">:espace-strings?</span><span class="w"> </span><span class="nv">true</span><span class="p">}</span><span class="w"> </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"example"</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">{</span><span class="ss">:mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">:espace-strings?</span><span class="w"> </span><span class="nv">true</span><span class="p">}</span><span class="w"> </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"example"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Pass them as keyword arguments (or use unpacking):</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="ss">:mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">:espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">)</span><span class="w"></span>
-<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="o">#</span><span class="nv">**</span><span class="w"> </span><span class="p">{</span><span class="ss">'mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">'espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">})</span><span class="w"></span>
-<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="nf">unpack-mapping</span><span class="w"> </span><span class="p">{</span><span class="ss">'mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">'espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">}))</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="ss">:mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">:espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="o">#</span><span class="nv">**</span><span class="w"> </span><span class="p">{</span><span class="ss">'mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">'espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">})</span>
+<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"example"</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="nf">unpack-mapping</span><span class="w"> </span><span class="p">{</span><span class="ss">'mode</span><span class="w"> </span><span class="s">"xhtml"</span><span class="w"> </span><span class="ss">'espace-strings</span><span class="w"> </span><span class="nv">True</span><span class="p">}))</span>
 </pre></div>
 </div>
 <p>Note that the escape flag argument has no <code class="docutils literal notranslate"><span class="pre">?</span></code> suffix in Hyccup.</p>
@@ -234,18 +234,18 @@ instead.</p>
 <section id="lists">
 <h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
 <p>The following form is valid in Hiccup:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nb">list </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]))</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nb">list </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="ss">:p</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>In Hyccup, just chain the elements or use unpacking (as we already use
 lists to represent elements, where Hiccup use Clojure vectors).</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]))</span><span class="w"></span>
-<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="o">#</span><span class="nb">* </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]]))</span><span class="w"></span>
-<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nf">unpack-iterable</span><span class="w"> </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]])))</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]))</span>
+<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="o">#</span><span class="nb">* </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]]))</span>
+<span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nf">unpack-iterable</span><span class="w"> </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]])))</span>
 </pre></div>
 </div>
 <p>You can also use iterators:</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]]))</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="p">[[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"another p"</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </section>
@@ -254,21 +254,21 @@ lists to represent elements, where Hiccup use Clojure vectors).</p>
 <p><code class="docutils literal notranslate"><span class="pre">with-base-url</span></code> and <code class="docutils literal notranslate"><span class="pre">with-encoding</span></code> are replaced by context
 managers.</p>
 <p>Change</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with-base-url</span><span class="w"> </span><span class="s">"/foo/"</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">)))</span><span class="w"></span>
-<span class="s">"/foo/bar"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with-encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="ss">:iroha</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
-<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with-base-url</span><span class="w"> </span><span class="s">"/foo/"</span>
+<span class="w">     </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">)))</span>
+<span class="s">"/foo/bar"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with-encoding</span><span class="w"> </span><span class="s">"UTF-8"</span>
+<span class="w">     </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="ss">:iroha</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span>
 </pre></div>
 </div>
 <p>To</p>
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">"/foo/"</span><span class="p">)]</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">)))</span><span class="w"></span>
-<span class="s">"/foo/bar"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">)]</span><span class="w"></span>
-<span class="w">     </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span><span class="w"></span>
-<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">"/foo/"</span><span class="p">)]</span>
+<span class="w">     </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">"/bar"</span><span class="p">)))</span>
+<span class="s">"/foo/bar"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">"UTF-8"</span><span class="p">)]</span>
+<span class="w">     </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">"iroha"</span><span class="w"> </span><span class="s">"いろは"</span><span class="p">}))</span>
+<span class="s">"iroha=%E3%81%84%E3%82%8D%E3%81%AF"</span>
 </pre></div>
 </div>
 </section>
@@ -278,16 +278,16 @@ managers.</p>
 modules, macros for Hy and decorators for Python:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="w"> </span><span class="nv">defelem</span><span class="p">])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="p">]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">  </span><span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">text</span><span class="p">])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="ss">'class</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="p">]</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">linked-section-html</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">  </span><span class="p">[</span><span class="s">"section"</span><span class="w"></span>
-<span class="nv">...</span><span class="w">    </span><span class="p">[</span><span class="s">"h1"</span><span class="w"> </span><span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="p">)]</span><span class="w"></span>
-<span class="nv">...</span><span class="w">    </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="nv">content</span><span class="p">]])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">linked-section-html</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="w"> </span><span class="s">"Lorem Ipsum"</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="w"> </span><span class="nv">defelem</span><span class="p">])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="p">]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">text</span><span class="p">])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="w"> </span><span class="p">)</span>
+<span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="ss">'class</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="p">]</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">linked-section-html</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">[</span><span class="s">"section"</span>
+<span class="nv">...</span><span class="w">    </span><span class="p">[</span><span class="s">"h1"</span><span class="w"> </span><span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="nv">link</span><span class="w"> </span><span class="nv">text</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">    </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="nv">content</span><span class="p">]])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">linked-section-html</span><span class="w"> </span><span class="s">"https://www.pycolore.fr"</span><span class="w"> </span><span class="s">"Pycolore"</span><span class="w"> </span><span class="s">"Lorem Ipsum"</span><span class="p">)</span>
 <span class="s">"&lt;section&gt;</span>
 <span class="s">   &lt;h1&gt;</span>
 <span class="s">   &lt;a href="</span><span class="nv">https</span><span class="ss">://www.pycolore.fr</span><span class="s">"&gt;Pycolore&lt;/a&gt;</span>
@@ -295,13 +295,13 @@ modules, macros for Hy and decorators for Python:</p>
 <span class="s">   &lt;p&gt;</span>
 <span class="s">   Lorem Ipsum</span>
 <span class="s">   &lt;/p&gt;</span>
-<span class="s">&lt;/section&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xml"</span><span class="p">}</span><span class="w"> </span><span class="c1">;; you can pass HTML options as first form to defhtml</span><span class="w"></span>
-<span class="w">     </span><span class="nv">some-html</span><span class="w"> </span><span class="p">[]</span><span class="w"></span>
-<span class="w">     </span><span class="p">[</span><span class="s">"p"</span><span class="p">])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">some-html</span><span class="p">)</span><span class="w"></span>
-<span class="s">"&lt;p /&gt;"</span><span class="w"></span>
+<span class="s">&lt;/section&gt;"</span>
+<span class="nv">=&gt;</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xml"</span><span class="p">}</span><span class="w"> </span><span class="c1">;; you can pass HTML options as first form to defhtml</span>
+<span class="w">     </span><span class="nv">some-html</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">     </span><span class="p">[</span><span class="s">"p"</span><span class="p">])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">some-html</span><span class="p">)</span>
+<span class="s">"&lt;p /&gt;"</span>
 </pre></div>
 </div>
 </div>

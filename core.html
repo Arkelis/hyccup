@@ -207,33 +207,33 @@ escaped, use the <code class="xref hy hy-func docutils literal notranslate"><spa
 <h2>Syntax Reminder<a class="headerlink" href="#syntax-reminder" title="Permalink to this headline">¶</a></h2>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="p">])</span><span class="w"></span>
-<span class="s">"&lt;p&gt;&lt;p/&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">])</span><span class="w"></span>
-<span class="s">"&lt;p&gt;some text&lt;/p&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">])</span><span class="w"></span>
-<span class="s">"&lt;p attr="</span><span class="nv">an-attr</span><span class="s">"&gt;some text&lt;/p&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">(</span><span class="nf">dict</span><span class="w"> </span><span class="ss">:attr</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span><span class="w"></span>
-<span class="w">            </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="p">])</span>
+<span class="s">"&lt;p&gt;&lt;p/&gt;"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">])</span>
+<span class="s">"&lt;p&gt;some text&lt;/p&gt;"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span><span class="w"> </span><span class="s">"some text"</span><span class="p">])</span>
+<span class="s">"&lt;p attr="</span><span class="nv">an-attr</span><span class="s">"&gt;some text&lt;/p&gt;"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">(</span><span class="nf">dict</span><span class="w"> </span><span class="ss">:attr</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span>
+<span class="w">            </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]])</span>
 <span class="s">"&lt;p attr=\"an-attr\"&gt;</span>
 <span class="s">  &lt;div&gt;lorem&lt;/div&gt;</span>
 <span class="s">  &lt;div&gt;ipsum&lt;/div&gt;</span>
-<span class="s">&lt;/p&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="nv">*</span><span class="p">[[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span><span class="w"></span>
-<span class="w">              </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]]])</span><span class="w"></span>
+<span class="s">&lt;/p&gt;"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span>
+<span class="w">            </span><span class="nv">*</span><span class="p">[[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span>
+<span class="w">              </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]]])</span>
 <span class="s">"&lt;p attr=\"an-attr\"&gt;</span>
 <span class="s">  &lt;div&gt;lorem&lt;/div&gt;</span>
 <span class="s">  &lt;div&gt;ipsum&lt;/div&gt;</span>
-<span class="s">&lt;/p&gt;"</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="p">[[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span><span class="w"></span>
-<span class="w">                   </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]])])</span><span class="w"></span>
+<span class="s">&lt;/p&gt;"</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">{</span><span class="s">"attr"</span><span class="w"> </span><span class="s">"an-attr"</span><span class="p">}</span>
+<span class="w">            </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="p">[[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"lorem"</span><span class="p">]</span>
+<span class="w">                   </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="s">"ipsum"</span><span class="p">]])])</span>
 <span class="s">"&lt;p attr=\"an-attr\"&gt;</span>
 <span class="s">  &lt;div&gt;lorem&lt;/div&gt;</span>
 <span class="s">  &lt;div&gt;ipsum&lt;/div&gt;</span>
-<span class="s">&lt;/p&gt;"</span><span class="w"></span>
+<span class="s">&lt;/p&gt;"</span>
 </pre></div>
 </div>
 </div>
@@ -276,9 +276,9 @@ escaped, use the <code class="xref hy hy-func docutils literal notranslate"><spa
 with <cite>escape-strings</cite> parameter:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"/><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"line&lt;br&gt;other"</span><span class="p">])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="ss">:escape-strings</span><span class="w"> </span><span class="nv">False</span><span class="p">)</span><span class="w"></span>
-<span class="s">"&lt;p&gt;line&lt;br&gt;other&lt;/p&gt;"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"line&lt;br&gt;other"</span><span class="p">])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="ss">:escape-strings</span><span class="w"> </span><span class="nv">False</span><span class="p">)</span>
+<span class="s">"&lt;p&gt;line&lt;br&gt;other&lt;/p&gt;"</span>
 </pre></div>
 </div>
 </div>
@@ -293,9 +293,9 @@ with <cite>escape-strings</cite> parameter:</p>
 <p><code class="xref hy hy-func docutils literal notranslate"><span class="pre">raw</span></code> function can be used to prevent a single expression to be escaped:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"/><label class="tab-label" for="tab-set--2-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">(</span><span class="nf">raw</span><span class="w"> </span><span class="s">"line&lt;br&gt;other"</span><span class="p">)])</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="nv">content</span><span class="p">)</span><span class="w"></span>
-<span class="s">"&lt;p&gt;line&lt;br&gt;other&lt;/p&gt;"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="p">(</span><span class="nf">raw</span><span class="w"> </span><span class="s">"line&lt;br&gt;other"</span><span class="p">)])</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="nv">content</span><span class="p">)</span>
+<span class="s">"&lt;p&gt;line&lt;br&gt;other&lt;/p&gt;"</span>
 </pre></div>
 </div>
 </div>
@@ -310,9 +310,9 @@ with <cite>escape-strings</cite> parameter:</p>
 <p>Note that <code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code> returns a raw string:</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"/><label class="tab-label" for="tab-set--3-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]))</span><span class="w"></span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span><span class="w"></span>
-<span class="s">"&lt;div&gt;&lt;p&gt;some text&lt;/p&gt;&lt;/div&gt;"</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"some text"</span><span class="p">]))</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">html</span><span class="w"> </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span>
+<span class="s">"&lt;div&gt;&lt;p&gt;some text&lt;/p&gt;&lt;/div&gt;"</span>
 </pre></div>
 </div>
 </div>

@@ -205,24 +205,24 @@
 <h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"/><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.page</span><span class="w"> </span><span class="p">[</span><span class="nv">html5</span><span class="w"> </span><span class="nv">include-css</span><span class="w"> </span><span class="nv">include-js</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">import </span><span class="nv">hyccup.page</span><span class="w"> </span><span class="p">[</span><span class="nv">html5</span><span class="w"> </span><span class="nv">include-css</span><span class="w"> </span><span class="nv">include-js</span><span class="p">])</span>
 
-<span class="p">(</span><span class="nf">html5</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
-<span class="c1">;; "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;/html&gt;"</span><span class="w"></span>
+<span class="p">(</span><span class="nf">html5</span><span class="w"> </span><span class="p">[</span><span class="s">"p"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span>
+<span class="c1">;; "&lt;!DOCTYPE html&gt;\n&lt;html&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;/html&gt;"</span>
 
-<span class="p">(</span><span class="nf">html5</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"head"</span><span class="w"></span>
-<span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-css</span><span class="w"> </span><span class="s">"/my.css"</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-js</span><span class="w"> </span><span class="s">"/my.js"</span><span class="p">)]</span><span class="w"></span>
-<span class="w">  </span><span class="p">[</span><span class="s">"body"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span><span class="w"></span>
-<span class="c1">;; "&lt;!DOCTYPE html&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;html&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;head&gt;</span><span class="w"></span>
-<span class="c1">;;   &lt;link href=\"/my.css\" rel=\"stylesheet\" type=\"text/css\"&gt;</span><span class="w"></span>
-<span class="c1">;;   &lt;script src=\"/my.js\" type=\"text/javascript\"&gt;&lt;/script&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;/head&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;body&gt;hello world&lt;/body&gt;</span><span class="w"></span>
-<span class="c1">;; &lt;/html&gt;"</span><span class="w"></span>
+<span class="p">(</span><span class="nf">html5</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"head"</span>
+<span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-css</span><span class="w"> </span><span class="s">"/my.css"</span><span class="p">)</span>
+<span class="w">    </span><span class="o">#</span><span class="nb">* </span><span class="p">(</span><span class="nf">include-js</span><span class="w"> </span><span class="s">"/my.js"</span><span class="p">)]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">"body"</span><span class="w"> </span><span class="s">"hello world"</span><span class="p">])</span>
+<span class="c1">;; "&lt;!DOCTYPE html&gt;</span>
+<span class="c1">;; &lt;html&gt;</span>
+<span class="c1">;; &lt;head&gt;</span>
+<span class="c1">;;   &lt;link href=\"/my.css\" rel=\"stylesheet\" type=\"text/css\"&gt;</span>
+<span class="c1">;;   &lt;script src=\"/my.js\" type=\"text/javascript\"&gt;&lt;/script&gt;</span>
+<span class="c1">;; &lt;/head&gt;</span>
+<span class="c1">;; &lt;body&gt;hello world&lt;/body&gt;</span>
+<span class="c1">;; &lt;/html&gt;"</span>
 </pre></div>
 </div>
 </div>
