@@ -12,6 +12,7 @@
 
 import os
 import sys
+import toml
 sys.path.insert(0, os.path.abspath('..'))
 
 
@@ -22,7 +23,8 @@ copyright = '2022, Guillaume Fayard'
 author = 'Guillaume Fayard'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.1'
+pyproject = toml.load("../pyproject.toml")
+release = pyproject["tool"]["poetry"]["version"]
 
 
 # -- General configuration ---------------------------------------------------
