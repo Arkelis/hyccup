@@ -25,6 +25,7 @@ sphinx-inline-tabs = "^2021.4.11-beta.9"
 
 [tool.poetry.group.dev.dependencies]
 toml = "^0.10.2"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -50,8 +50,10 @@
   (assert (= (html ["p" "a"] ["p" "b"]) "<p>a</p><p>b</p>"))
   (assert (= (html (iter [["p" "a"] ["p" "b"]])) "<p>a</p><p>b</p>"))
   (assert (= (html ["div" "foo"]) "<div>foo</div>"))
-  (with [(pytest.raises TypeError)]
-    (html [["p" "a"] ["p" "b"]]) "<p>a</p><p>b</p>")
+  (with [(pytest.raises ValueError)]
+    (html [["p" "a"] ["p" "b"]]))
+  (with [(pytest.raises ValueError)]
+    (html [:p "abc"]))
   (assert (= (html ["div" ["p"]]) "<div><p></p></div>"))
   (assert (= (html ["div" ["b"]]) "<div><b></b></div>"))
   (assert (= (html ["p" ["span" ["a" "foo"]]])
