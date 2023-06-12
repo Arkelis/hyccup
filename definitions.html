@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Utilitarian Functions" href="util.html" /><link rel="prev" title="Elements - Generic Elements" href="elements.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
         <title>Definitions - Create Renderers and Elements - Hyccup 3.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/hy.css" />
     
     
@@ -22,38 +22,38 @@
   --color-code-foreground: black;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   
     }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" />
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
     </svg>
   </symbol>
   <symbol id="svg-menu" viewBox="0 0 24 24">
     <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -62,14 +62,14 @@
   </symbol>
   <symbol id="svg-arrow-right" viewBox="0 0 24 24">
     <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -84,7 +84,7 @@
   </symbol>
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -92,7 +92,7 @@
   </symbol>
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
@@ -176,6 +176,7 @@
 
 </div>
 </div>
+
       </div>
       
     </div>
@@ -183,8 +184,15 @@
   <div class="main">
     <div class="content">
       <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -199,7 +207,7 @@
         </div>
         <article role="main">
           <section id="definitions-create-renderers-and-elements">
-<h1>Definitions - Create Renderers and Elements<a class="headerlink" href="#definitions-create-renderers-and-elements" title="Permalink to this headline">¶</a></h1>
+<h1>Definitions - Create Renderers and Elements<a class="headerlink" href="#definitions-create-renderers-and-elements" title="Permalink to this headline">#</a></h1>
 <p>This module contains helper for defining callables returning HTML elements
 structures or HTML raw strings directly. They are available in two forms:</p>
 <ul class="simple">
@@ -207,147 +215,116 @@ structures or HTML raw strings directly. They are available in two forms:</p>
 <li><p>Decorators usable in both Hy and Python</p></li>
 </ul>
 <section id="definitions-macros">
-<h2>Definitions Macros<a class="headerlink" href="#definitions-macros" title="Permalink to this headline">¶</a></h2>
-<p>Use <a class="reference internal" href="#hyccup.definition.defhtml" title="hyccup.definition.defhtml"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
-which wraps its output to <a class="reference internal" href="core.html#hyccup.core.html" title="hyccup.core.html"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code></a> automatically:</p>
+<h2>Definitions Macros<a class="headerlink" href="#definitions-macros" title="Permalink to this headline">#</a></h2>
+<p>Use <code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defhtml</span></code> for defining a callable
+which wraps its output to <code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code> automatically:</p>
 <div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Use require to import macros</span>
 <span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defhtml</span><span class="p">])</span>
 
 <span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"ol"</span><span class="w"> </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">"li"</span><span class="w"> </span><span class="nv">f</span><span class="s">"Item {x}"</span><span class="p">])])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;</span>
+<span class="w">  </span><span class="p">[</span><span class="s">&quot;div&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;class&quot;</span><span class="w"> </span><span class="s">&quot;container&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;ol&quot;</span><span class="w"> </span><span class="p">(</span><span class="nf">gfor</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="nb">range </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;li&quot;</span><span class="w"> </span><span class="nv">f</span><span class="s">&quot;Item {x}&quot;</span><span class="p">])])</span>
+<span class="c1">;; &quot;&lt;div class=\&quot;container\&quot;&gt;</span>
 <span class="c1">;;   &lt;ol&gt;</span>
 <span class="c1">;;     &lt;li&gt;Item 1&lt;/li&gt;</span>
 <span class="c1">;;     &lt;li&gt;Item 2&lt;/li&gt;</span>
 <span class="c1">;;     &lt;li&gt;Item 3&lt;/li&gt;</span>
 <span class="c1">;;   &lt;/ol&gt;</span>
-<span class="c1">;; &lt;/div&gt;"</span>
+<span class="c1">;; &lt;/div&gt;&quot;</span>
 </pre></div>
 </div>
 <p>You can pass HTML options:</p>
 <div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="c1">;; XHTML mode (default)</span>
-<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"xhtml"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\" /&gt;&lt;/div&gt;"</span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;mode&quot;</span><span class="w"> </span><span class="s">&quot;xhtml&quot;</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">&quot;div&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;class&quot;</span><span class="w"> </span><span class="s">&quot;container&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;img&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;src&quot;</span><span class="w"> </span><span class="s">&quot;https://foo.bar&quot;</span><span class="p">}])</span>
+<span class="c1">;; &quot;&lt;div class=\&quot;container\&quot;&gt;&lt;img src=\&quot;https://foo.bar\&quot; /&gt;&lt;/div&gt;&quot;</span>
 
 <span class="c1">;; HTML mode</span>
-<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">"mode"</span><span class="w"> </span><span class="s">"html"</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
-<span class="w">  </span><span class="p">[</span><span class="s">"div"</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"container"</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
-<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">"img"</span><span class="w"> </span><span class="p">{</span><span class="s">"src"</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="p">}])</span>
-<span class="c1">;; "&lt;div class=\"container\"&gt;&lt;img src=\"https://foo.bar\"&gt;&lt;/div&gt;"</span>
+<span class="p">(</span><span class="nf">defhtml</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;mode&quot;</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">}</span><span class="w"> </span><span class="nv">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="o">#</span><span class="nb">* </span><span class="nv">content</span><span class="p">]</span>
+<span class="w">  </span><span class="p">[</span><span class="s">&quot;div&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;class&quot;</span><span class="w"> </span><span class="s">&quot;container&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="nf">iter</span><span class="w"> </span><span class="nv">content</span><span class="p">)])</span>
+<span class="p">(</span><span class="nf">render-in-div</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;img&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;src&quot;</span><span class="w"> </span><span class="s">&quot;https://foo.bar&quot;</span><span class="p">}])</span>
+<span class="c1">;; &quot;&lt;div class=\&quot;container\&quot;&gt;&lt;img src=\&quot;https://foo.bar\&quot;&gt;&lt;/div&gt;&quot;</span>
 </pre></div>
 </div>
-<p>Use <a class="reference internal" href="#hyccup.definition.defelem" title="hyccup.definition.defelem"><code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
+<p>Use <code class="xref hy hy-macro docutils literal notranslate"><span class="pre">defelem</span></code> for defining elements. A
 first optional parameter is added for specifying attributes to merge with
 returned element’s attributes:</p>
 <div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="p">[</span><span class="nv">hyccup.definition</span><span class="w"> </span><span class="p">[</span><span class="nv">defelem</span><span class="p">]])</span>
 
 <span class="p">(</span><span class="nf">defelem</span><span class="w"> </span><span class="nv">link-to</span><span class="w"> </span><span class="p">[</span><span class="nv">link</span><span class="w"> </span><span class="nv">content</span><span class="p">]</span>
-<span class="w">  </span><span class="p">[</span><span class="s">"a"</span><span class="w"> </span><span class="p">{</span><span class="s">"href"</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span>
+<span class="w">  </span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;href&quot;</span><span class="w"> </span><span class="nv">link</span><span class="p">}</span><span class="w"> </span><span class="nv">content</span><span class="p">])</span>
 
 <span class="c1">;; Without attributes dict</span>
-<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span>
-<span class="c1">;; ["a" {"href" "https://foo.bar"} "Awesome link"]</span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="s">&quot;https://foo.bar&quot;</span><span class="w"> </span><span class="s">&quot;Awesome link&quot;</span><span class="p">)</span>
+<span class="c1">;; [&quot;a&quot; {&quot;href&quot; &quot;https://foo.bar&quot;} &quot;Awesome link&quot;]</span>
 
 <span class="c1">;; With attributes</span>
-<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">"class"</span><span class="w"> </span><span class="s">"some-class"</span><span class="p">}</span><span class="w"> </span><span class="s">"https://foo.bar"</span><span class="w"> </span><span class="s">"Awesome link"</span><span class="p">)</span>
-<span class="c1">;; ["a" {"href" "https://foo.bar" "class" "some-class"} "Awesome link"]</span>
+<span class="p">(</span><span class="nf">link-to</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;class&quot;</span><span class="w"> </span><span class="s">&quot;some-class&quot;</span><span class="p">}</span><span class="w"> </span><span class="s">&quot;https://foo.bar&quot;</span><span class="w"> </span><span class="s">&quot;Awesome link&quot;</span><span class="p">)</span>
+<span class="c1">;; [&quot;a&quot; {&quot;href&quot; &quot;https://foo.bar&quot; &quot;class&quot; &quot;some-class&quot;} &quot;Awesome link&quot;]</span>
 </pre></div>
 </div>
 </section>
 <section id="definitions-decorators">
-<h2>Definitions Decorators<a class="headerlink" href="#definitions-decorators" title="Permalink to this headline">¶</a></h2>
-<p>Use <a class="reference internal" href="#hyccup.definition.defhtml" title="hyccup.definition.defhtml"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">defhtml</span></code></a> for defining a callable
-which wraps its output to <a class="reference internal" href="core.html#hyccup.core.html" title="hyccup.core.html"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code></a> automatically:</p>
+<h2>Definitions Decorators<a class="headerlink" href="#definitions-decorators" title="Permalink to this headline">#</a></h2>
+<p>Use <code class="xref hy hy-func docutils literal notranslate"><span class="pre">defhtml</span></code> for defining a callable
+which wraps its output to <code class="xref hy hy-func docutils literal notranslate"><span class="pre">html</span></code> automatically:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.definition</span> <span class="kn">import</span> <span class="n">defhtml</span>
 
 <span class="nd">@defhtml</span>
 <span class="k">def</span> <span class="nf">render_in_div</span><span class="p">(</span><span class="o">*</span><span class="n">content</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s2">"div"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"class"</span><span class="p">:</span> <span class="s2">"container"</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;container&quot;</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
 
-<span class="n">render_in_div</span><span class="p">([</span><span class="s2">"ol"</span><span class="p">,</span> <span class="p">([</span><span class="s2">"li"</span><span class="p">,</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"Item </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))])])</span>
-<span class="c1"># '&lt;div class="container"&gt;</span>
+<span class="n">render_in_div</span><span class="p">([</span><span class="s2">&quot;ol&quot;</span><span class="p">,</span> <span class="p">([</span><span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))])])</span>
+<span class="c1"># &#39;&lt;div class=&quot;container&quot;&gt;</span>
 <span class="c1">#   &lt;ol&gt;</span>
 <span class="c1">#     &lt;li&gt;Item 1&lt;/li&gt;</span>
 <span class="c1">#     &lt;li&gt;Item 2&lt;/li&gt;</span>
 <span class="c1">#     &lt;li&gt;Item 3&lt;/li&gt;</span>
 <span class="c1">#   &lt;/ol&gt;</span>
-<span class="c1"># &lt;/div&gt;'</span>
+<span class="c1"># &lt;/div&gt;&#39;</span>
 </pre></div>
 </div>
 <p>You can pass HTML options:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># XHTML mode (default)</span>
-<span class="nd">@defhtml</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"xhtml"</span><span class="p">)</span>
+<span class="nd">@defhtml</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;xhtml&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">render_in_div</span><span class="p">(</span><span class="o">*</span><span class="n">content</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s2">"div"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"class"</span><span class="p">:</span> <span class="s2">"container"</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;container&quot;</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
 
-<span class="n">render_in_div</span><span class="p">([</span><span class="s1">'img'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'src'</span><span class="p">:</span> <span class="s1">'https://foo.bar'</span><span class="p">}])</span>
-<span class="c1"># '&lt;div class="container"&gt;&lt;img src="https://foo.bar" /&gt;&lt;/div&gt;'</span>
+<span class="n">render_in_div</span><span class="p">([</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;src&#39;</span><span class="p">:</span> <span class="s1">&#39;https://foo.bar&#39;</span><span class="p">}])</span>
+<span class="c1"># &#39;&lt;div class=&quot;container&quot;&gt;&lt;img src=&quot;https://foo.bar&quot; /&gt;&lt;/div&gt;&#39;</span>
 
 <span class="c1"># HTML mode</span>
-<span class="nd">@defhtml</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"html"</span><span class="p">)</span>
+<span class="nd">@defhtml</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">render_in_div</span><span class="p">(</span><span class="o">*</span><span class="n">content</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s2">"div"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"class"</span><span class="p">:</span> <span class="s2">"container"</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;container&quot;</span><span class="p">},</span> <span class="o">*</span><span class="n">content</span><span class="p">]</span>
 
-<span class="n">render_in_div</span><span class="p">([</span><span class="s1">'img'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'src'</span><span class="p">:</span> <span class="s1">'https://foo.bar'</span><span class="p">}])</span>
-<span class="c1"># '&lt;div class="container"&gt;&lt;img src="https://foo.bar"&gt;&lt;/div&gt;'</span>
+<span class="n">render_in_div</span><span class="p">([</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;src&#39;</span><span class="p">:</span> <span class="s1">&#39;https://foo.bar&#39;</span><span class="p">}])</span>
+<span class="c1"># &#39;&lt;div class=&quot;container&quot;&gt;&lt;img src=&quot;https://foo.bar&quot;&gt;&lt;/div&gt;&#39;</span>
 </pre></div>
 </div>
-<p>Use <a class="reference internal" href="#hyccup.definition.defelem" title="hyccup.definition.defelem"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">defelem</span></code></a> for defining elements. A
+<p>Use <code class="xref hy hy-func docutils literal notranslate"><span class="pre">defelem</span></code> for defining elements. A
 first optional parameter is added for specifying attributes to merge with
 returned element’s attributes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hyccup.definition</span> <span class="kn">import</span> <span class="n">defelem</span>
 
 <span class="nd">@defelem</span>
 <span class="k">def</span> <span class="nf">link_to</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'href'</span><span class="p">:</span> <span class="n">link</span><span class="p">},</span> <span class="n">content</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;href&#39;</span><span class="p">:</span> <span class="n">link</span><span class="p">},</span> <span class="n">content</span><span class="p">])</span>
 
 <span class="c1"># Without attributes dict</span>
-<span class="n">link_to</span><span class="p">(</span><span class="s1">'https://foo.bar'</span><span class="p">,</span> <span class="s1">'Awesome link'</span><span class="p">)</span>
-<span class="c1"># ['a', {'href': 'https://foo.bar'}, 'Awesome link']</span>
+<span class="n">link_to</span><span class="p">(</span><span class="s1">&#39;https://foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Awesome link&#39;</span><span class="p">)</span>
+<span class="c1"># [&#39;a&#39;, {&#39;href&#39;: &#39;https://foo.bar&#39;}, &#39;Awesome link&#39;]</span>
 
 <span class="c1"># With attributes</span>
-<span class="n">link_to</span><span class="p">({</span><span class="s1">'class'</span><span class="p">:</span> <span class="s1">'some-class'</span><span class="p">},</span> <span class="s1">'https://foo.bar'</span><span class="p">,</span> <span class="s1">'Awesome link'</span><span class="p">)</span>
-<span class="c1"># ['a {'href': 'https://foo.bar', 'class': 'some-class'} "Awesome link"]</span>
+<span class="n">link_to</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;some-class&#39;</span><span class="p">},</span> <span class="s1">&#39;https://foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;Awesome link&#39;</span><span class="p">)</span>
+<span class="c1"># [&#39;a {&#39;href&#39;: &#39;https://foo.bar&#39;, &#39;class&#39;: &#39;some-class&#39;} &quot;Awesome link&quot;]</span>
 </pre></div>
 </div>
 </section>
 <section id="api">
-<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">#</a></h2>
 <p><strong>Source code:</strong> <a class="reference external" href="https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.hy">hyccup/definition.hy</a></p>
-<span class="target" id="module-hyccup.definition"></span><dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.definition.defhtml">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">func</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">html-options</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defhtml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorate a function for passing its result to <code class="docutils literal notranslate"><span class="pre">html</span></code>.</p>
-<p>Take HTML options as keyword arguments.</p>
-</dd></dl>
-<dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.definition.defelem">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">function</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defelem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorate a function for defining elements.</p>
-<p>The returned object is a callable with two signature:</p>
-<ul class="simple">
-<li><p>The original signature of the function</p></li>
-<li><p>The original signature with as first parameter a dict of attributes. This
-will be merged with attributes of the returned element.</p></li>
-</ul>
-</dd></dl>
-<dl class="hy macro">
-<dt class="sig sig-object hy" id="hyccup.definition.defhtml">
-<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defhtml</span></span> <em><span class="n"><span class="pre">options</span></span></em> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defhtml" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a function passing its output to <code class="docutils literal notranslate"><span class="pre">html</span></code> implicitely.</p>
-<p>HTML Options can be passed as a dict between function name and its arguments
-list.</p>
-</dd></dl>
-<dl class="hy macro">
-<dt class="sig sig-object hy" id="hyccup.definition.defelem">
-<em class="property"><span class="pre">macro</span></em><span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.definition.</span></span><span class="sig-name descname"><span class="pre">defelem</span></span> <em><span class="n"><span class="pre">name</span></span></em> <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">fbody</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.definition.defelem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define a HTML element.</p>
-<p>Add to the function signature a first optional dictionary argument.
-This dictionary will be merged with attributes of the returned element.</p>
-</dd></dl>
 </section>
 </section>
 
@@ -363,10 +340,10 @@ This dictionary will be merged with attributes of the returned element.</p>
                 </div>
                 <div class="title">Utilitarian Functions</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
           <a class="prev-page" href="elements.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
@@ -377,15 +354,21 @@ This dictionary will be merged with attributes of the returned element.</p>
               </div>
             </a>
         </div>
-
-        <div class="related-information">
-              Copyright &#169; 2022, Guillaume Fayard |
-          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-            | <a class="muted-link" href="_sources/definitions.rst.txt"
-               rel="nofollow">
-              Show Source
-            </a>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Guillaume Fayard
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
         </div>
         
       </footer>
@@ -396,7 +379,7 @@ This dictionary will be merged with attributes of the returned element.</p>
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            Contents
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
