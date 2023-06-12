@@ -26,7 +26,7 @@ class TestCore:
     def test_unpacking_needed(self):
         assert html(["p", "text"], ["p", "text"]) == "<p>text</p><p>text</p>"
         assert html(*[["p", "text"], ["p", "text"]]) == "<p>text</p><p>text</p>"
-        with pytest.raises(TypeError):
+        with pytest.raises(ValueError):
             html([["p", "text"], ["p", "text"]])
 
 
