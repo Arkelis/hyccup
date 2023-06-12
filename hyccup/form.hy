@@ -1,12 +1,11 @@
 "Functions for generating HTML forms and input fields."
 
-(require hyccup.definition [defelem])
-
 (import contextlib [contextmanager]
         hyrule [coll? rest]
         threading
         toolz [first]
         hyccup [raw]
+        hyccup.definition [defelem]
         hyccup.util :as util)
 
 
@@ -48,7 +47,7 @@
             "value" value}])
 
 
-(defelem hidden-field [name [value None]]
+(defn [defelem] hidden-field [name [value None]]
   "Create a hidden input field.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -58,7 +57,7 @@
   (input-field "hidden" name value))
 
 
-(defelem text-field [name [value None]]
+(defn [defelem] text-field [name [value None]]
   "Create a new text input field.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -68,7 +67,7 @@
   (input-field "text" name value))
 
 
-(defelem password-field [name [value None]]
+(defn [defelem] password-field [name [value None]]
   "Create a new password field.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -78,7 +77,7 @@
   (input-field "password" name value))
 
 
-(defelem email-field [name [value None]]
+(defn [defelem] email-field [name [value None]]
   "Create a new email input field.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -88,7 +87,7 @@
   (input-field "email" name value))
 
 
-(defelem check-box [name [checked? None] [value "true"]]
+(defn [defelem] check-box [name [checked? None] [value "true"]]
   "Create a check box.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -103,7 +102,7 @@
             "checked" checked?}])
 
 
-(defelem radio-button [group [checked? None] [value "true"]]
+(defn [defelem] radio-button [group [checked? None] [value "true"]]
   "Create a radio button.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -118,7 +117,7 @@
             "checked" checked?}])
 
 
-(defelem select-options [coll [selected None]]
+(defn [defelem] select-options [coll [selected None]]
   "Create a seq of option tags from a collection.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -134,7 +133,7 @@
       ["option" {"selected" (= x selected)} x])))
 
 
-(defelem drop-down [name options [selected None]]
+(defn [defelem] drop-down [name options [selected None]]
   "Create a drop-down box using the `<select>` tag.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -145,7 +144,7 @@
     (select-options options selected)])
 
 
-(defelem text-area [name [value None]]
+(defn [defelem] text-area [name [value None]]
   "Create a text area element.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -155,7 +154,7 @@
   ["textarea" {"name" (make-name name) "id" (make-id name)} value])
 
 
-(defelem file-upload [name]
+(defn [defelem] file-upload [name]
   "Create a file upload input.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -164,7 +163,7 @@
   (input-field "file" name None))
 
 
-(defelem label [name text]
+(defn [defelem] label [name text]
   "Create a label for an input field with the supplied name.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -174,7 +173,7 @@
   ["label" {"for" (make-id name)} text])
 
 
-(defelem submit-button [text]
+(defn [defelem] submit-button [text]
   "Create a submit button.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -183,7 +182,7 @@
   ["input" {"type" "submit" "value" text}])
 
 
-(defelem reset-button [text]
+(defn [defelem] reset-button [text]
   "Create a form reset button.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -192,7 +191,7 @@
   ["input" {"type" "reset" "value" text}])
 
 
-(defelem form-to [method-and-action #* body]
+(defn [defelem] form-to [method-and-action #* body]
   "Create a form that points to a particular method and route.
   
   :param attrs-map: Optional dict of attributes as first positional parameter

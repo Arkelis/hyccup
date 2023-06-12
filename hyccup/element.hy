@@ -1,9 +1,9 @@
 "Functions for creating generic HTML elements."
 
-(import hyccup.util :as util)
+(import hyccup.util :as util
+        hyccup.definition [defelem])
 
-(require hyccup.definition [defelem]
-         hyrule [unless])
+(require hyrule [unless])
 
 
 (defn javascript-tag [script]
@@ -11,7 +11,7 @@
   ["script" {"type" "text/javascript"} f"//<![CDATA[\n{script}\n//]]>"])
 
 
-(defelem link-to [url #* content]
+(defn [defelem] link-to [url #* content]
   "Wrap some content in a HTML hyperlink with the supplied URL.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -21,7 +21,7 @@
   ["a" {"href" (util.to-uri url)} #* content])
 
 
-(defelem mail-to [email #* content]
+(defn [defelem] mail-to [email #* content]
   "Wrap some content in a HTML hyperlink with the supplied e-mail address.
 
   If no content provided use the e-mail address as content.
@@ -36,7 +36,7 @@
     el))
 
 
-(defelem unordered-list [coll]
+(defn [defelem] unordered-list [coll]
   "Wrap a collection in an unordered list.
 
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -45,7 +45,7 @@
   ["ul" (gfor x coll ["li" x])])
 
 
-(defelem ordered-list [coll]
+(defn [defelem] ordered-list [coll]
   "Wrap a collection in an ordered list.
   
   :param attrs-map: Optional dict of attributes as first positional parameter
@@ -54,7 +54,7 @@
   ["ol" (gfor x coll ["li" x])])
 
 
-(defelem image [src [alt None]]
+(defn [defelem] image [src [alt None]]
   "Create an image element.
   
   :param attrs-map: Optional dict of attributes as first positional parameter

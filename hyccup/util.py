@@ -21,15 +21,13 @@ def to_str(obj):
     * Convert fraction to string of its decimal result.
     * Convert a ``url.parse.SplitResult`` object to its URL with :hy:func:`str-of-url`.
     * For any other case, convert with ``str`` constructor."""
-    return (
-        str(float(obj))
-        if isinstance(obj, Fraction)
-        else str_of_url(obj)
-        if isinstance(obj, SplitResult)
-        else str(obj)
-        if True
-        else None
-    )
+    if isinstance(obj, Fraction):
+        return str(float(obj))
+
+    if isinstance(obj, SplitResult):
+        return str_of_url(obj)
+
+    return str(obj)
 
 
 def as_str(*obj):
@@ -39,14 +37,15 @@ def as_str(*obj):
 
 def escape_html(string, mode, escape_strings):
     """Change special characters into HTML character entities."""
+    if not escape_strings:
+        return string
+
     return (
         string.replace("&", "&amp;")
         .replace("<", "&lt;")
         .replace(">", "&gt;")
         .replace('"', "&quot;")
         .replace("'", "&#39;" if str(mode) == "sgml" else "&apos;")
-        if escape_strings
-        else string
     )
 
 
@@ -153,15 +152,11 @@ def str_of_url(split_result):
         or None is split_result.path
         or (not split_result.path.startswith("/"))
     ):
-        _hy_anon_var_3 = split_result.geturl()
-    else:
-        it = getattr(local_data, "base_url", "")
-        it = it.removesuffix("/")
-        it = it + split_result.path
-        it = split_result._replace(path=it)
-        it = it.geturl()
-        _hy_anon_var_3 = it
-    return _hy_anon_var_3
+        return split_result.geturl()
+
+    base = getattr(local_data, "base_url", "").removesuffix("/")
+    new_uri = split_result._replace(path=base + split_result.path)
+    return new_uri.geturl()
 
 
 def url_encode(obj):

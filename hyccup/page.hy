@@ -1,9 +1,8 @@
 (import hyrule [rest]
         hyccup [html raw]
         hyccup.util :as util
+        hyccup.definition [defelem]
         toolz [first merge])
-
-(require hyccup.definition [defelem])
 
 
 (setv __all__
@@ -24,7 +23,7 @@
    (raw "<!DOCTYPE html>\n")})
 
 
-(defelem xhtml-tag [lang #* contents]
+(defn [defelem] xhtml-tag [lang #* contents]
   "Create an XHTML element for the specified language."
   ["html" {"xmlns" "http://www.w3.org/1999/xhtml"
            "xml:lang" lang
