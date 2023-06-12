@@ -1,22 +1,9 @@
 from hyccup.util import escape_html, RawStr, is_empty, to_str
 from toolz import first, second, keymap
 import re
-from hyrule import is_coll, rest
+from hyrule import is_coll
 from itertools import filterfalse
 from collections.abc import Iterator
-import hy
-
-hy.macros.require(
-    "hyrule",
-    None,
-    assignments=[
-        ["assoc", "assoc"],
-        ["unless", "unless"],
-        ["->", "->"],
-        ["->>", "->>"],
-    ],
-    prefix="",
-)
 
 
 def is_xml_mode(mode):
