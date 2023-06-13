@@ -119,24 +119,24 @@ class TestDefElemDeco:
 class TestGroup:
     def test_simple_group(self):
         def a_form(names):
-            with group("mygroup"):
-                return [text_field(name) for name in names]
+            with group("mygroup") as g:
+                return [g.text_field(name) for name in names]
 
         assert a_form(["one", "two"]) == [
             ['input', {'id': 'mygroup-one', 'name': 'mygroup[one]', 'type': 'text', 'value': None}],
             ['input', {'id': 'mygroup-two', 'name': 'mygroup[two]', 'type': 'text', 'value': None}]]
 
     def test_multiple_groups(self):
-        def inner_form():
-            with group("inner"):
-                return [text_field('three'), text_field('four')]
+        def inner_form(outer_group):
+            with outer_group.group("inner") as g:
+                return [g.text_field('three'), g.text_field('four')]
 
         def outer_form():
-            with group("outer"):
+            with group("outer") as g:
                 return [
-                    text_field('one'),
-                    text_field('two'),
-                    *inner_form()]
+                    g.text_field('one'),
+                    g.text_field('two'),
+                    *inner_form(g)]
         
         assert outer_form() == [
             ['input', {'id': 'outer-one', 'name': 'outer[one]', 'type': 'text', 'value': None}],

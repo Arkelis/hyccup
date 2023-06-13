@@ -101,6 +101,8 @@
   (setv options ["op1" "op2"]
         selected "op1"
         select-options-html (html (select-options options selected)))
+  (print select-options-html)
+  (print (html (drop-down {"class" "classy"} "foo" options selected)))
   (assert (= (html (drop-down {"class" "classy"} "foo" options selected))
           (+ "<select class=\"classy\" id=\"foo\" name=\"foo\">"
               select-options-html "</select>"))))
@@ -181,46 +183,46 @@
 
 (defclass TestWithGroup []
   (defn test-hidden-field [self]
-    (assert (= (html (with [(group "foo")] (hidden-field "bar" "val")))
+    (assert (= (html (with [g (group "foo")] (g.hidden-field "bar" "val")))
            "<input id=\"foo-bar\" name=\"foo[bar]\" type=\"hidden\" value=\"val\" />")))
 
   (defn test-text-field [self]
-    (assert (= (html (with [(group "foo")] (text-field "bar")))
+    (assert (= (html (with [g (group "foo")] (g.text-field "bar")))
                "<input id=\"foo-bar\" name=\"foo[bar]\" type=\"text\" />")))
 
   (defn test-checkbox [self]
-    (assert (= (html (with [(group "foo")] (check-box "bar")))
+    (assert (= (html (with [g (group "foo")] (g.check-box "bar")))
            "<input id=\"foo-bar\" name=\"foo[bar]\" type=\"checkbox\" value=\"true\" />")))
 
   (defn test-password-field [self]
-    (assert (= (html (with [(group "foo")] (password-field "bar")))
+    (assert (= (html (with [g (group "foo")] (g.password-field "bar")))
            "<input id=\"foo-bar\" name=\"foo[bar]\" type=\"password\" />")))
 
   (defn test-radio-button [self]
-    (assert (= (html (with [(group "foo")] (radio-button "bar" False "val")))
+    (assert (= (html (with [g (group "foo")] (g.radio-button "bar" False "val")))
            "<input id=\"foo-bar-val\" name=\"foo[bar]\" type=\"radio\" value=\"val\" />")))
 
   (defn test-drop-down [self]
-    (assert (= (html (with [(group "foo")] (drop-down "bar" [])))
+    (assert (= (html (with [g (group "foo")] (g.drop-down "bar" [])))
            (str "<select id=\"foo-bar\" name=\"foo[bar]\"></select>"))))
 
   (defn test-text-area [self]
-    (assert (= (html (with [(group "foo")] (text-area "bar")))
+    (assert (= (html (with [g (group "foo")] (g.text-area "bar")))
            (str "<textarea id=\"foo-bar\" name=\"foo[bar]\"></textarea>"))))
 
   (defn test-file-upload [self]
-    (assert (= (html (with [(group "foo")] (file-upload "bar")))
+    (assert (= (html (with [g (group "foo")] (g.file-upload "bar")))
            "<input id=\"foo-bar\" name=\"foo[bar]\" type=\"file\" />")))
 
   (defn test-label [self]
-    (assert (= (html (with [(group "foo")] (label "bar" "Bar")))
+    (assert (= (html (with [g (group "foo")] (g.label "bar" "Bar")))
            "<label for=\"foo-bar\">Bar</label>")))
  
   (defn test-multiple-with-groups [self]
-    (assert (= (html (with [(group "foo")] (with [(group "bar")] (text-field "baz"))))
+    (assert (= (html (with [foo (group "foo")] (with [bar (foo.group "bar")] (bar.text-field "baz"))))
            "<input id=\"foo-bar-baz\" name=\"foo[bar][baz]\" type=\"text\" />")))
 
   (defn test-multiple-elements [self]
-    (assert (= (html (with [(group "foo")] 
-                       (iter [(label "bar" "Bar") (text-field "var")])))
+    (assert (= (html (with [g (group "foo")] 
+                       (iter [(g.label "bar" "Bar") (g.text-field "var")])))
            "<label for=\"foo-bar\">Bar</label><input id=\"foo-var\" name=\"foo[var]\" type=\"text\" />"))))
