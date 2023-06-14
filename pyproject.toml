@@ -13,7 +13,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 hy = "0.26.0"
-toolz = "*"
 hyrule = "*"
 astor = "^0"
 
@@ -25,7 +24,6 @@ sphinx-inline-tabs = "*"
 
 [tool.poetry.group.dev.dependencies]
 toml = "^0.10.2"
-black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

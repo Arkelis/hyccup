@@ -1,7 +1,4 @@
 import functools
-from inspect import signature
-from hyrule import rest
-from toolz import first, second, merge
 from hyccup import html
 
 
@@ -71,8 +68,9 @@ def defelem(function):
         if attrs_map:
             tag, *body = raw_result
 
-            if body and isinstance(attrs_from_result := first(body), dict):
-                return [tag, merge(attrs_from_result, attrs_map), *rest(body)]
+            if body and isinstance(body[0], dict):
+                attrs_from_result, *rest = body
+                return [tag, attrs_from_result | attrs_map, *rest]
             else:
                 return [tag, attrs_map, *body]
 
@@ -88,12 +86,12 @@ def _defelemmethod(method):
     def wrapper(*args, **kwargs):
         self, attrs_map, args, kwargs = _split_args(args, kwargs, method=True)
         raw_result = method(self, *args, **kwargs)
-        print(self, attrs_map, args, kwargs)
         if attrs_map:
             tag, *body = raw_result
 
-            if body and isinstance(attrs_from_result := first(body), dict):
-                return [tag, merge(attrs_from_result, attrs_map), *rest(body)]
+            if body and isinstance(body[0], dict):
+                attrs_from_result, *rest = body
+                return [tag, attrs_from_result | attrs_map, *rest]
             else:
                 return [tag, attrs_map, *body]
 

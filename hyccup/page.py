@@ -1,9 +1,6 @@
-import hy
-from hyrule import rest
 from hyccup import html, raw
 import hyccup.util as util
 from hyccup.definition import defelem
-from toolz import first, merge
 
 
 __all__ = ["xhtml", "html4", "html5", "include_css", "include_js"]
@@ -50,7 +47,7 @@ def html5(*contents, lang=None, xml=False, encoding="UTF-8"):
         if xml
         else html(
             doctype["html5"],
-            ["html", merge(attrs, {"lang": lang}), *contents],
+            ["html", attrs | {"lang": lang}, *contents],
             mode="html",
         )
     )
@@ -102,7 +99,7 @@ def xml_declaration(encoding):
 
 
 def split_attrs_and_content(contents):
-    if isinstance(first(contents), dict):
+    if isinstance(contents[0], dict):
         attrs, *rest = contents
         return (attrs, rest)
 

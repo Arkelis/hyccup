@@ -1,5 +1,4 @@
 from hyccup.util import escape_html, RawStr, is_empty, to_str
-from toolz import first, second, keymap
 import re
 from hyrule import is_coll
 from itertools import filterfalse

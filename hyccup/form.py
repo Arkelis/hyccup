@@ -1,11 +1,8 @@
 """Functions for generating HTML forms and input fields."""
 from contextlib import contextmanager
-from hyrule import is_coll
-import threading
-from toolz import first
-from hyccup import raw
-from hyccup.definition import defelem
+
 import hyccup.util as util
+from hyccup.definition import defelem
 
 
 class FieldGroup:

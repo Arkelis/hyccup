@@ -1,10 +1,8 @@
 import threading
 from typing import Iterable
 from contextlib import contextmanager
-from functools import singledispatch
 from fractions import Fraction
 from urllib.parse import SplitResult, urlsplit, urlencode, quote_plus
-from hy.models import Keyword, Symbol
 from functools import reduce
 from operator import add
 

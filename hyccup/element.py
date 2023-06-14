@@ -1,5 +1,4 @@
 """Functions for creating generic HTML elements."""
-import hy
 import hyccup.util as util
 from hyccup.definition import defelem
 
