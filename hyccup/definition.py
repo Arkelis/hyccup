@@ -1,7 +1,4 @@
 import functools
-from inspect import signature
-from hyrule import rest
-from toolz import first, second, merge
 from hyccup import html
 
 
@@ -34,14 +31,25 @@ def defhtml(func=None, /, **html_options):
     return deco
 
 
-def _split_args(args, kwargs):
-    match (args, kwargs):
-        case [[dict() as attrs_map, *others], kwargs]:
-            return (attrs_map, others, kwargs)
-        case [[], {"attrs_map": dict() as attrs_map, **others}]:
-            return (attrs_map, (), others)
-        case _:
-            return (None, args, kwargs)
+def _split_args(args, kwargs, method=False):
+    if not method:
+        match (args, kwargs):
+            case [[dict() as attrs_map, *others], kwargs]:
+                return (attrs_map, others, kwargs)
+            case [[], {"attrs_map": dict() as attrs_map, **others}]:
+                return (attrs_map, (), others)
+            case _:
+                return (None, args, kwargs)
+
+    else:
+        match (args, kwargs):
+            case [[self, dict() as attrs_map, *others], kwargs]:
+                return (self, attrs_map, others, kwargs)
+            case [[self], {"attrs_map": dict() as attrs_map, **others}]:
+                return (self, attrs_map, (), others)
+            case _:
+                self, *other_args = args
+                return (self, None, other_args, kwargs)
 
 
 def defelem(function):
@@ -61,12 +69,38 @@ def defelem(function):
         if attrs_map:
             tag, *body = raw_result
 
-            if body and isinstance(attrs_from_result := first(body), dict):
-                return [tag, merge(attrs_from_result, attrs_map), *rest(body)]
+            if body and isinstance(body[0], dict):
+                attrs_from_result, *rest = body
+                return [tag, attrs_from_result | attrs_map, *rest]
             else:
                 return [tag, attrs_map, *body]
 
         else:
             return raw_result
 
-    return functools.update_wrapper(wrapper, function)
+    return wrapper
+
+
+def _defelemmethod(method):
+    """defelem for methods"""
+
+    @functools.wraps(method)
+    def wrapper(*args, **kwargs):
+        self, attrs_map, args, kwargs = _split_args(args, kwargs, method=True)
+        raw_result = method(self, *args, **kwargs)
+        if attrs_map:
+            tag, *body = raw_result
+
+            if body and isinstance(body[0], dict):
+                attrs_from_result, *rest = body
+                return [tag, attrs_from_result | attrs_map, *rest]
+            else:
+                return [tag, attrs_map, *body]
+
+        else:
+            return raw_result
+
+    return wrapper
+
+
+defelem.method = _defelemmethod

@@ -1,5 +1,4 @@
 from hyccup.util import escape_html, RawStr, is_empty, to_str
-from toolz import first, second, keymap
 import re
 from hyrule import is_coll
 from itertools import filterfalse
@@ -70,7 +69,7 @@ class Compiler:
         Called by self.compile-html.
         """
         if isinstance(exp, Iterator):
-            return ''.join(self.compile_element_exp(el) for el in exp)
+            return "".join(self.compile_element_exp(el) for el in exp)
         if isinstance(exp, list):
             return self.compile_list(exp)
         if isinstance(exp, RawStr):

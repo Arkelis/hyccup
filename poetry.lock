@@ -480,14 +480,14 @@ files = [
 
 [[package]]
 name = "platformdirs"
-version = "3.5.3"
+version = "3.8.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "platformdirs-3.5.3-py3-none-any.whl", hash = "sha256:0ade98a4895e87dc51d47151f7d2ec290365a585151d97b4d8d6312ed6132fed"},
-    {file = "platformdirs-3.5.3.tar.gz", hash = "sha256:e48fabd87db8f3a7df7150a4a5ea22c546ee8bc39bc2473244730d4b56d2cc4e"},
+    {file = "platformdirs-3.8.0-py3-none-any.whl", hash = "sha256:ca9ed98ce73076ba72e092b23d3c93ea6c4e186b3f1c3dad6edd98ff6ffcca2e"},
+    {file = "platformdirs-3.8.0.tar.gz", hash = "sha256:b0cabcb11063d21a0b261d557acb0a9d2126350e63b70cdf7db6347baea456dc"},
 ]
 
 [package.extras]
@@ -800,18 +800,6 @@ files = [
 ]
 
 [[package]]
-name = "toolz"
-version = "0.12.0"
-description = "List processing tools and functional utilities"
-category = "main"
-optional = false
-python-versions = ">=3.5"
-files = [
-    {file = "toolz-0.12.0-py3-none-any.whl", hash = "sha256:2059bd4148deb1884bb0eb770a3cde70e7f954cfbbdc2285f1f2de01fd21eb6f"},
-    {file = "toolz-0.12.0.tar.gz", hash = "sha256:88c570861c440ee3f2f6037c4654613228ff40c93a6c25e0eba70d17282c6194"},
-]
-
-[[package]]
 name = "urllib3"
 version = "2.0.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -832,4 +820,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "e9ea6cc2c9aa56a77049dc7067b4277b46a17fad91b1a89e16c6679ffc1ab877"
+content-hash = "cd0497aa9c85a85df5afffeb7b1957a97f43d62e3e3078e3638578b4747bf123"

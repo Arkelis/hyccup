@@ -1,5 +1,4 @@
 """Functions for creating generic HTML elements."""
-import hy
 import hyccup.util as util
 from hyccup.definition import defelem
 
@@ -32,7 +31,7 @@ def mail_to(email, *content):
     """
     if not content:
         return ["a", {"href": f"mailto:{email}"}, email]
-    
+
     return ["a", {"href": f"mailto:{email}"}, *content]
 
 
