@@ -243,7 +243,7 @@
 <p>In particular:</p>
 <ul class="simple">
 <li><p>Convert fraction to string of its decimal result.</p></li>
-<li><p>Convert a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code> object to its URL with <a class="reference internal" href="#hyccup.util.str-of-url" title="hyccup.util.str-of-url"><code class="xref hy hy-func docutils literal notranslate"><span class="pre">str-of-url</span></code></a>.</p></li>
+<li><p>Convert a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code> object to its URL with <code class="xref hy hy-func docutils literal notranslate"><span class="pre">str-of-url</span></code>.</p></li>
 <li><p>For any other case, convert with <code class="docutils literal notranslate"><span class="pre">str</span></code> constructor.</p></li>
 </ul>
 </dd></dl>
@@ -252,39 +252,39 @@
 <section id="module-0">
 <span id="urls-handling"></span><h2>URLs Handling<a class="headerlink" href="#module-0" title="Permalink to this headline">#</a></h2>
 <dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.util.url">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">url</span></span>  <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">parts</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">query-params</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.url" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert parts of an URL and query params to a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code>.</p>
-</dd></dl>
-
-<dl class="hy function">
 <dt class="sig sig-object hy" id="hyccup.util.encoding">
 <span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">encoding</span></span>  <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">args</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">kwds</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.encoding" title="Permalink to this definition">#</a></dt>
 <dd><p>Context manager specifying encoding.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">&quot;UTF-8&quot;</span><span class="p">)]</span>
-<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;iroha&quot;</span><span class="w"> </span><span class="s">&quot;いろは&quot;</span><span class="p">}))</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[</span><span class="nv">e</span><span class="w"> </span><span class="p">(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">&quot;UTF-8&quot;</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">e.url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;iroha&quot;</span><span class="w"> </span><span class="s">&quot;いろは&quot;</span><span class="p">}))</span>
 <span class="s">&quot;iroha=%E3%81%84%E3%82%8D%E3%81%AF&quot;</span>
-<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">&quot;ISO-2022-JP&quot;</span><span class="p">)]</span>
-<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;iroha&quot;</span><span class="w"> </span><span class="s">&quot;いろは&quot;</span><span class="p">}))</span>
+<span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[</span><span class="nv">e</span><span class="w"> </span><span class="p">(</span><span class="nf">encoding</span><span class="w"> </span><span class="s">&quot;ISO-2022-JP&quot;</span><span class="p">)]</span>
+<span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">e.url-encode</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;iroha&quot;</span><span class="w"> </span><span class="s">&quot;いろは&quot;</span><span class="p">}))</span>
 <span class="s">&quot;iroha=%1B%24B%24%24%24m%24O%1B%28B&quot;</span>
 </pre></div>
 </div>
 </div>
 <input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Python</label><div class="tab-content docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">&#39;iroha&#39;</span><span class="p">:</span> <span class="s1">&#39;いろは&#39;</span><span class="p">}))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">&#39;iroha&#39;</span><span class="p">:</span> <span class="s1">&#39;いろは&#39;</span><span class="p">}))</span>
 <span class="gp">...</span>
 <span class="go">iroha=%E3%81%84%E3%82%8D%E3%81%AF</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">&#39;ISO-2022-JP&#39;</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">&#39;iroha&#39;</span><span class="p">:</span> <span class="s1">&#39;いろは&#39;</span><span class="p">}))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">encoding</span><span class="p">(</span><span class="s1">&#39;ISO-2022-JP&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">url_encode</span><span class="p">({</span><span class="s1">&#39;iroha&#39;</span><span class="p">:</span> <span class="s1">&#39;いろは&#39;</span><span class="p">}))</span>
 <span class="gp">...</span>
 <span class="go">iroha=%1B%24B%24%24%24m%24O%1B%28B</span>
 </pre></div>
 </div>
 </div>
 </div>
+</dd></dl>
+
+<dl class="hy function">
+<dt class="sig sig-object hy" id="hyccup.util.url">
+<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">url</span></span>  <em><span class="o"><span class="pre">#*</span></span> <span class="n"><span class="pre">parts</span></span></em> <em><span class="o"><span class="pre">#**</span></span> <span class="n"><span class="pre">query-params</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.url" title="Permalink to this definition">#</a></dt>
+<dd><p>Convert parts of an URL and query params to a <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code>.</p>
 </dd></dl>
 
 <dl class="hy function">
@@ -299,7 +299,7 @@
 <dd><p>Context manager specifying base URL for URLs.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Hy</label><div class="tab-content docutils container">
-<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">&quot;/foo&quot;</span><span class="p">)]</span>
+<div class="highlight-clj notranslate"><div class="highlight"><pre><span></span><span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nf">with</span><span class="w"> </span><span class="p">[</span><span class="nv">b</span><span class="w"> </span><span class="p">(</span><span class="nf">base-url</span><span class="w"> </span><span class="s">&quot;/foo&quot;</span><span class="p">)]</span>
 <span class="nv">...</span><span class="w">  </span><span class="p">(</span><span class="nf">setv</span><span class="w"> </span><span class="nv">my-url</span><span class="w"> </span><span class="p">(</span><span class="nf">to-str</span><span class="w"> </span><span class="p">(</span><span class="nf">to-uri</span><span class="w"> </span><span class="s">&quot;/bar&quot;</span><span class="p">))))</span>
 <span class="nv">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nb">print </span><span class="nv">my-url</span><span class="p">)</span>
 <span class="s">&quot;/foo/bar&quot;</span>
@@ -316,12 +316,6 @@
 </div>
 </div>
 </div>
-</dd></dl>
-
-<dl class="hy function">
-<dt class="sig sig-object hy" id="hyccup.util.str-of-url">
-<span class="sig-prename descclassname"><span class="pre">(</span></span><span class="sig-prename descclassname"><span class="pre">hyccup.util.</span></span><span class="sig-name descname"><span class="pre">str-of-url</span></span>  <em><span class="n"><span class="pre">split-result</span></span></em><span class="sig-prename descclassname"><span class="pre">)</span></span><a class="headerlink" href="#hyccup.util.str-of-url" title="Permalink to this definition">#</a></dt>
-<dd><p>Make URL from <code class="docutils literal notranslate"><span class="pre">url.parse.SplitResult</span></code> object.</p>
 </dd></dl>
 
 <dl class="hy function">
