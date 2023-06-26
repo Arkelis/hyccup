@@ -197,6 +197,7 @@ def group(group_name):
     """Group together a set of related form fields."""
     yield FieldGroup(group_name)
 
+
 _top_group = FieldGroup()
 
 

@@ -6,7 +6,6 @@ from functools import reduce
 from operator import add
 
 
-
 def to_str(obj):
     """Convert any object to string.
 
@@ -67,7 +66,7 @@ class RawStr(str):
 
 
 @contextmanager
-def base_url(url, / ,encoding=None):
+def base_url(url, /, encoding=None):
     """Context manager specifying base URL for URLs.
 
     .. tab:: Hy
@@ -99,7 +98,7 @@ class UrlBase:
 
     def _with_base(self, split_result):
         return split_result._replace(path=self.base + split_result.path)
-     
+
     def to_uri(self, obj):
         """Convert an object to a ``url.parse.SplitResult``."""
         match obj:
@@ -108,9 +107,11 @@ class UrlBase:
             case SplitResult(uri):
                 split_result = uri
             case _:
-                raise TypeError(f"{obj} should be urllib.parse.SplitResult or str instance. "
-                                f"({type(obj)} received)")
-        
+                raise TypeError(
+                    f"{obj} should be urllib.parse.SplitResult or str instance. "
+                    f"({type(obj)} received)"
+                )
+
         if (
             split_result.netloc
             or split_result.path is None
@@ -119,7 +120,7 @@ class UrlBase:
             return split_result
 
         return self._with_base(split_result)
-    
+
     def url(self, *parts, **query_params):
         """Convert parts of an URL and query params to a ``url.parse.SplitResult``."""
         return self.to_uri("".join(parts) + "?" + self.encoder.url_encode(query_params))
@@ -160,7 +161,7 @@ def encoding(enc):
 class Encoder:
     def __init__(self, encoding=None):
         self.encoding = encoding
-    
+
     def url_encode(self, obj):
         if isinstance(obj, dict):
             return urlencode(obj, encoding=self.encoding)
@@ -180,6 +181,7 @@ def url_encode(obj):
 def to_uri(obj):
     """Convert an object to a ``url.parse.SplitResult``."""
     return UrlBase().to_uri(obj)
+
 
 def url(*parts, **query_params):
     """Convert parts of an URL and query params to a ``url.parse.SplitResult``."""

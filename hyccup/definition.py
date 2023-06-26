@@ -51,6 +51,7 @@ def _split_args(args, kwargs, method=False):
                 self, *other_args = args
                 return (self, None, other_args, kwargs)
 
+
 def defelem(function):
     """Decorate a function for defining elements.
 
@@ -82,6 +83,7 @@ def defelem(function):
 
 def _defelemmethod(method):
     """defelem for methods"""
+
     @functools.wraps(method)
     def wrapper(*args, **kwargs):
         self, attrs_map, args, kwargs = _split_args(args, kwargs, method=True)

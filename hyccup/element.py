@@ -31,7 +31,7 @@ def mail_to(email, *content):
     """
     if not content:
         return ["a", {"href": f"mailto:{email}"}, email]
-    
+
     return ["a", {"href": f"mailto:{email}"}, *content]
 
 
