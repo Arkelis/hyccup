@@ -23,7 +23,7 @@ def to_str(obj):
         return str(float(obj))
 
     if isinstance(obj, SplitResult):
-        return str_of_url(obj)
+        return obj.geturl()
 
     return str(obj)
 
@@ -70,13 +70,8 @@ class RawStr(str):
         return RawStr(super().__add__(other))
 
 
-def url(*parts, **query_params):
-    """Convert parts of an URL and query params to a ``url.parse.SplitResult``."""
-    return to_uri("".join(parts) + url_encode(query_params))
-
-
 @contextmanager
-def base_url(url):
+def base_url(url, / ,encoding=None):
     """Context manager specifying base URL for URLs.
 
     .. tab:: Hy
@@ -98,23 +93,40 @@ def base_url(url):
             >>> print(my-url)
             /foo/bar
     """
-    yield UrlBase(url)
+    yield UrlBase(url, encoding=encoding)
 
 
 class UrlBase:
-    def __init__(self, base=""):
+    def __init__(self, base="", encoding=None):
         self.base = base.removesuffix("/")
-    
-    def str_of_url(self, split_result):
+        self.encoder = Encoder(encoding)
+
+    def _with_base(self, split_result):
+        return split_result._replace(path=self.base + split_result.path)
+     
+    def to_uri(self, obj):
+        """Convert an object to a ``url.parse.SplitResult``."""
+        match obj:
+            case str(string):
+                split_result = urlsplit(string)
+            case SplitResult(uri):
+                split_result = uri
+            case _:
+                raise TypeError(f"{obj} should be urllib.parse.SplitResult or str instance. "
+                                f"({type(obj)} received)")
+        
         if (
             split_result.netloc
             or split_result.path is None
             or (not split_result.path.startswith("/"))
         ):
-            return split_result.geturl()
+            return split_result
 
-        new_uri = split_result._replace(path=self.base + split_result.path)
-        return new_uri.geturl()
+        return self._with_base(split_result)
+    
+    def url(self, *parts, **query_params):
+        """Convert parts of an URL and query params to a ``url.parse.SplitResult``."""
+        return self.to_uri("".join(parts) + "?" + self.encoder.url_encode(query_params))
 
 
 @contextmanager
@@ -146,11 +158,11 @@ def encoding(enc):
             iroha=%1B%24B%24%24%24m%24O%1B%28B
 
     """
-    yield Encoder(encoding)
+    yield Encoder(enc)
 
 
 class Encoder:
-    def __init__(self, encoding):
+    def __init__(self, encoding=None):
         self.encoding = encoding
     
     def url_encode(self, obj):
@@ -160,29 +172,22 @@ class Encoder:
         return quote_plus(obj)
 
 
-def str_of_url(split_result):
-    """Make URL from ``url.parse.SplitResult`` object."""
-    return UrlBase().str_of_url(split_result)
-
-
 def url_encode(obj):
     """Quote `obj` for URL encoding.
 
     * If `obj` is a dict, use ``url.parse.urlencode``.
     * Else use ``url.parse.quote_plus``.
     """
-    return Encoder(None).url_encode(obj)
+    return Encoder().url_encode(obj)
 
 
 def to_uri(obj):
     """Convert an object to a ``url.parse.SplitResult``."""
-    match obj:
-        case str(string):
-            return urlsplit(string)
-        case SplitResult(uri):
-            return uri
-        case _:
-            return urlsplit(str(obj))
+    return UrlBase().to_uri(obj)
+
+def url(*parts, **query_params):
+    """Convert parts of an URL and query params to a ``url.parse.SplitResult``."""
+    return UrlBase().url(*parts, **query_params)
 
 
 def is_empty(seq):

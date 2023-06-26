@@ -4,7 +4,7 @@
 """Tests for hyccup.util module."""
 
 (import fractions [Fraction]
-        hyccup.util [as-str to-str to-uri base-url encoding url-encode]
+        hyccup.util [as-str to-str to-uri base-url encoding url-encode url]
         urllib.parse [urlsplit])
 
 (defn test-as-str []
@@ -23,29 +23,29 @@
     (assert (= (to-str (to-uri "/foo/bar")) "/foo/bar"))
     (assert (= (to-str (to-uri "/foo#bar")) "/foo#bar")))
   (defn test-with-base-url [self]
-    (with [(base-url "/foo")]
-      (assert (= (to-str (to-uri "/bar")) "/foo/bar"))
-      (assert (= (to-str (to-uri "http://example.com")) "http://example.com"))
-      (assert (= (to-str (to-uri "https://example.com/bar")) "https://example.com/bar"))
-      (assert (= (to-str (to-uri "bar")) "bar"))
-      (assert (= (to-str (to-uri "../bar")) "../bar"))
-      (assert (= (to-str (to-uri "//example.com/bar")) "//example.com/bar"))))
+    (with [b (base-url "/foo")]
+      (assert (= (to-str (b.to-uri "/bar")) "/foo/bar"))
+      (assert (= (to-str (b.to-uri "http://example.com")) "http://example.com"))
+      (assert (= (to-str (b.to-uri "https://example.com/bar")) "https://example.com/bar"))
+      (assert (= (to-str (b.to-uri "bar")) "bar"))
+      (assert (= (to-str (b.to-uri "../bar")) "../bar"))
+      (assert (= (to-str (b.to-uri "//example.com/bar")) "//example.com/bar"))))
   (defn test-base-url-for-root-context [self]
-    (with [(base-url "/")]
-      (assert (= (to-str (to-uri "/bar")) "/bar"))
-      (assert (= (to-str (to-uri "http://example.com")) "http://example.com"))
-      (assert (= (to-str (to-uri "https://example.com/bar")) "https://example.com/bar"))
-      (assert (= (to-str (to-uri "bar")) "bar"))
-      (assert (= (to-str (to-uri "../bar")) "../bar"))
-      (assert (= (to-str (to-uri "//example.com/bar")) "//example.com/bar"))))
+    (with [b (base-url "/")]
+      (assert (= (to-str (b.to-uri "/bar")) "/bar"))
+      (assert (= (to-str (b.to-uri "http://example.com")) "http://example.com"))
+      (assert (= (to-str (b.to-uri "https://example.com/bar")) "https://example.com/bar"))
+      (assert (= (to-str (b.to-uri "bar")) "bar"))
+      (assert (= (to-str (b.to-uri "../bar")) "../bar"))
+      (assert (= (to-str (b.to-uri "//example.com/bar")) "//example.com/bar"))))
   (defn test-base-url-containing-trailing-slash [self]
-    (with [(base-url "/foo/")]
-      (assert (= (to-str (to-uri "/bar")) "/foo/bar"))
-      (assert (= (to-str (to-uri "http://example.com")) "http://example.com"))
-      (assert (= (to-str (to-uri "https://example.com/bar")) "https://example.com/bar"))
-      (assert (= (to-str (to-uri "bar")) "bar"))
-      (assert (= (to-str (to-uri "../bar")) "../bar"))
-      (assert (= (to-str (to-uri "//example.com/bar")) "//example.com/bar")))))
+    (with [b (base-url "/foo/")]
+      (assert (= (to-str (b.to-uri "/bar")) "/foo/bar"))
+      (assert (= (to-str (b.to-uri "http://example.com")) "http://example.com"))
+      (assert (= (to-str (b.to-uri "https://example.com/bar")) "https://example.com/bar"))
+      (assert (= (to-str (b.to-uri "bar")) "bar"))
+      (assert (= (to-str (b.to-uri "../bar")) "../bar"))
+      (assert (= (to-str (b.to-uri "//example.com/bar")) "//example.com/bar")))))
 
 (defclass TestURLEncode []
   (defn test-strings [self]
@@ -59,11 +59,16 @@
     (assert (= (url-encode {'a "&"}) "a=%26"))
     (assert (= (url-encode {'é "è"}) "%C3%A9=%C3%A8")))
   (defn test-encodings [self]
-    (assert (= (with [(encoding "UTF-8")] (url-encode {'iroha "いろは"}))
+    (assert (= (with [e (encoding "UTF-8")] (e.url-encode {'iroha "いろは"}))
                "iroha=%E3%81%84%E3%82%8D%E3%81%AF"))
-    (assert (= (with [(encoding "Shift_JIS")] (url-encode {'iroha "いろは"}))
+    (assert (= (with [e (encoding "Shift_JIS")] (e.url-encode {'iroha "いろは"}))
                "iroha=%82%A2%82%EB%82%CD"))
-    (assert (= (with [(encoding "EUC-JP")] (url-encode {'iroha "いろは"}))
+    (assert (= (with [e (encoding "EUC-JP")] (e.url-encode {'iroha "いろは"}))
                "iroha=%A4%A4%A4%ED%A4%CF"))
-    (assert (= (with [(encoding "ISO-2022-JP")] (url-encode {'iroha "いろは"}))
+    (assert (= (with [e (encoding "ISO-2022-JP")] (e.url-encode {'iroha "いろは"}))
                "iroha=%1B%24B%24%24%24m%24O%1B%28B"))))
+
+(defn test-url []
+  (assert (= (to-str (url "/foo" "/bar" :k "v")) "/foo/bar?k=v"))
+  (assert (= (to-str (with [b (base-url "/foo")] (b.url "/bar" :k "v")) "/foo/bar?k=v")))
+  (assert (= (to-str (with [b (base-url "/foo" :encoding "UTF-8")] (b.url "/bar" :k "à")) "/foo/bar?k=à"))))
