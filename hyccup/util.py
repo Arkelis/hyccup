@@ -1,4 +1,3 @@
-import threading
 from typing import Iterable
 from contextlib import contextmanager
 from fractions import Fraction
@@ -6,9 +5,6 @@ from urllib.parse import SplitResult, urlsplit, urlencode, quote_plus
 from functools import reduce
 from operator import add
 
-local_data = threading.local()
-local_data.encoding = None
-local_data.base_url = ""
 
 
 def to_str(obj):
