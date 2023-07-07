@@ -149,8 +149,8 @@ class FieldGroup:
         """Create a drop-down box using the `<select>` tag.
 
         :param attrs-map: Optional dict of attributes as first positional parameter
-        :param options: A collection of options (passed to :hy:func:`select-options`)
-        :param selected: Selected option (passed to :hy:func:`select-options`)
+        :param options: A collection of options (passed to :py:func:`select_options`)
+        :param selected: Selected option (passed to :py:func:`select_options`)
         """
         return [
             "select",
@@ -284,8 +284,8 @@ def drop_down(name, options, selected=None):
     """Create a drop-down box using the `<select>` tag.
 
     :param attrs-map: Optional dict of attributes as first positional parameter
-    :param options: A collection of options (passed to :hy:func:`select-options`)
-    :param selected: Selected option (passed to :hy:func:`select-options`)
+    :param options: A collection of options (passed to :py:func:`select_options`)
+    :param selected: Selected option (passed to :py:func:`select_options`)
     """
     return _top_group.drop_down(name, options, selected)
 

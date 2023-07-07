@@ -60,6 +60,8 @@ def defelem(function):
     * The original signature of the function
     * The original signature with as first parameter a dict of attributes. This
       will be merged with attributes of the returned element.
+
+    Use defelem.method to decorate an instance method.
     """
 
     @functools.wraps(function)
