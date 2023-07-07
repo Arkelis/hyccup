@@ -2,9 +2,9 @@
 Core Functions - Render HTML
 ============================
 
-The core module contains the :hy:func:`html` function which renders HTML from data
+The core module contains the :py:func:`~hyccup.core.html` function which renders HTML from data
 structure. All strings are escaped by default; to prevent a string to be
-escaped, use the :hy:func:`raw` function.
+escaped, use the :py:func:`~hyccup.core.raw` function.
 
 Syntax Reminder
 ===============
@@ -77,7 +77,7 @@ Syntax Reminder
 String Escaping
 ===============
 
-By default, :hy:func:`html` escapes all strings. This behaviour can be customized
+By default, :py:func:`~hyccup.core.html` escapes all strings. This behaviour can be customized
 with `escape-strings` parameter:
 
 .. tab:: Hy
@@ -96,7 +96,7 @@ with `escape-strings` parameter:
         >>> html(content, escape_strings=False)
         '<p>line<br>other</p>'
 
-:hy:func:`raw` function can be used to prevent a single expression to be escaped:
+:py:func:`~hyccup.core.raw` function can be used to prevent a single expression to be escaped:
 
 .. tab:: Hy
 
@@ -115,7 +115,7 @@ with `escape-strings` parameter:
         '<p>line<br>other</p>'
 
 
-Note that :hy:func:`html` returns a raw string:
+Note that :py:func:`~hyccup.core.html` returns a raw string:
 
 .. tab:: Hy
 
@@ -139,6 +139,6 @@ API
 
 **Source code:** `hyccup/core.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/core.hy>`_
 
-.. hy:automodule:: hyccup.core
+.. automodule:: hyccup.core
     :members: html, raw
 
