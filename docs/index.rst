@@ -4,12 +4,12 @@
    contain the root `toctree` directive.
 
 ===========================================================
-Hyccup - Generate HTML from data structure in Hy and Python
+Hyccup - Generate HTML from data structure in Python and Hy
 ===========================================================
 
 
 Hyccup is a port of `Hiccup <https://github.com/weavejester/hiccup>`_ for 
-`Hy <https://github.com/hylang/hy>`_ and Python. It allows you to represent
+Python and `Hy <https://github.com/hylang/hy>`_. It allows you to represent
 HTML into data structure and to dump it:
 
 .. tab:: Hy

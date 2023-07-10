@@ -8,7 +8,7 @@ def defhtml(func=None, /, **html_options):
     Take HTML options as keyword arguments.
     """
 
-    # if HTML option is provided, we only have one func arg
+    # if no HTML option is provided, we only have one func arg
     # then we simply call it and wrap its result with html()
     if callable(func):
 
@@ -60,6 +60,8 @@ def defelem(function):
     * The original signature of the function
     * The original signature with as first parameter a dict of attributes. This
       will be merged with attributes of the returned element.
+
+    Use defelem.method to decorate an instance method.
     """
 
     @functools.wraps(function)

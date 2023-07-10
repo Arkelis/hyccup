@@ -19,7 +19,7 @@ From PyPI:
 Overview
 ========
 
-Use the :hy:func:`html <hyccup.core.html>` core function to render a data
+Use the :py:func:`~hyccup.core.html` core function to render a data
 structure into an HTML string:
 
 .. tab:: Hy
@@ -38,9 +38,9 @@ structure into an HTML string:
       >>> html(['p', {'id': 'an-id', 'class': 'a-class'}, 'Python Ipsum'])
       '<p class="a-class" id="an-id">Python Ipsum</p>'
 
-The :hy:func:`html <hyccup.core.html>` function takes lists as positional
+The :py:func:`~hyccup.core.html` function takes lists as positional
 arguments. The first elmement of each list must be the tag name of the element
-to render. It can be a string or a Hy symbol.
+to render.
 
 .. tab:: Hy
 
@@ -89,9 +89,7 @@ of the element. If an element is an iterator, it is expanded.
 
    .. code-block:: clj
 
-      => (setv items-generator
-           (gfor x (range 5) ["li" f"Item #{x}"]))
-      => (html ["ol" items-generator])
+      => (html ["ol" (gfor x (range 5) ["li" f"Item #{x}"])])
       "<ol>
         <li>Item #0</li>
         <li>Item #1</li>
@@ -122,7 +120,7 @@ of the element. If an element is an iterator, it is expanded.
    .. code-block::
 
       >>> items_generator = (['li', f'Item #{x}'] for x in range(5))
-      >>> html(['ol', items_generator])
+      >>> html(['ol', (['li', f'Item #{x}'] for x in range(5))])
       '<ol>
         <li>Item #0</li>
         <li>Item #1</li>

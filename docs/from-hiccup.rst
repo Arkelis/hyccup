@@ -22,7 +22,7 @@ must be changed to
 
 .. code:: clj
 
-   ["div#an-id" {"class" "a-class"} "some text"] ;; with strings
+   ["div#an-id" {"class" "a-class"} "some text"]
 
 HTML Options
 ------------
@@ -38,8 +38,7 @@ Pass them as keyword arguments (or use unpacking):
 .. code:: clj
 
    (html ["p" "example"] :mode "xhtml" :espace-strings True)
-   (html ["p" "example"] #** {'mode "xhtml" 'espace-strings True})
-   (html ["p" "example"] (unpack-mapping {'mode "xhtml" 'espace-strings True}))
+   (html ["p" "example"] #** {"mode" "xhtml" "espace-strings" True})
 
 Note that the escape flag argument has no ``?`` suffix in Hyccup.
 
@@ -88,30 +87,29 @@ To
 
 .. code:: clj
 
-   => (with [(base-url "/foo/")]
-        (to-str (to-uri "/bar")))
+   => (with [b (base-url "/foo/")]
+        (to-str (b.to-uri "/bar")))
    "/foo/bar"
-   => (with [(encoding "UTF-8")] 
-        (url-encode {"iroha" "いろは"}))
+   => (with [e (encoding "UTF-8")] 
+        (e.url-encode {"iroha" "いろは"}))
    "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
 
 ``defhtml`` and ``defelem``
 ---------------------------
 
-``defhtml`` and ``defelem`` macros from Hiccup is available in two
-modules, macros for Hy and decorators for Python:
+``defhtml`` and ``defelem`` macros from Hiccup are available as decorators:
 
 
 .. tab:: Hy
 
    .. code:: clj
 
-      => (require hyccup.definition [defhtml defelem])
-      => (defelem link-to [link text]
+      => (import hyccup.definition [defhtml defelem])
+      => (defn [defelem] link-to [link text]
       ...  ["a" {"href" link} text])
       => (link-to {"class" "some-class"} "https://www.pycolore.fr" "Pycolore" )
       ["a" {"href" "https://www.pycolore.fr" 'class "some-class"} "Pycolore"]
-      => (defhtml linked-section-html [link text content]
+      => (defn [defhtml] linked-section-html [link text content]
       ...  ["section" 
       ...    ["h1" (link-to link text)]
       ...    ["p" content]])
@@ -125,7 +123,7 @@ modules, macros for Hy and decorators for Python:
          </p>
       </section>"
       => 
-      => (defhtml {"mode" "xml"} ;; you can pass HTML options as first form to defhtml
+      => (defn [(defhtml {"mode" "xml"})] ;; you can pass HTML options as first form to defhtml
            some-html []
            ["p"])
       => (some-html)

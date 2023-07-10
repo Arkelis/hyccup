@@ -111,7 +111,7 @@ class FieldGroup:
             {
                 "type": "radio",
                 "name": self.make_name(group),
-                "id": self.make_id(f"{util.as_str(group)}-{util.as_str(value)}"),
+                "id": self.make_id(f"{util.to_str(group)}-{util.to_str(value)}"),
                 "value": value,
                 "checked": is_checked,
             },
@@ -149,8 +149,8 @@ class FieldGroup:
         """Create a drop-down box using the `<select>` tag.
 
         :param attrs-map: Optional dict of attributes as first positional parameter
-        :param options: A collection of options (passed to :hy:func:`select-options`)
-        :param selected: Selected option (passed to :hy:func:`select-options`)
+        :param options: A collection of options (passed to :py:func:`select_options`)
+        :param selected: Selected option (passed to :py:func:`select_options`)
         """
         return [
             "select",
@@ -199,6 +199,11 @@ def group(group_name):
 
 
 _top_group = FieldGroup()
+
+
+def input_field(type, name, value):
+    """Create a new <input> element."""
+    return _top_group.input_field(type, name, value)
 
 
 @defelem
@@ -284,8 +289,8 @@ def drop_down(name, options, selected=None):
     """Create a drop-down box using the `<select>` tag.
 
     :param attrs-map: Optional dict of attributes as first positional parameter
-    :param options: A collection of options (passed to :hy:func:`select-options`)
-    :param selected: Selected option (passed to :hy:func:`select-options`)
+    :param options: A collection of options (passed to :py:func:`select_options`)
+    :param selected: Selected option (passed to :py:func:`select_options`)
     """
     return _top_group.drop_down(name, options, selected)
 

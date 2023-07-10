@@ -2,76 +2,11 @@
 Definitions - Create Renderers and Elements
 ===========================================
 
-This module contains helper for defining callables returning HTML elements
-structures or HTML raw strings directly. They are available in two forms:
+This module contains helpers for defining callables returning HTML elements
+structures or HTML raw strings directly.
 
-* Macros usable in Hy
-* Decorators usable in both Hy and Python
-
-Definitions Macros
-==================
-
-Use :hy:macro:`defhtml <hyccup.definition.defhtml>` for defining a callable
-which wraps its output to :hy:func:`html <hyccup.core.html>` automatically:
-
-.. code-block:: clj
-
-    ;; Use require to import macros
-    (require hyccup.definition [defhtml])
-
-    (defhtml render-in-div [#* content]
-      ["div" {"class" "container"} (iter content)])
-    (render-in-div ["ol" (gfor x (range 1 4) ["li" f"Item {x}"])])
-    ;; "<div class=\"container\">
-    ;;   <ol>
-    ;;     <li>Item 1</li>
-    ;;     <li>Item 2</li>
-    ;;     <li>Item 3</li>
-    ;;   </ol>
-    ;; </div>"
-
-You can pass HTML options:
-
-.. code-block:: clj
-
-    ;; XHTML mode (default)
-    (defhtml {"mode" "xhtml"} render-in-div [#* content]
-      ["div" {"class" "container"} (iter content)])
-    (render-in-div ["img" {"src" "https://foo.bar"}])
-    ;; "<div class=\"container\"><img src=\"https://foo.bar\" /></div>"
-
-    ;; HTML mode
-    (defhtml {"mode" "html"} render-in-div [#* content]
-      ["div" {"class" "container"} (iter content)])
-    (render-in-div ["img" {"src" "https://foo.bar"}])
-    ;; "<div class=\"container\"><img src=\"https://foo.bar\"></div>"
-
-
-Use :hy:macro:`defelem <hyccup.definition.defelem>` for defining elements. A
-first optional parameter is added for specifying attributes to merge with 
-returned element's attributes:
-
-.. code-block:: clj
-
-    (require [hyccup.definition [defelem]])
-
-    (defelem link-to [link content]
-      ["a" {"href" link} content])
-
-    ;; Without attributes dict
-    (link-to "https://foo.bar" "Awesome link")
-    ;; ["a" {"href" "https://foo.bar"} "Awesome link"]
-
-    ;; With attributes
-    (link-to {"class" "some-class"} "https://foo.bar" "Awesome link")
-    ;; ["a" {"href" "https://foo.bar" "class" "some-class"} "Awesome link"]
-
-
-Definitions Decorators
-======================
-
-Use :hy:func:`defhtml <hyccup.definition.defhtml>` for defining a callable
-which wraps its output to :hy:func:`html <hyccup.core.html>` automatically:
+Use :py:func:`~hyccup.definition.defhtml` for defining a callable
+which passes its output to :py:func:`~hyccup.core.html` automatically:
 
 .. code-block::
 
@@ -111,9 +46,9 @@ You can pass HTML options:
     # '<div class="container"><img src="https://foo.bar"></div>'
 
 
-Use :hy:func:`defelem <hyccup.definition.defelem>` for defining elements. A
-first optional parameter is added for specifying attributes to merge with 
-returned element's attributes:
+Use :py:func:`~hyccup.definition.defelem` for defining elements. You can
+pass a dict of attributes as first optional parameter, it will be merged
+with attributes of the returned element of the function.
 
 .. code-block::
 
@@ -131,12 +66,36 @@ returned element's attributes:
     link_to({'class': 'some-class'}, 'https://foo.bar', 'Awesome link')
     # ['a {'href': 'https://foo.bar', 'class': 'some-class'} "Awesome link"]
 
+For methods, use :code:`defelem.method`.
+
+.. code-block::
+
+    from hyccup.definition import defelem
+
+    class Renderer:
+        def __init__(self, base):
+            self.base = base
+
+        @defelem.method
+        def link_to(self, path, content):
+            return ['a', {'href': f"{self.base}{path}"}, content])
+
+    renderer = Renderer('https://foo.bar')
+
+    # Without attributes dict
+    renderer.link_to('/path', 'Awesome link')
+    # ['a', {'href': 'https://foo.bar/path'}, 'Awesome link']
+
+    # With attributes
+    renderer.link_to({'class': 'some-class'}, '/path', 'Awesome link')
+    # ['a {'href': 'https://foo.bar/path', 'class': 'some-class'} "Awesome link"]
+
+
 API
 ===
 
-**Source code:** `hyccup/definition.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.hy>`_
+**Source code:** `hyccup/definition.py <https://github.com/Arkelis/hyccup/blob/master/hyccup/definition.py>`_
 
-.. hy:automodule:: hyccup.definition
+.. automodule:: hyccup.definition
     :members: defhtml, defelem
-    :macros: defhtml, defelem
     :member-order: bysource
