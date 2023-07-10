@@ -8,7 +8,7 @@ def defhtml(func=None, /, **html_options):
     Take HTML options as keyword arguments.
     """
 
-    # if HTML option is provided, we only have one func arg
+    # if no HTML option is provided, we only have one func arg
     # then we simply call it and wrap its result with html()
     if callable(func):
 

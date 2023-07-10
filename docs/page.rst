@@ -56,7 +56,7 @@ Basic Example
 API
 ---
 
-**Source code:** `hyccup/page.hy <https://github.com/Arkelis/hyccup/blob/master/hyccup/page.hy>`_
+**Source code:** `hyccup/page.py <https://github.com/Arkelis/hyccup/blob/master/hyccup/page.py>`_
 
 .. automodule:: hyccup.page
     :members: xhtml, html4, html5, include_css, include_js
