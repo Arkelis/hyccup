@@ -12,7 +12,7 @@ def to_str(obj):
     In particular:
 
     * Convert fraction to string of its decimal result.
-    * Convert a ``url.parse.SplitResult`` object to its URL with :hy:func:`str-of-url`.
+    * Convert a ``url.parse.SplitResult`` object to string with `geturl()`.
     * For any other case, convert with ``str`` constructor."""
     if isinstance(obj, Fraction):
         return str(float(obj))
@@ -21,11 +21,6 @@ def to_str(obj):
         return obj.geturl()
 
     return str(obj)
-
-
-def as_str(*obj):
-    """Convert all passed objects to string with :hy:func:`to-str`."""
-    return "".join(map(to_str, obj))
 
 
 def escape_html(string, mode, escape_strings):
@@ -69,29 +64,27 @@ class RawStr(str):
 def base_url(url, /, encoding=None):
     """Context manager specifying base URL for URLs.
 
-    .. tab:: Hy
+    Yield an :py:class:`~hyccup.util.UrlBase` instance.
 
-        .. code-block:: clj
+    .. code-block:: clj
 
-            => (with [b (base-url "/foo")]
-            ...  (setv my-url (to-str (to-uri "/bar"))))
-            => (print my-url)
-            "/foo/bar"
-
-    .. tab:: Python
-
-        .. code-block::
-
-            >>> with base_url('/foo'):
-            ...     my_url = to_str(to_uri('/bar'))
-            ...
-            >>> print(my-url)
-            /foo/bar
+        => (with [b (base-url "/foo")]
+        ...  (to-str (to-uri "/bar")))
+        "/foo/bar"
     """
     yield UrlBase(url, encoding=encoding)
 
 
 class UrlBase:
+    """Class for generating URL with defined base or encoding.
+
+    .. code-block:: pycon
+
+        >>> base = UrlBase(base='/foo')
+        >>> to_str(base.to_uri('/bar'))
+        "/foo/bar"
+    """
+
     def __init__(self, base="", encoding=None):
         self.base = base.removesuffix("/")
         self.encoder = Encoder(encoding)
@@ -130,39 +123,40 @@ class UrlBase:
 def encoding(enc):
     """Context manager specifying encoding.
 
-    .. tab:: Hy
+    Yield an :py:class:`~hyccup.util.Encoder` instance.
 
-        .. code-block:: clj
+    .. code-block:: clj
 
-            => (with [e (encoding "UTF-8")]
-            ...  (e.url-encode {"iroha" "いろは"}))
-            "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
-            => (with [e (encoding "ISO-2022-JP")]
-            ...  (e.url-encode {"iroha" "いろは"}))
-            "iroha=%1B%24B%24%24%24m%24O%1B%28B"
-
-    .. tab:: Python
-
-        .. code-block::
-
-            >>> with encoding('UTF-8') as e:
-            ...     print(e.url_encode({'iroha': 'いろは'}))
-            ...
-            iroha=%E3%81%84%E3%82%8D%E3%81%AF
-            >>> with encoding('ISO-2022-JP') as e:
-            ...     print(e.url_encode({'iroha': 'いろは'}))
-            ...
-            iroha=%1B%24B%24%24%24m%24O%1B%28B
+        => (with [e (encoding "UTF-8")]
+        ...  (e.url-encode {"iroha" "いろは"}))
+        "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
+        => (with [e (encoding "ISO-2022-JP")]
+        ...  (e.url-encode {"iroha" "いろは"}))
+        "iroha=%1B%24B%24%24%24m%24O%1B%28B"
 
     """
     yield Encoder(enc)
 
 
 class Encoder:
+    """Class for encoding URLs.
+
+    .. code-block:: pycon
+
+        >>> enc = Encoder('UTF-8')
+        >>> enc.url_encode({'iroha': 'いろは'})
+        "iroha=%E3%81%84%E3%82%8D%E3%81%AF"
+    """
+
     def __init__(self, encoding=None):
         self.encoding = encoding
 
     def url_encode(self, obj):
+        """Quote `obj` for URL encoding.
+
+        * If `obj` is a dict, use ``url.parse.urlencode``.
+        * Else use ``url.parse.quote_plus``.
+        """
         if isinstance(obj, dict):
             return urlencode(obj, encoding=self.encoding)
 

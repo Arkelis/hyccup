@@ -9,12 +9,29 @@ Strings Handling
 ================
 
 .. automodule:: hyccup.util
-    :members: escape-html, RawStr, as-str, to-str
+    :members: escape_html, RawStr, to_str
     :member-order: bysource
 
 URLs Handling
 =============
 
+Conversion to string
+********************
+
 .. automodule:: hyccup.util
-    :members: url, to-uri, base-url, str-of-url, url-encode, encoding
-    :member-order: bysource
+    :members: url, to_uri, url_encode
+    :noindex:
+
+Define encoding and base URL in Hy
+**********************************
+
+.. automodule:: hyccup.util
+    :members: base_url, encoding
+    :noindex:
+
+Define encoding and base URL in Python
+**************************************
+
+.. automodule:: hyccup.util
+    :members: UrlBase, Encoder
+    :noindex:

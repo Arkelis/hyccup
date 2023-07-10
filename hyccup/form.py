@@ -111,7 +111,7 @@ class FieldGroup:
             {
                 "type": "radio",
                 "name": self.make_name(group),
-                "id": self.make_id(f"{util.as_str(group)}-{util.as_str(value)}"),
+                "id": self.make_id(f"{util.to_str(group)}-{util.to_str(value)}"),
                 "value": value,
                 "checked": is_checked,
             },
@@ -199,6 +199,11 @@ def group(group_name):
 
 
 _top_group = FieldGroup()
+
+
+def input_field(type, name, value):
+    """Create a new <input> element."""
+    return _top_group.input_field(type, name, value)
 
 
 @defelem

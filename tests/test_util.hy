@@ -4,17 +4,8 @@
 """Tests for hyccup.util module."""
 
 (import fractions [Fraction]
-        hyccup.util [as-str to-str to-uri base-url encoding url-encode url]
+        hyccup.util [to-str to-uri base-url encoding url-encode]
         urllib.parse [urlsplit])
-
-(defn test-as-str []
-  (assert (= (as-str "foo") "foo"))
-  (assert (= (as-str 'foo) "foo"))
-  (assert (= (as-str 100) "100"))
-  (let [frac (Fraction 4 3)] (assert (= (as-str frac) (str (float frac)))))
-  (assert (= (as-str "a" 'b 3) "ab3"))
-  (assert (= (as-str (urlsplit "/foo")) "/foo"))
-  (assert (= (as-str (urlsplit "localhost:3000/foo")) "localhost:3000/foo")))
 
 
 (defclass TestToURI []
