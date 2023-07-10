@@ -19,7 +19,7 @@ From PyPI:
 Overview
 ========
 
-Use the :py:func:`hyccup.html <hyccup.core.html>` core function to render a data
+Use the :py:func:`~hyccup.core.html` core function to render a data
 structure into an HTML string:
 
 .. tab:: Hy
